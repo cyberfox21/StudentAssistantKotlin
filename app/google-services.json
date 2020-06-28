@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "492376963365",
+    "firebase_url": "https://studentassistantkotlin.firebaseio.com",
+    "project_id": "studentassistantkotlin",
+    "storage_bucket": "studentassistantkotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492376963365:android:9e5d8121bdf258937882cc",
+        "android_client_info": {
+          "package_name": "com.tatyanashkolnik.studentassistantkotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492376963365-h5b84mp7fgol2jli6jnis5qdj7sg3i0h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tatyanashkolnik.studentassistantkotlin",
+            "certificate_hash": "14196579f527a4e319de8071624def4921362677"
+          }
+        },
+        {
+          "client_id": "492376963365-oo48gli1e619nf0jesshpirvg63r8d94.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClzH_emMH8SCZgJ34DIOTBt3waEOocMFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492376963365-oo48gli1e619nf0jesshpirvg63r8d94.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
