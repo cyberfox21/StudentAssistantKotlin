@@ -10,16 +10,16 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:fontFamily="@font/anurati_regular"
-        android:text=" L O G I  N"
+        android:fontFamily="@font/avenirnextcyr_light"
+        android:text=" L O G I N"
         android:gravity="center"
         android:textColor="#3D5169"
-        android:textSize="40dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@id/parent2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="4" />
+        app:layout_constraintVertical_weight="3.5" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toTopOf="@id/parent1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_weight="1.5">
+        app:layout_constraintVertical_weight="0.6">
 
         <ImageView
             android:id="@+id/image_key"
@@ -48,22 +48,36 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/avenirnextcyr_light"
             android:gravity="left"
-            android:hint="login"
-            android:layout_marginRight="6dp"
+            android:hint="email"
             android:textColorHint="#C7C7C7"
-            android:textSize="30dp"
+            android:layout_marginRight="6dp"
+            android:textSize="20dp"
+            android:maxLines="1"
+            android:paddingLeft="20dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:background="@drawable/rounded_corner_2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_weight="3"
             app:layout_constraintLeft_toRightOf="@+id/image_key"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/space2"
             app:layout_constraintTop_toTopOf="@+id/parent2" />
+        <Space
+            android:id="@+id/space2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/parent2"
+            app:layout_constraintHorizontal_weight="0.35"
+            app:layout_constraintLeft_toRightOf="@+id/etLogin"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/parent2"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/btnRegister"
+        app:layout_constraintBottom_toTopOf="@id/parent3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/parent2"
         app:layout_constraintVertical_weight="1.5">
@@ -88,52 +102,96 @@
             android:hint="password"
             android:textColorHint="#C7C7C7"
             android:layout_marginRight="6dp"
-            android:textSize="30dp"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:maxLines="1"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:background="@drawable/rounded_corner_2"
             app:layout_constraintBottom_toBottomOf="@id/parent1"
             app:layout_constraintHorizontal_weight="3"
             app:layout_constraintLeft_toRightOf="@+id/image_password"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/space1"
             app:layout_constraintTop_toTopOf="@+id/parent1" />
+
+        <Space
+            android:id="@+id/space1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/parent1"
+            app:layout_constraintHorizontal_weight="0.35"
+            app:layout_constraintLeft_toRightOf="@+id/etPassword"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/parent1"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/btnRegister"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:fontFamily="@font/avenirnextcyr_light"
-        android:gravity="center"
-        android:text="R E G I S T E R"
-        android:textSize="22dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/parent3"
+        app:layout_constraintBottom_toTopOf="@id/tsib"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/parent1"
-        app:layout_constraintVertical_weight="2" />
+        app:layout_constraintTop_toBottomOf="@id/parent3"
+        app:layout_constraintVertical_weight="1.5">
+
+    <TextView
+        android:id="@+id/toRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to register page"
+        android:textSize="16dp"
+        android:textColor="#3D5169"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/parent4"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/parent4"
+        android:gravity="center"
+        android:fontFamily="@font/avenirnextcyr_light"
+        android:padding="18dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:id="@+id/parent3"
-    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/parent4"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/btnRegister"
-    app:layout_constraintVertical_weight="2">
+    app:layout_constraintTop_toBottomOf="@id/parent1"
+    app:layout_constraintVertical_weight="1.5">
     <TextView
         android:id="@+id/btnEnter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
-        android:fontFamily="@font/anurati_regular"
+        android:fontFamily="@font/avenirnextcyr_light"
         android:gravity="center"
         android:padding="18dp"
         android:text="   E N T E R   "
         android:textColor="#ffffff"
-        android:textSize="25dp"
+        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@id/parent3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/parent3" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/tsib"
+        android:text="TSIB team ©"
+        android:gravity="center"
+        android:textColor="#C7C7C7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/parent4"
+        app:layout_constraintVertical_weight="1">
+    </TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
