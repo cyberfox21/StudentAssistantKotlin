@@ -14,8 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.main.TaskActivity
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.etPassword
 import kotlinx.android.synthetic.main.activity_registration.*
 import java.util.*
 
@@ -26,6 +24,7 @@ class RegistrationActivity : Activity() {
     private lateinit var btnRegister : TextView
     private lateinit var toEnter : TextView
 
+    private lateinit var name : String
     private lateinit var email : String
     private lateinit var pwd : String
 
@@ -68,40 +67,6 @@ class RegistrationActivity : Activity() {
         }
     }
 
-    private fun registerUser(){
-        email = etEmail.text.toString()
-        pwd = etPassword.text.toString()
-        if (email.isEmpty()){
-            etEmail.error = "Please enter email."
-            etEmail.requestFocus()
-        } else if (pwd.isEmpty()) {
-            etPassword.error = "Please enter password."
-            etPassword.requestFocus()
-        } else if (pwd.length < 6) {
-            etPassword.error = "Password must be at least 6 characters."
-            etPassword.requestFocus()
-        } else if (email.isEmpty() && pwd.isEmpty()){
-            Toast.makeText(this@RegistrationActivity, "Fields are empty!", Toast.LENGTH_SHORT).show()
-        } else if (!(email.isEmpty() && pwd.isEmpty())) {
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pwd)
-                .addOnFailureListener {
-                    Log.d("CHECKER", "Failed to create user. ${it.message}")
-                }
-                .addOnCompleteListener {
-                    if (!it.isSuccessful) return@addOnCompleteListener
-                    //else if successful
-                    else {
-                        Toast.makeText(this@RegistrationActivity, "You are logged in.", Toast.LENGTH_SHORT).show()
-                        Log.d("CHECKER","Successfully created user with uid: ${it.result?.user?.uid}")
-
-                        uploadImageToFirebaseStorage()
-
-                        startActivity(Intent(this@RegistrationActivity, TaskActivity::class.java))
-                    }
-                }
-        }
-    }
-
     private fun uploadImageToFirebaseStorage(){
         if(selectedPhotoUri == null) return
         val filename = UUID.randomUUID().toString()
@@ -111,4 +76,54 @@ class RegistrationActivity : Activity() {
                 Log.d("CHECKER", "Successfully uploaded image: ${it.metadata?.path}")
             }
     }
+
+    private fun registerUser(){
+        name = etName.text.toString()
+        email = etEmail.text.toString()
+        pwd = etPassword.text.toString()
+        if (email.isEmpty()){
+            Log.d("CHECKER", "RegistrationActivity: Please enter email.")
+            etEmail.error = "Please enter email."
+            etEmail.requestFocus()
+        } else if (pwd.isEmpty()) {
+            Log.d("CHECKER", "RegistrationActivity: Please enter password.")
+            etPassword.error = "Please enter password."
+            etPassword.requestFocus()
+        } else if (name.isEmpty()) {
+            Log.d("CHECKER", "RegistrationActivity: Please enter name.")
+            etName.error = "Please enter name."
+            etName.requestFocus()
+        } else if (pwd.length < 6) {
+            Log.d("CHECKER", "RegistrationActivity: Password must be at least 6 characters.")
+            etPassword.error = "Password must be at least 6 characters."
+            etPassword.requestFocus()
+        } else if (email.isEmpty() && pwd.isEmpty()){
+            Log.d("CHECKER", "RegistrationActivity: Fields are empty!")
+            Toast.makeText(this@RegistrationActivity, "Fields are empty!", Toast.LENGTH_SHORT).show()
+        } else if (!(email.isEmpty() && pwd.isEmpty())) {
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pwd)
+                .addOnFailureListener {
+                    Log.d("CHECKER", "RegistrationActivity: Failed to create user. ${it.message}")
+                    Log.d("CHECKER", "RegistrationActivity: Email: $email")
+                    Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
+                    Toast.makeText(this@RegistrationActivity, "Failed to create user: ${it.message}", Toast.LENGTH_LONG).show()
+                }
+                .addOnCompleteListener {
+                    if (!it.isSuccessful) return@addOnCompleteListener
+                    //else if successful
+                    else {
+                        Toast.makeText(this@RegistrationActivity, "You are logged in.", Toast.LENGTH_LONG).show()
+                        Log.d("CHECKER","Successfully created user with uid: ${it.result?.user?.uid}")
+                        Log.d("CHECKER", "RegistrationActivity: Email: $email")
+                        Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
+
+                        uploadImageToFirebaseStorage()
+
+                        startActivity(Intent(this@RegistrationActivity, TaskActivity::class.java))
+                    }
+                }
+        }
+    }
+
+
 }

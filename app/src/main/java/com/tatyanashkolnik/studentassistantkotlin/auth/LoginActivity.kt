@@ -10,8 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.main.TaskActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.etPassword
-import kotlinx.android.synthetic.main.activity_registration.*
+
 
 class LoginActivity : Activity() {
 
@@ -38,27 +37,32 @@ class LoginActivity : Activity() {
     }
 
     private fun signInUser(){
-        email = etEmail.text.toString()
-        pwd = etPassword.text.toString()
+        email = etLoginEmail.text.toString()
+        pwd = etLoginPassword.text.toString()
         if (email.isEmpty()){
-            etEmail.error = "Please enter email."
-            etEmail.requestFocus()
+            Log.d("CHECKER", "LoginActivity: Please enter email.")
+            etLoginEmail.error = "Please enter email."
+            etLoginEmail.requestFocus()
         } else if (pwd.isEmpty()) {
-            etPassword.error = "Please enter password."
-            etPassword.requestFocus()
+            Log.d("CHECKER", "LoginActivity: Please enter password.")
+            etLoginPassword.error = "Please enter password."
+            etLoginPassword.requestFocus()
         } else if (pwd.length < 6) {
-            etPassword.error = "Password must be at least 6 characters."
-            etPassword.requestFocus()
+            Log.d("CHECKER", "LoginActivity: Password must be at least 6 characters.")
+            etLoginPassword.error = "Password must be at least 6 characters."
+            etLoginPassword.requestFocus()
         } else if (email.isEmpty() && pwd.isEmpty()){
+            Log.d("CHECKER", "LoginActivity: Fields are empty!")
             Toast.makeText(this@LoginActivity, "Fields are empty!", Toast.LENGTH_SHORT).show()
         } else if (!(email.isEmpty() && pwd.isEmpty())) {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pwd)
                 .addOnFailureListener {
-                    Log.d("CHECKER", "Failed to create user: ${it.message}")
-                    Toast.makeText(this@LoginActivity, "Login error, try again. ${it.message}", Toast.LENGTH_SHORT).show()
+                    Log.d("CHECKER", "LoginActivity: Failed: ${it.message}")
+                    Toast.makeText(this@LoginActivity, "Failed: ${it.message}", Toast.LENGTH_LONG).show()
                 }
                 .addOnCompleteListener {
                     if (!it.isSuccessful) {
+                        Log.d("CHECKER", "LoginActivity: Error occurred!")
                         Toast.makeText(this@LoginActivity, "Error occurred!", Toast.LENGTH_SHORT).show()
                         return@addOnCompleteListener
                     }
@@ -66,7 +70,7 @@ class LoginActivity : Activity() {
                     Toast.makeText(this@LoginActivity, "You are logged in.", Toast.LENGTH_SHORT).show()
                     Log.d(
                         "CHECKER",
-                        "Successfully created user with uid: ${it.result?.user?.uid}"
+                        "LoginActivity: Successfully created user with uid: ${it.result?.user?.uid}"
                     )
                     startActivity(Intent(this@LoginActivity, TaskActivity::class.java))
                 }
