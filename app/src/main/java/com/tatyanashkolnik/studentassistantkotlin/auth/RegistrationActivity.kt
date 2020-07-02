@@ -2,7 +2,6 @@ package com.tatyanashkolnik.studentassistantkotlin.auth
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -49,7 +48,7 @@ class RegistrationActivity : Activity() {
         }
 
         selectUserPhoto.setOnClickListener {
-            Log.d("CHECKER", "Try to show photo galary")
+            Log.d("CHECKER", "RegistrationActivity: Try to show photo galary")
             val toGalary = Intent(Intent.ACTION_PICK)
             toGalary.type = "image/*"
             startActivityForResult(toGalary, 0)
@@ -60,7 +59,7 @@ class RegistrationActivity : Activity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
-            Log.d("CHECKER", "Photo was selected")
+            Log.d("CHECKER", "RegistrationActivity: Photo was selected")
 
             selectedPhotoUri = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
@@ -71,22 +70,36 @@ class RegistrationActivity : Activity() {
     }
 
     private fun uploadImageToFirebaseStorage(){
-        if(selectedPhotoUri == null) return
-        val filename = UUID.randomUUID().toString()
-        val ref = FirebaseStorage.getInstance().getReference("/avatars/$filename")
-        ref.putFile(selectedPhotoUri!!)
-            .addOnSuccessListener {
-                Log.d("CHECKER", "RegistrationActivity: Successfully uploaded image: ${it.metadata?.path}")
 
-                ref.downloadUrl.addOnCompleteListener{
-                    Log.d("CHECKER", "RegistrationActivity: File location: $it")
-                    saveUserToDatabase(it.toString())
+        if(selectedPhotoUri == null) {    /////// upload stock user avatar
+            val stock_photo_location = "com.google.android.gms.tasks.zzu@f6382a9"
+            saveUserToDatabase(stock_photo_location)
+            Log.d("CHECKER", "RegistrationActivity: Setted a stock user photo")
+
+        } else {   //// upload selected user avatar
+            val filename = UUID.randomUUID().toString()
+            val ref = FirebaseStorage.getInstance().getReference("/avatars/$filename")
+            ref.putFile(selectedPhotoUri!!)
+                .addOnSuccessListener {
+                    Log.d(
+                        "CHECKER",
+                        "RegistrationActivity: Successfully uploaded image: ${it.metadata?.path}"
+                    )
+
+                    ref.downloadUrl.addOnCompleteListener {
+                        Log.d("CHECKER", "RegistrationActivity: File location: $it")
+                        saveUserToDatabase(it.toString())
+                    }
                 }
-            }
-            .addOnFailureListener{
-                Log.d("CHECKER", "RegistrationActivity: Failed to upload image.")
-                Toast.makeText(this@RegistrationActivity, "Failed to upload image.", Toast.LENGTH_SHORT).show()
-            }
+                .addOnFailureListener {
+                    Log.d("CHECKER", "RegistrationActivity: Failed to upload image.")
+                    Toast.makeText(
+                        this@RegistrationActivity,
+                        "Failed to upload image.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
     }
 
     private fun saveUserToDatabase(profileImageUrl : String){
@@ -146,7 +159,7 @@ class RegistrationActivity : Activity() {
                     //else if successful
                     else {
                         Toast.makeText(this@RegistrationActivity, "You are logged in.", Toast.LENGTH_LONG).show()
-                        Log.d("CHECKER","Successfully created user with uid: ${it.result?.user?.uid}")
+                        Log.d("CHECKER","RegistrationActivity: Successfully created user with uid: ${it.result?.user?.uid}")
                         Log.d("CHECKER", "RegistrationActivity: Name: $name")
                         Log.d("CHECKER", "RegistrationActivity: Email: $email")
                         Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
