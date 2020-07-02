@@ -11,8 +11,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.tatyanashkolnik.studentassistantkotlin.R
+import com.tatyanashkolnik.studentassistantkotlin.data.User
 import com.tatyanashkolnik.studentassistantkotlin.main.TaskActivity
 import kotlinx.android.synthetic.main.activity_registration.*
 import java.util.*
@@ -62,8 +64,9 @@ class RegistrationActivity : Activity() {
 
             selectedPhotoUri = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
-            val bitmapDrawble = BitmapDrawable(bitmap)
-            selectUserPhoto.setBackgroundDrawable(bitmapDrawble)
+            selectUserPhoto.setImageBitmap(bitmap)
+//            val bitmapDrawble = BitmapDrawable(bitmap)
+//            selectUserPhoto.setBackgroundDrawable(bitmapDrawble)
         }
     }
 
@@ -73,7 +76,29 @@ class RegistrationActivity : Activity() {
         val ref = FirebaseStorage.getInstance().getReference("/avatars/$filename")
         ref.putFile(selectedPhotoUri!!)
             .addOnSuccessListener {
-                Log.d("CHECKER", "Successfully uploaded image: ${it.metadata?.path}")
+                Log.d("CHECKER", "RegistrationActivity: Successfully uploaded image: ${it.metadata?.path}")
+
+                ref.downloadUrl.addOnCompleteListener{
+                    Log.d("CHECKER", "RegistrationActivity: File location: $it")
+                    saveUserToDatabase(it.toString())
+                }
+            }
+            .addOnFailureListener{
+                Log.d("CHECKER", "RegistrationActivity: Failed to upload image.")
+                Toast.makeText(this@RegistrationActivity, "Failed to upload image.", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun saveUserToDatabase(profileImageUrl : String){
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val user = User(uid, etName.text.toString(), profileImageUrl)
+        ref.setValue(user)
+            .addOnSuccessListener {
+                Log.d("CHECKER", "RegistrationActivity: User saved in Firebase.")
+            }
+            .addOnFailureListener{
+                Log.d("CHECKER", "RegistrationActivity: Failed to save user in Firebase.")
             }
     }
 
@@ -104,16 +129,25 @@ class RegistrationActivity : Activity() {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pwd)
                 .addOnFailureListener {
                     Log.d("CHECKER", "RegistrationActivity: Failed to create user. ${it.message}")
+                    Log.d("CHECKER", "RegistrationActivity: Name: $name")
                     Log.d("CHECKER", "RegistrationActivity: Email: $email")
                     Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
                     Toast.makeText(this@RegistrationActivity, "Failed to create user: ${it.message}", Toast.LENGTH_LONG).show()
                 }
                 .addOnCompleteListener {
-                    if (!it.isSuccessful) return@addOnCompleteListener
+                    if (!it.isSuccessful) {
+                        Log.d("CHECKER", "RegistrationActivity: Failed to create user.")
+                        Log.d("CHECKER", "RegistrationActivity: Name: $name")
+                        Log.d("CHECKER", "RegistrationActivity: Email: $email")
+                        Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
+                        Toast.makeText(this@RegistrationActivity, "Failed to create user.", Toast.LENGTH_SHORT).show()
+                        //return@addOnCompleteListener
+                    }
                     //else if successful
                     else {
                         Toast.makeText(this@RegistrationActivity, "You are logged in.", Toast.LENGTH_LONG).show()
                         Log.d("CHECKER","Successfully created user with uid: ${it.result?.user?.uid}")
+                        Log.d("CHECKER", "RegistrationActivity: Name: $name")
                         Log.d("CHECKER", "RegistrationActivity: Email: $email")
                         Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
 

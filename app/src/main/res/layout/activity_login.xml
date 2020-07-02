@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/parent2"
             app:layout_constraintHorizontal_weight="0.35"
-            app:layout_constraintLeft_toRightOf="@+id/etEmail"
+            app:layout_constraintLeft_toRightOf="@+id/etLoginEmail"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/parent2"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -100,6 +100,7 @@
             android:fontFamily="@font/avenirnextcyr_light"
             android:gravity="center_vertical"
             android:hint="password"
+            android:inputType="textWebPassword"
             android:textColorHint="#C7C7C7"
             android:layout_marginRight="6dp"
             android:textSize="20dp"
@@ -120,7 +121,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/parent1"
             app:layout_constraintHorizontal_weight="0.35"
-            app:layout_constraintLeft_toRightOf="@+id/etPassword"
+            app:layout_constraintLeft_toRightOf="@+id/etLoginPassword"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/parent1"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

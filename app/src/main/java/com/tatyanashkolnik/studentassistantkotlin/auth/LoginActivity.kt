@@ -70,7 +70,7 @@ class LoginActivity : Activity() {
                     Toast.makeText(this@LoginActivity, "You are logged in.", Toast.LENGTH_SHORT).show()
                     Log.d(
                         "CHECKER",
-                        "LoginActivity: Successfully created user with uid: ${it.result?.user?.uid}"
+                        "LoginActivity: User logged in successfully with uid: ${it.result?.user?.uid}"
                     )
                     startActivity(Intent(this@LoginActivity, TaskActivity::class.java))
                 }
