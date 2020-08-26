@@ -1,12 +1,9 @@
 package com.tatyanashkolnik.studentassistantkotlin.main
 
 import android.os.Bundle
-import android.util.Log
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -62,7 +59,7 @@ class TaskActivity : AppCompatActivity() {
         ivMenu.setOnClickListener {
             onMenuImageClick()
         }
-        navController.addOnDestinationChangedListener { controller, destination, _ ->  setMenuTitle(destination) }
+        navController.addOnDestinationChangedListener { _, destination, _ ->  setMenuTitle(destination) }
 //        navView.setNavigationItemSelectedListener {
 //            onNavViewItemSelected(it)
 //        }
@@ -76,37 +73,38 @@ class TaskActivity : AppCompatActivity() {
         drawerLayout.openDrawer(GravityCompat.START)
     }
 
-    private fun onNavViewItemSelected(it: MenuItem): Boolean {
-        when (it.itemId) {
-            R.id.profile -> {
-                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT)
-                Log.d("CHECKER", "onNavViewItemSelected Profile")
-                true
-            }
-            R.id.notes -> {
-                Toast.makeText(this, "Notes", Toast.LENGTH_SHORT)
-                Log.d("CHECKER", "onNavViewItemSelected Notes")
-                true
-            }
-            R.id.passwords -> {
-                Toast.makeText(this, "Passwords", Toast.LENGTH_SHORT)
-                Log.d("CHECKER", "onNavViewItemSelected Passwords")
-                true
-            }
-            R.id.settings -> {
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT)
-                Log.d("CHECKER", "onNavViewItemSelected Settings")
-                true
-            }
-            R.id.about -> {
-                Toast.makeText(this, "About", Toast.LENGTH_SHORT)
-                Log.d("CHECKER", "onNavViewItemSelected About ")
-                true
-            }
-        }
-        drawerLayout.closeDrawer(GravityCompat.START)
-        return true
-    }
+//    private fun onNavViewItemSelected(it: MenuItem): Boolean {
+//        when (it.itemId) {
+//            R.id.profile -> {
+//                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT)
+//                Log.d("CHECKER", "onNavViewItemSelected Profile")
+//                true
+//            }
+//            R.id.notes -> {
+//                Toast.makeText(this, "Notes", Toast.LENGTH_SHORT)
+//                Log.d("CHECKER", "onNavViewItemSelected Notes")
+//                true
+//            }
+//            R.id.passwords -> {
+//                Toast.makeText(this, "Passwords", Toast.LENGTH_SHORT)
+//                Log.d("CHECKER", "onNavViewItemSelected Passwords")
+//                true
+//            }
+//            R.id.settings -> {
+//                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT)
+//                Log.d("CHECKER", "onNavViewItemSelected Settings")
+//                true
+//            }
+//            R.id.about -> {
+//                Toast.makeText(this, "About", Toast.LENGTH_SHORT)
+//                Log.d("CHECKER", "onNavViewItemSelected About ")
+//                true
+//            }
+//            else return@setOnNavigationItemSelectedListener true
+//        }
+//        drawerLayout.closeDrawer(GravityCompat.START)
+//        return true
+//    }
 //
 //    public fun about_applications(item: MenuItem) {
 //        setContentView(R.layout.notice_xml)

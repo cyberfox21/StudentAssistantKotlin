@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/notes"
-        android:name="com.tatyanashkolnik.studentassistantkotlin.NotesFragment"
+        android:name="com.tatyanashkolnik.studentassistantkotlin.main.NotesFragment"
         android:label="Notes"
         tools:layout="@layout/fragment_notes" />
     <fragment
         android:id="@+id/passwords"
-        android:name="com.tatyanashkolnik.studentassistantkotlin.PasswordFragment"
+        android:name="com.tatyanashkolnik.studentassistantkotlin.main.passwords.PasswordFragment"
         android:label="Passwords"
         tools:layout="@layout/fragment_password" />
     <fragment
         android:id="@+id/profile"
-        android:name="com.tatyanashkolnik.studentassistantkotlin.ProfileFragment"
+        android:name="com.tatyanashkolnik.studentassistantkotlin.main.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/settings"
-        android:name="com.tatyanashkolnik.studentassistantkotlin.SettingsFragment"
+        android:name="com.tatyanashkolnik.studentassistantkotlin.main.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/about"
-        android:name="com.tatyanashkolnik.studentassistantkotlin.AboutFragment"
+        android:name="com.tatyanashkolnik.studentassistantkotlin.main.AboutFragment"
         android:label="About"
         tools:layout="@layout/fragment_about" />
 </navigation>
