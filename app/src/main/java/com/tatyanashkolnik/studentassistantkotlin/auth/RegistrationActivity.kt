@@ -16,18 +16,18 @@ import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.User
 import com.tatyanashkolnik.studentassistantkotlin.main.TaskActivity
 import kotlinx.android.synthetic.main.activity_registration.*
-import java.util.*
+import java.util.UUID
 
 class RegistrationActivity : Activity() {
 
-    private lateinit var selectUserPhoto : ImageView
+    private lateinit var selectUserPhoto: ImageView
 
-    private lateinit var btnRegister : TextView
-    private lateinit var toEnter : TextView
+    private lateinit var btnRegister: TextView
+    private lateinit var toEnter: TextView
 
-    private lateinit var name : String
-    private lateinit var email : String
-    private lateinit var pwd : String
+    private lateinit var name: String
+    private lateinit var email: String
+    private lateinit var pwd: String
 
     private var selectedPhotoUri: Uri? = null
 
@@ -39,7 +39,7 @@ class RegistrationActivity : Activity() {
         selectUserPhoto = findViewById(R.id.selectUserPhoto)
         toEnter = findViewById(R.id.toEnter)
 
-        btnRegister.setOnClickListener{
+        btnRegister.setOnClickListener {
             registerUser()
         }
 
@@ -58,7 +58,7 @@ class RegistrationActivity : Activity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             Log.d("CHECKER", "RegistrationActivity: Photo was selected")
 
             selectedPhotoUri = data.data
@@ -69,14 +69,13 @@ class RegistrationActivity : Activity() {
         }
     }
 
-    private fun uploadImageToFirebaseStorage(){
+    private fun uploadImageToFirebaseStorage() {
 
-        if(selectedPhotoUri == null) {    /////// upload stock user avatar
+        if (selectedPhotoUri == null) {    // ///// upload stock user avatar
             val stock_photo_location = "com.google.android.gms.tasks.zzu@f6382a9"
             saveUserToDatabase(stock_photo_location)
             Log.d("CHECKER", "RegistrationActivity: Setted a stock user photo")
-
-        } else {   //// upload selected user avatar
+        } else {   // // upload selected user avatar
             val filename = UUID.randomUUID().toString()
             val ref = FirebaseStorage.getInstance().getReference("/avatars/$filename")
             ref.putFile(selectedPhotoUri!!)
@@ -102,7 +101,7 @@ class RegistrationActivity : Activity() {
         }
     }
 
-    private fun saveUserToDatabase(profileImageUrl : String){
+    private fun saveUserToDatabase(profileImageUrl: String) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
         val user = User(uid, etName.text.toString(), profileImageUrl)
@@ -110,16 +109,16 @@ class RegistrationActivity : Activity() {
             .addOnSuccessListener {
                 Log.d("CHECKER", "RegistrationActivity: User saved in Firebase.")
             }
-            .addOnFailureListener{
+            .addOnFailureListener {
                 Log.d("CHECKER", "RegistrationActivity: Failed to save user in Firebase.")
             }
     }
 
-    private fun registerUser(){
+    private fun registerUser() {
         name = etName.text.toString()
         email = etEmail.text.toString()
         pwd = etPassword.text.toString()
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             Log.d("CHECKER", "RegistrationActivity: Please enter email.")
             etEmail.error = "Please enter email."
             etEmail.requestFocus()
@@ -135,7 +134,7 @@ class RegistrationActivity : Activity() {
             Log.d("CHECKER", "RegistrationActivity: Password must be at least 6 characters.")
             etPassword.error = "Password must be at least 6 characters."
             etPassword.requestFocus()
-        } else if (email.isEmpty() && pwd.isEmpty()){
+        } else if (email.isEmpty() && pwd.isEmpty()) {
             Log.d("CHECKER", "RegistrationActivity: Fields are empty!")
             Toast.makeText(this@RegistrationActivity, "Fields are empty!", Toast.LENGTH_SHORT).show()
         } else if (!(email.isEmpty() && pwd.isEmpty())) {
@@ -154,12 +153,12 @@ class RegistrationActivity : Activity() {
                         Log.d("CHECKER", "RegistrationActivity: Email: $email")
                         Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
                         Toast.makeText(this@RegistrationActivity, "Failed to create user.", Toast.LENGTH_SHORT).show()
-                        //return@addOnCompleteListener
+                        // return@addOnCompleteListener
                     }
-                    //else if successful
+                    // else if successful
                     else {
-                        Toast.makeText(this@RegistrationActivity, "You are logged in.", Toast.LENGTH_LONG).show()
-                        Log.d("CHECKER","RegistrationActivity: Successfully created user with uid: ${it.result?.user?.uid}")
+                        // Toast.makeText(this@RegistrationActivity, "You are logged in.", Toast.LENGTH_LONG).show()
+                        Log.d("CHECKER", "RegistrationActivity: Successfully created user with uid: ${it.result?.user?.uid}")
                         Log.d("CHECKER", "RegistrationActivity: Name: $name")
                         Log.d("CHECKER", "RegistrationActivity: Email: $email")
                         Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
@@ -171,6 +170,4 @@ class RegistrationActivity : Activity() {
                 }
         }
     }
-
-
 }

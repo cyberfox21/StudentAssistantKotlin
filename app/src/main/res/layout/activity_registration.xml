@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".auth.RegistrationActivity">
 
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent5"
         android:layout_width="match_parent"
@@ -74,7 +77,7 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="7dp"
                 android:paddingBottom="7dp"
-                android:textColorHint="#C7C7C7"
+                android:textColorHint="@color/color_hint_light"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_weight="3"
@@ -127,7 +130,7 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="7dp"
                 android:paddingBottom="7dp"
-                android:textColorHint="#C7C7C7"
+                android:textColorHint="@color/color_hint_light"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="@id/parent6"
                 app:layout_constraintHorizontal_weight="3"
@@ -181,7 +184,7 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="7dp"
                 android:paddingBottom="7dp"
-                android:textColorHint="#C7C7C7"
+                android:textColorHint="@color/color_hint_light"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="@id/parent1"
                 app:layout_constraintHorizontal_weight="3"
@@ -222,7 +225,7 @@
             android:gravity="center"
             android:padding="18dp"
             android:text="   R E G I S T E R   "
-            android:textColor="#ffffff"
+            android:textColor="@android:color/white"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="@id/parent3"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -250,7 +253,7 @@
             android:gravity="center"
             android:padding="18dp"
             android:text="Already have an account?"
-            android:textColor="#3D5169"
+            android:textColor="@color/color_main_light"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="@id/parent4"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -265,11 +268,11 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:text="TSIB team ©"
-        android:textColor="#C7C7C7"
+        android:textColor="@color/color_hint_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/parent4"
-        app:layout_constraintVertical_weight="1"></TextView>
+        app:layout_constraintVertical_weight="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

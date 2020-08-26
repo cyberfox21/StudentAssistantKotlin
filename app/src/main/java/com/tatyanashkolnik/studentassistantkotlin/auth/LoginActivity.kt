@@ -11,14 +11,13 @@ import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.main.TaskActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
-
 class LoginActivity : Activity() {
 
-    private lateinit var btnEnter : TextView
-    private lateinit var toRegister : TextView
+    private lateinit var btnEnter: TextView
+    private lateinit var toRegister: TextView
 
-    private lateinit var email : String
-    private lateinit var pwd : String
+    private lateinit var email: String
+    private lateinit var pwd: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +35,10 @@ class LoginActivity : Activity() {
         }
     }
 
-    private fun signInUser(){
+    private fun signInUser() {
         email = etLoginEmail.text.toString()
         pwd = etLoginPassword.text.toString()
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             Log.d("CHECKER", "LoginActivity: Please enter email.")
             etLoginEmail.error = "Please enter email."
             etLoginEmail.requestFocus()
@@ -51,7 +50,7 @@ class LoginActivity : Activity() {
             Log.d("CHECKER", "LoginActivity: Password must be at least 6 characters.")
             etLoginPassword.error = "Password must be at least 6 characters."
             etLoginPassword.requestFocus()
-        } else if (email.isEmpty() && pwd.isEmpty()){
+        } else if (email.isEmpty() && pwd.isEmpty()) {
             Log.d("CHECKER", "LoginActivity: Fields are empty!")
             Toast.makeText(this@LoginActivity, "Fields are empty!", Toast.LENGTH_SHORT).show()
         } else if (!(email.isEmpty() && pwd.isEmpty())) {
@@ -66,8 +65,8 @@ class LoginActivity : Activity() {
                         Toast.makeText(this@LoginActivity, "Error occurred!", Toast.LENGTH_SHORT).show()
                         return@addOnCompleteListener
                     }
-                    //else if successful
-                    Toast.makeText(this@LoginActivity, "You are logged in.", Toast.LENGTH_SHORT).show()
+                    // else if successful
+                    // Toast.makeText(this@LoginActivity, "You are logged in.", Toast.LENGTH_SHORT).show()
                     Log.d(
                         "CHECKER",
                         "LoginActivity: User logged in successfully with uid: ${it.result?.user?.uid}"
