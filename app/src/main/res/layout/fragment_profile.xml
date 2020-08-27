@@ -1,13 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.ProfileFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="PROFILE" />
 
-</FrameLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/parent21"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="3">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/selectUserPhoto"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/rounded_corner_3"
+            android:scaleType="centerCrop"
+            android:src="@drawable/stock_image"
+            app:civ_border_color="#003D5169"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/parent5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent21"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/parent3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parent5"
+        app:layout_constraintVertical_weight="4">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/parent1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/parent6"
+            app:layout_constraintVertical_weight="1">
+
+            <ImageView
+                android:id="@+id/image_key"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_email_black_24dp"
+                app:layout_constraintBottom_toBottomOf="@id/parent2"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/etEmail"
+                app:layout_constraintTop_toTopOf="@+id/parent2" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/rounded_corner_2"
+                android:fontFamily="@font/avenirnextcyr_light"
+                android:gravity="left"
+                android:hint="your email"
+                android:maxLines="1"
+                android:paddingLeft="20dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:textColorHint="@color/color_hint_light"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="3"
+                app:layout_constraintLeft_toRightOf="@+id/image_key"
+                app:layout_constraintRight_toLeftOf="@id/space2"
+                app:layout_constraintTop_toTopOf="@+id/parent2" />
+
+            <Space
+                android:id="@+id/space2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/parent2"
+                app:layout_constraintHorizontal_weight="0.35"
+                app:layout_constraintLeft_toRightOf="@+id/etEmail"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/parent2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent6"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/parent2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/parent21"
+            app:layout_constraintVertical_weight="1">
+
+            <ImageView
+                android:id="@+id/use_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_person_black_24dp"
+                app:layout_constraintBottom_toBottomOf="@id/parent6"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/etName"
+                app:layout_constraintTop_toTopOf="@+id/parent6" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/rounded_corner_2"
+                android:fontFamily="@font/avenirnextcyr_light"
+                android:gravity="center_vertical"
+                android:hint="your name"
+                android:maxLines="1"
+                android:paddingLeft="20dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:textColorHint="@color/color_hint_light"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/parent6"
+                app:layout_constraintHorizontal_weight="3"
+                app:layout_constraintLeft_toRightOf="@+id/use_image"
+                app:layout_constraintRight_toLeftOf="@id/space3"
+                app:layout_constraintTop_toTopOf="@+id/parent6" />
+
+            <Space
+                android:id="@+id/space3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/parent6"
+                app:layout_constraintHorizontal_weight="0.35"
+                app:layout_constraintLeft_toRightOf="@+id/etName"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/parent6" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/parent21"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/parent2"
+            app:layout_constraintVertical_weight="1">
+
+            <ImageView
+                android:id="@+id/image_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_lock_outline_black_24dp"
+                app:layout_constraintBottom_toBottomOf="@id/parent1"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/etPassword"
+                app:layout_constraintTop_toTopOf="@+id/parent1" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/rounded_corner_2"
+                android:fontFamily="@font/avenirnextcyr_light"
+                android:gravity="center_vertical"
+                android:hint="your password"
+                android:inputType="textWebPassword"
+                android:maxLines="1"
+                android:paddingLeft="20dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:textColorHint="@color/color_hint_light"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/parent1"
+                app:layout_constraintHorizontal_weight="3"
+                app:layout_constraintLeft_toRightOf="@+id/image_password"
+                app:layout_constraintRight_toLeftOf="@id/space1"
+                app:layout_constraintTop_toTopOf="@+id/parent1" />
+
+            <Space
+                android:id="@+id/space1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/parent1"
+                app:layout_constraintHorizontal_weight="0.35"
+                app:layout_constraintLeft_toRightOf="@+id/etPassword"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/parent1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/parent21"
+        app:layout_constraintVertical_weight="2">
+
+        <TextView
+            android:id="@+id/btnChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/avenirnextcyr_light"
+            android:gravity="center"
+            android:padding="18dp"
+            android:text="   П Р И Н Я Т Ь   "
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/parent3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/parent3" />
+
+
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
