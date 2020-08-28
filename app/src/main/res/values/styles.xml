@@ -1,7 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">#ffffff</item>
         <item name="colorPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#3D5169</item>
         <item name="colorAccent">#3D5169</item>
@@ -11,6 +12,10 @@
         <!-- Customize your theme here. -->
         <item name = "android:windowActionBar">false</item>
         <item name = "android:windowNoTitle">true</item>
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#3D5169</item>
+        <item name="colorAccent">#3D5169</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">#ffffff</item>
     </style>
 
     <style name="menu_text_style" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Menu">
