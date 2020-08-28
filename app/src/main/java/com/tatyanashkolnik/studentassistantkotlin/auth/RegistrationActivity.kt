@@ -36,7 +36,7 @@ class RegistrationActivity : Activity() {
         setContentView(R.layout.activity_registration)
 
         btnRegister = findViewById(R.id.btnRegister)
-        selectUserPhoto = findViewById(R.id.selectUserPhoto)
+        selectUserPhoto = findViewById(R.id.userPhoto)
         toEnter = findViewById(R.id.toEnter)
 
         btnRegister.setOnClickListener {
@@ -64,8 +64,6 @@ class RegistrationActivity : Activity() {
             selectedPhotoUri = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
             selectUserPhoto.setImageBitmap(bitmap)
-//            val bitmapDrawble = BitmapDrawable(bitmap)
-//            selectUserPhoto.setBackgroundDrawable(bitmapDrawble)
         }
     }
 
@@ -104,7 +102,7 @@ class RegistrationActivity : Activity() {
     private fun saveUserToDatabase(profileImageUrl: String) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val user = User(uid, etName.text.toString(), profileImageUrl)
+        val user = User(uid, etName.text.toString(), etPassword.text.toString(), profileImageUrl)
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("CHECKER", "RegistrationActivity: User saved in Firebase.")

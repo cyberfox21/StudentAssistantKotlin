@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import com.tatyanashkolnik.studentassistantkotlin.R
+import de.hdodenhof.circleimageview.CircleImageView
 
 class TaskActivity : AppCompatActivity() {
 
@@ -22,6 +23,8 @@ class TaskActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
+
+    private lateinit var userPhoto: CircleImageView
 
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 //        menuInflater.inflate(R.menu.menu_settings, menu)
@@ -48,6 +51,7 @@ class TaskActivity : AppCompatActivity() {
 
     private fun initViews() {
         navView = findViewById(R.id.nav_view)
+        //userPhoto = navView.findViewById(R.id.userPhoto)
         drawerLayout = findViewById(R.id.drawer)
         ivMenu = findViewById(R.id.image_menu)
         tvMenu = findViewById(R.id.text_menu)
