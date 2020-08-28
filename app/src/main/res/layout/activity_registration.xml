@@ -72,6 +72,9 @@
                 android:background="@drawable/rounded_corner_2"
                 android:fontFamily="@font/avenirnextcyr_light"
                 android:gravity="left"
+                android:scrollbars="horizontal"
+                android:inputType="text"
+                android:paddingRight="20dp"
                 android:hint="email"
                 android:maxLines="1"
                 android:paddingLeft="20dp"
@@ -118,10 +121,13 @@
                 app:layout_constraintTop_toTopOf="@+id/parent6" />
 
             <EditText
+                android:inputType="text"
                 android:id="@+id/etName"
                 android:layout_width="0dp"
+                android:paddingRight="20dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
+                android:scrollbars="horizontal"
                 android:background="@drawable/rounded_corner_2"
                 android:fontFamily="@font/avenirnextcyr_light"
                 android:gravity="center_vertical"
@@ -179,6 +185,7 @@
                 android:fontFamily="@font/avenirnextcyr_light"
                 android:gravity="center_vertical"
                 android:hint="password"
+                android:paddingRight="20dp"
                 android:maxLines="1"
                 android:inputType="textWebPassword"
                 android:paddingLeft="20dp"
