@@ -1,13 +1,18 @@
 package com.tatyanashkolnik.studentassistantkotlin.main.passwords
 
+import android.content.Intent
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.tatyanashkolnik.studentassistantkotlin.AdvancedCardActivity
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
 import kotlinx.android.synthetic.main.card_password.view.*
+
 
 class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -19,7 +24,7 @@ class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Ad
         return PasswordHolder(view)
     }
 
-    override fun getItemCount(): Int = 
+    override fun getItemCount(): Int =
         passwordList.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -32,11 +37,15 @@ class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Ad
 
         fun bind(model: PasswordCard) {
             itemView.card_service.text = model.service
+            //itemView.card_service.movementMethod = ScrollingMovementMethod()
             Log.d("CHECKER", "PasswordAdapter: service " + model.service)
             itemView.card_login.text = model.login
             Log.d("CHECKER", "PasswordAdapter: login " + model.login)
             itemView.card_password.text = model.password
             Log.d("CHECKER", "PasswordAdapter: password " + model.password)
+            itemView.setOnClickListener {
+                itemView.context.startActivity(Intent(itemView.context, AdvancedCardActivity::class.java))
+            }
         }
     }
 }
