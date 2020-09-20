@@ -1,14 +1,12 @@
 package com.tatyanashkolnik.studentassistantkotlin.main.passwords
 
 import android.content.Intent
-import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.tatyanashkolnik.studentassistantkotlin.AdvancedCardActivity
+import com.tatyanashkolnik.studentassistantkotlin.showcards.AdvancedCardActivity
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
 import kotlinx.android.synthetic.main.card_password.view.*
@@ -36,7 +34,7 @@ class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Ad
     inner class PasswordHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(model: PasswordCard) {
-            itemView.card_service.text = model.service
+            itemView.card_service.setText(model.service)
             //itemView.card_service.movementMethod = ScrollingMovementMethod()
             Log.d("CHECKER", "PasswordAdapter: service " + model.service)
             itemView.card_login.text = model.login

@@ -18,7 +18,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.tatyanashkolnik.studentassistantkotlin.R
-import com.tatyanashkolnik.studentassistantkotlin.add.AddCardActivity
+import com.tatyanashkolnik.studentassistantkotlin.addcards.AddCardActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
 
 const val REQUEST_CODE = 1

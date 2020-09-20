@@ -1,4 +1,4 @@
-package com.tatyanashkolnik.studentassistantkotlin.add
+package com.tatyanashkolnik.studentassistantkotlin.addcards
 
 import android.os.Bundle
 import android.widget.EditText
