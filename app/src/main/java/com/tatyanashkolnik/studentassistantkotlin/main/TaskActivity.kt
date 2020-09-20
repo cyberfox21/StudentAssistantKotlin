@@ -38,15 +38,6 @@ class TaskActivity : AppCompatActivity() {
         initViews()
         initListeners()
 
-//        btnLogout = findViewById(R.id.logout)
-//
-//
-//        btnLogout.setOnClickListener(View.OnClickListener {
-//            FirebaseAuth.getInstance().signOut()
-//            Toast.makeText(this@TaskActivity, "You are logged out.", Toast.LENGTH_SHORT).show()
-//            Log.d("CHECKER","TaskActivity: User logged out successfully.")
-//            startActivity(Intent(this@TaskActivity, RegistrationActivity::class.java))
-//        })
     }
 
     private fun initViews() {
@@ -77,40 +68,4 @@ class TaskActivity : AppCompatActivity() {
         drawerLayout.openDrawer(GravityCompat.START)
     }
 
-//    private fun onNavViewItemSelected(it: MenuItem): Boolean {
-//        when (it.itemId) {
-//            R.id.profile -> {
-//                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT)
-//                Log.d("CHECKER", "onNavViewItemSelected Profile")
-//                true
-//            }
-//            R.id.notes -> {
-//                Toast.makeText(this, "Notes", Toast.LENGTH_SHORT)
-//                Log.d("CHECKER", "onNavViewItemSelected Notes")
-//                true
-//            }
-//            R.id.passwords -> {
-//                Toast.makeText(this, "Passwords", Toast.LENGTH_SHORT)
-//                Log.d("CHECKER", "onNavViewItemSelected Passwords")
-//                true
-//            }
-//            R.id.settings -> {
-//                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT)
-//                Log.d("CHECKER", "onNavViewItemSelected Settings")
-//                true
-//            }
-//            R.id.about -> {
-//                Toast.makeText(this, "About", Toast.LENGTH_SHORT)
-//                Log.d("CHECKER", "onNavViewItemSelected About ")
-//                true
-//            }
-//            else return@setOnNavigationItemSelectedListener true
-//        }
-//        drawerLayout.closeDrawer(GravityCompat.START)
-//        return true
-//    }
-//
-//    public fun about_applications(item: MenuItem) {
-//        setContentView(R.layout.notice_xml)
-//    }
 }
