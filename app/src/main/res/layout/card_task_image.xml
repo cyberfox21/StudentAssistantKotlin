@@ -19,7 +19,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/card_task_title"
+            android:id="@+id/card_task_image_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/avenirnextcyr_medium"
@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/card_task_time"
+            android:id="@+id/card_task_image_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/avenirnextcyr_medium"
@@ -43,7 +43,7 @@
             android:textColor="#575767"
             android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_task_title" />
+            app:layout_constraintTop_toBottomOf="@+id/card_task_image_title" />
 
         <ImageView
             android:id="@+id/textView14"
@@ -51,12 +51,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="28dp"
             android:src="@drawable/ic_divider"
-            app:layout_constraintBottom_toTopOf="@id/card_task_subtitle"
+            app:layout_constraintBottom_toTopOf="@id/card_task_image_subtitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/card_task_subtitle"
+            android:id="@+id/card_task_image_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/avenirnextcyr_light"
@@ -70,12 +70,12 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/card_task_icon"
+            android:id="@+id/card_task_image_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/card_task_title"
+            app:layout_constraintBottom_toBottomOf="@+id/card_task_image_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/card_task_title"
+            app:layout_constraintStart_toEndOf="@+id/card_task_image_title"
             android:src="@drawable/ic_emoji" />
 
         <TextView
@@ -83,13 +83,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="🌤️"
-            app:layout_constraintBottom_toBottomOf="@+id/card_task_icon"
-            app:layout_constraintEnd_toEndOf="@+id/card_task_icon"
-            app:layout_constraintStart_toStartOf="@+id/card_task_icon"
-            app:layout_constraintTop_toTopOf="@+id/card_task_icon" />
+            app:layout_constraintBottom_toBottomOf="@+id/card_task_image_icon"
+            app:layout_constraintEnd_toEndOf="@+id/card_task_image_icon"
+            app:layout_constraintStart_toStartOf="@+id/card_task_image_icon"
+            app:layout_constraintTop_toTopOf="@+id/card_task_image_icon" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/card_task_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="center"
@@ -97,7 +97,7 @@
             app:layout_constraintBottom_toTopOf="@+id/textView14"
             app:layout_constraintEnd_toEndOf="@id/textView14"
             app:layout_constraintStart_toStartOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/card_task_time"
+            app:layout_constraintTop_toBottomOf="@+id/card_task_image_time"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 

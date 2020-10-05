@@ -112,7 +112,7 @@ class PasswordFragment : Fragment() {
     private fun getItemIndex(passwordCard: PasswordCard): Int {
         var index = -1
         for (i in 0 until resultList.size) {
-            if (resultList[i].service.equals(passwordCard.service)) {
+            if (resultList[i].service == passwordCard.service) {
                 index = i
                 break
             }

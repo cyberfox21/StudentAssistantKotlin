@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
 import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
+import com.tatyanashkolnik.studentassistantkotlin.main.notes.NoteCardAdapter
 import com.tatyanashkolnik.studentassistantkotlin.main.passwords.PasswordCardAdapter
 
 class NotesFragment : Fragment() {
@@ -25,6 +26,7 @@ class NotesFragment : Fragment() {
     private lateinit var fab: FloatingActionButton
     private lateinit var recyclerView: RecyclerView
     private lateinit var resultList: ArrayList<NoteCard>
+    private lateinit var adapter: NoteCardAdapter
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         rootView = inflater.inflate(R.layout.fragment_notes, container, false)
@@ -37,13 +39,13 @@ class NotesFragment : Fragment() {
 
     fun initFields(){
         resultList = ArrayList()
-        fab = rootView.findViewById(R.id.password_fab)
-        recyclerView = rootView.findViewById(R.id.password_card_recyclerview)
+        fab = rootView.findViewById(R.id.note_fab)
+        recyclerView = rootView.findViewById(R.id.note_card_recyclerview)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         updateList()
-        //adapter = PasswordCardAdapter(resultList)
-        //recyclerView.adapter = adapter
+        adapter = NoteCardAdapter(resultList)
+        recyclerView.adapter = adapter
     }
 
     fun initListeners(){
@@ -52,7 +54,7 @@ class NotesFragment : Fragment() {
 
     private fun updateList() {
         Log.d("CHECKER", "updateList()")
-        FirebaseDatabase.getInstance().reference.child("passwords").child(FirebaseAuth.getInstance().uid.toString())
+        FirebaseDatabase.getInstance().reference.child("notes").child(FirebaseAuth.getInstance().uid.toString())
             .addChildEventListener(object : ChildEventListener {
                 override fun onCancelled(error: DatabaseError) {
                     Log.d("CHECKER", "ChatActivity : ChildEventListener : onCancelled()")
@@ -69,18 +71,18 @@ class NotesFragment : Fragment() {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     resultList.add(snapshot.getValue(NoteCard::class.java)!!)
 
-                        //adapter.notifyDataSetChanged()
+                    adapter.notifyDataSetChanged()
                     Log.d(
                         "CHECKER",
                         "ChatActivity : ChildEventListener : onChildAdded() \n" +
-                                "Service: ${snapshot.getValue(PasswordCard::class.java)!!.service} | " +
-                                "Login: ${snapshot.getValue(PasswordCard::class.java)!!.login} | " +
-                                "Password: ${snapshot.getValue(PasswordCard::class.java)!!.password}"
+                                "Title: ${snapshot.getValue(NoteCard::class.java)!!.title} | " +
+                                "Subtitle: ${snapshot.getValue(NoteCard::class.java)!!.subtitle} | " +
+                                "Time: ${snapshot.getValue(NoteCard::class.java)!!.time}"
                     )
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    var message = snapshot.getValue(PasswordCard::class.java)
+                    var message = snapshot.getValue(NoteCard::class.java)
                     var index = message?.let { getItemIndex(it) }
                     if (index != null) {
                         resultList.removeAt(index)
@@ -91,13 +93,13 @@ class NotesFragment : Fragment() {
             })
     }
 
-    private fun getItemIndex(passwordCard: PasswordCard): Int {
+    private fun getItemIndex(noteCard: NoteCard): Int {
         var index = -1
         for (i in 0 until resultList.size) {
-//            if (resultList[i].service.equals(passwordCard.service)) {
-//                index = i
-//                break
-//            }
+            if (resultList[i].title == noteCard.title) {
+                index = i
+                break
+            }
         }
         return index
     }
