@@ -34,14 +34,13 @@ class RegistrationActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
-
         btnRegister = findViewById(R.id.btnRegister)
         selectUserPhoto = findViewById(R.id.userPhoto)
-        toEnter = findViewById(R.id.toEnter)
-
         btnRegister.setOnClickListener {
             registerUser()
         }
+
+        toEnter = findViewById(R.id.toEnter)!!
 
         toEnter.setOnClickListener {
             startActivity(Intent(this@RegistrationActivity, LoginActivity::class.java))
@@ -83,7 +82,7 @@ class RegistrationActivity : Activity() {
                         "RegistrationActivity: Successfully uploaded image: ${it.metadata?.path}"
                     )
 
-                    ref.downloadUrl.addOnCompleteListener {
+                    ref.downloadUrl.addOnSuccessListener {
                         Log.d("CHECKER", "RegistrationActivity: File location: $it")
                         saveUserToDatabase(it.toString())
                     }
@@ -96,6 +95,7 @@ class RegistrationActivity : Activity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            saveUserToDatabase(selectedPhotoUri!!.toString())
         }
     }
 

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/avenirnextcyr_light"
+                android:text="Сделать"
+                android:textColor="@color/color_main_light"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_image" />
+
+            <EditText
+                android:id="@+id/et_add_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="32dp"
+                android:inputType="textCapSentences|textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+
+            <TextView
+                android:id="@+id/textView145"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/avenirnextcyr_light"
+                android:text="Подробнее"
+                android:textColor="@color/color_main_light"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_add_title" />
+
+
+            <EditText
+                android:id="@+id/et_add_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="32dp"
+                android:background="@drawable/rounded_corner_4"
+                android:gravity="top"
+                android:inputType="textCapSentences|textMultiLine"
+                android:minLines="4"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView145" />
+
+            <TextView
+                android:id="@+id/textView1453"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:fontFamily="@font/avenirnextcyr_light"
+                android:text="Важность"
+                android:layout_marginTop="42dp"
+                android:textColor="@color/color_main_light"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/const1" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/avenirnextcyr_light"
+                android:text="Время"
+                android:textColor="@color/color_main_light"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_add_subtitle" />
+
+
+            <RadioGroup
+                android:id="@+id/radios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView1453">
+
+
+                <RadioButton
+                    android:id="@+id/green_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:drawableRight="@drawable/ic_emoji_1"
+                    android:drawablePadding="10dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/yellow_priority"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioButton
+                    android:id="@+id/yellow_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:drawableRight="@drawable/ic_emoji_2"
+                    android:drawablePadding="10dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioButton
+                    android:id="@+id/red_priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_emoji_3"
+                    android:drawablePadding="10dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/yellow_priority"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </RadioGroup>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView20"
+                app:layout_constraintTop_toBottomOf="@+id/et_add_time">
+
+
+                <TextView
+
+                    android:id="@+id/tv_add_time_end_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenirnextcyr_light"
+                    android:text="24"
+                    android:textSize="24dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tochka_1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tochka_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="."
+                    android:textSize="24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_add_time_end_hours"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tv_add_time_end_minutes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenirnextcyr_light"
+                    android:text="24"
+                    android:textSize="24dp"
+                    app:layout_constraintLeft_toRightOf="@id/tochka_1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text=":"
+                android:textSize="26dp"
+                app:layout_constraintBottom_toBottomOf="@+id/const1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/const1" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const1"
+                android:layout_marginTop="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/textView20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_add_time">
+
+                <TextView
+                    android:id="@+id/tv_add_time_start_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenirnextcyr_light"
+                    android:text="24"
+                    android:textSize="24dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tochka"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tochka"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="."
+                    android:textSize="24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_add_time_start_hours"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_add_time_start_minutes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenirnextcyr_light"
+                    android:text="24"
+                    android:textSize="24dp"
+
+                    app:layout_constraintLeft_toRightOf="@id/tochka"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/avenirnextcyr_light"
+                android:text="Фото"
+                android:textColor="@color/color_main_light"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/add_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="24dp"
+                app:lottie_url="https://assets2.lottiefiles.com/datafiles/dCoEZJcl8sFV0r4/data.json"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                android:background="#F3F3F3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView23" />
+
+            <Button
+                android:id="@+id/et_add_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:text="Выбор"
+                android:textSize="14dp"
+                android:fontFamily="@font/avenirnextcyr_medium"
+                android:textColor="@color/color_main_light"
+                android:background="@drawable/rounded_corner_5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_send_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_send_24"
+        tools:ignore="VectorDrawableCompat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

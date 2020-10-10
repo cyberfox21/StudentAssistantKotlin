@@ -13,12 +13,11 @@ class NoteCard {
         this.title = title
         this.subtitle = subtitle
         this.time = time
-        if(photoAttached == 1){
+        if (photoAttached == 1) {
             this.photoAttached = photoAttached
             this.photo = photo
         }
     }
 
     constructor()
-
 }

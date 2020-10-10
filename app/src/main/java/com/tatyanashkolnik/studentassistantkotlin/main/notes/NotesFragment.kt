@@ -1,10 +1,13 @@
-package com.tatyanashkolnik.studentassistantkotlin.main
+package com.tatyanashkolnik.studentassistantkotlin.main.notes
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,10 +18,11 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.tatyanashkolnik.studentassistantkotlin.R
+import com.tatyanashkolnik.studentassistantkotlin.addcards.AddNoteActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
-import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
-import com.tatyanashkolnik.studentassistantkotlin.main.notes.NoteCardAdapter
-import com.tatyanashkolnik.studentassistantkotlin.main.passwords.PasswordCardAdapter
+import com.tatyanashkolnik.studentassistantkotlin.main.passwords.REQUEST_CODE
+
+const val REQUEST_CODE = 1
 
 class NotesFragment : Fragment() {
 
@@ -28,7 +32,7 @@ class NotesFragment : Fragment() {
     private lateinit var resultList: ArrayList<NoteCard>
     private lateinit var adapter: NoteCardAdapter
 
-    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         rootView = inflater.inflate(R.layout.fragment_notes, container, false)
 
         initFields()
@@ -37,7 +41,7 @@ class NotesFragment : Fragment() {
         return rootView
     }
 
-    fun initFields(){
+    fun initFields() {
         resultList = ArrayList()
         fab = rootView.findViewById(R.id.note_fab)
         recyclerView = rootView.findViewById(R.id.note_card_recyclerview)
@@ -48,8 +52,22 @@ class NotesFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    fun initListeners(){
+    fun initListeners() {
+        fab.setOnClickListener {
+            addNewNote()
+        }
+    }
 
+    private fun addNewNote() {
+        startActivityForResult(Intent(activity, AddNoteActivity::class.java), REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            Log.d("CHECKER", "Note card added")
+            Toast.makeText(activity, "Note card added", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun updateList() {
@@ -75,9 +93,9 @@ class NotesFragment : Fragment() {
                     Log.d(
                         "CHECKER",
                         "ChatActivity : ChildEventListener : onChildAdded() \n" +
-                                "Title: ${snapshot.getValue(NoteCard::class.java)!!.title} | " +
-                                "Subtitle: ${snapshot.getValue(NoteCard::class.java)!!.subtitle} | " +
-                                "Time: ${snapshot.getValue(NoteCard::class.java)!!.time}"
+                            "Title: ${snapshot.getValue(NoteCard::class.java)!!.title} | " +
+                            "Subtitle: ${snapshot.getValue(NoteCard::class.java)!!.subtitle} | " +
+                            "Time: ${snapshot.getValue(NoteCard::class.java)!!.time}"
                     )
                 }
 
@@ -87,7 +105,7 @@ class NotesFragment : Fragment() {
                     if (index != null) {
                         resultList.removeAt(index)
                     }
-                    //adapter.notifyDataSetChanged()
+                    // adapter.notifyDataSetChanged()
                     Log.d("CHECKER", "ChatActivity : ChildEventListener : onChildRemoved()")
                 }
             })
@@ -103,5 +121,4 @@ class NotesFragment : Fragment() {
         }
         return index
     }
-
 }

@@ -34,4 +34,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+<!--    <TextView&ndash;&gt;-->
+    <!--                android:id="@+id/footer_item_1"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="48dp"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="TSIB team ©" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.tatyanashkolnik.studentassistantkotlin.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +15,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.auth.RegistrationActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.User
@@ -40,7 +40,7 @@ class ProfileFragment : Fragment() {
         return rootView
     }
 
-    private fun initFields(){
+    private fun initFields() {
         etName = rootView.findViewById(R.id.etName)
         etEmail = rootView.findViewById(R.id.etEmail)
         etPassword = rootView.findViewById(R.id.etPassword)
@@ -51,14 +51,13 @@ class ProfileFragment : Fragment() {
         setUsername()
     }
 
-    private fun setUsername(){
+    private fun setUsername() {
         val menuListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var user = dataSnapshot.getValue<User>(User::class.java)
                 etName.hint = user!!.username
                 etPassword.hint = user!!.password
-//                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, user!!.profileImageUrl)
-//                selectUserPhoto.setImageBitmap(bitmap)
+                Picasso.get().load(user.profileImageUrl).into(userPhoto)
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 println("loadPost:onCancelled ${databaseError.toException()}")
@@ -67,12 +66,14 @@ class ProfileFragment : Fragment() {
         FirebaseDatabase.getInstance().reference.child("users").child(FirebaseAuth.getInstance().currentUser!!.uid).addListenerForSingleValueEvent(menuListener)
     }
 
-    private fun initListeners(){
-        btnLogout.setOnClickListener(View.OnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            Toast.makeText(activity, "You are logged out.", Toast.LENGTH_SHORT).show()
-            Log.d("CHECKER","TaskActivity: User logged out successfully.")
-            startActivity(Intent(activity, RegistrationActivity::class.java))
-        })
+    private fun initListeners() {
+        btnLogout.setOnClickListener(
+            View.OnClickListener {
+                FirebaseAuth.getInstance().signOut()
+                Toast.makeText(activity, "You are logged out.", Toast.LENGTH_SHORT).show()
+                Log.d("CHECKER", "TaskActivity: User logged out successfully.")
+                startActivity(Intent(activity, RegistrationActivity::class.java))
+            }
+        )
     }
 }

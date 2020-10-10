@@ -9,7 +9,7 @@ class Home : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        if(FirebaseAuth.getInstance().currentUser != null) {
+        if (FirebaseAuth.getInstance().currentUser != null) {
             var intent = Intent((applicationContext), TaskActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)

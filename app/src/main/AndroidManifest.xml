@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".showcards.AdvancedCardActivity"></activity>
+        <activity android:name=".addcards.AddNoteActivity"></activity>
+        <activity android:name=".showcards.AdvancedCardActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -30,7 +31,7 @@
         <activity android:name=".auth.LoginActivity" />
         <activity
             android:name=".main.TaskActivity"
-            android:theme="@style/CustomNoActionBar"></activity>
+            android:theme="@style/CustomNoActionBar" />
         <activity android:name=".auth.RegistrationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
