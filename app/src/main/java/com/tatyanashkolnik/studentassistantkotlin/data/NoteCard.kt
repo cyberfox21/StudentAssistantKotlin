@@ -6,17 +6,17 @@ class NoteCard {
     var subtitle: String = null.toString()
     var time: String = null.toString()
     var photo: String = null.toString()
-    var photoAttached: Int = 0
+    var priority: String = null.toString()
+    var photoAttached: String = "0"
 
-    constructor(title: String, subtitle: String, time: String, photoAttached: Int, photo: String) {
+    constructor(title: String, subtitle: String, time: String, photoAttached: String, photo: String, priority: String) {
 
         this.title = title
         this.subtitle = subtitle
+        this.priority = priority
         this.time = time
-        if (photoAttached == 1) {
-            this.photoAttached = photoAttached
-            this.photo = photo
-        }
+        this.photoAttached = photoAttached
+        this.photo = photo
     }
 
     constructor()

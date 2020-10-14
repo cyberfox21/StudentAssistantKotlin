@@ -123,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
-                    android:drawableRight="@drawable/ic_emoji_1"
+                    android:drawableRight="@drawable/ic_priority_green"
                     android:drawablePadding="10dp"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
-                    android:drawableRight="@drawable/ic_emoji_2"
+                    android:drawableRight="@drawable/ic_priority_yellow"
                     android:drawablePadding="10dp"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
@@ -151,7 +151,7 @@
                     android:id="@+id/red_priority"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_emoji_3"
+                    android:drawableRight="@drawable/ic_priority_red"
                     android:drawablePadding="10dp"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
@@ -171,7 +171,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/et_add_time">
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_time">
 
 
                 <TextView
@@ -190,7 +190,7 @@
                     android:id="@+id/tochka_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="."
+                    android:text=":"
                     android:textSize="24dp"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_add_time_end_hours"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -215,7 +215,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text=":"
+                android:text="-"
                 android:textSize="26dp"
                 app:layout_constraintBottom_toBottomOf="@+id/const1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -230,7 +230,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@+id/textView20"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_add_time">
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_time">
 
                 <TextView
                     android:id="@+id/tv_add_time_start_hours"
@@ -247,7 +247,7 @@
                     android:id="@+id/tochka"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="."
+                    android:text=":"
                     android:textSize="24dp"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_add_time_start_hours"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -294,7 +294,7 @@
                 app:layout_constraintTop_toBottomOf="@id/textView23" />
 
             <Button
-                android:id="@+id/et_add_time"
+                android:id="@+id/btn_add_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="32dp"

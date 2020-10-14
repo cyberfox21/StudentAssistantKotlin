@@ -116,56 +116,63 @@ class RegistrationActivity : Activity() {
         name = etName.text.toString()
         email = etEmail.text.toString()
         pwd = etPassword.text.toString()
-        if (email.isEmpty()) {
-            Log.d("CHECKER", "RegistrationActivity: Please enter email.")
-            etEmail.error = "Please enter email."
-            etEmail.requestFocus()
-        } else if (pwd.isEmpty()) {
-            Log.d("CHECKER", "RegistrationActivity: Please enter password.")
-            etPassword.error = "Please enter password."
-            etPassword.requestFocus()
-        } else if (name.isEmpty()) {
-            Log.d("CHECKER", "RegistrationActivity: Please enter name.")
-            etName.error = "Please enter name."
-            etName.requestFocus()
-        } else if (pwd.length < 6) {
-            Log.d("CHECKER", "RegistrationActivity: Password must be at least 6 characters.")
-            etPassword.error = "Password must be at least 6 characters."
-            etPassword.requestFocus()
-        } else if (email.isEmpty() && pwd.isEmpty()) {
-            Log.d("CHECKER", "RegistrationActivity: Fields are empty!")
-            Toast.makeText(this@RegistrationActivity, "Fields are empty!", Toast.LENGTH_SHORT).show()
-        } else if (!(email.isEmpty() && pwd.isEmpty())) {
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pwd)
-                .addOnFailureListener {
-                    Log.d("CHECKER", "RegistrationActivity: Failed to create user. ${it.message}")
-                    Log.d("CHECKER", "RegistrationActivity: Name: $name")
-                    Log.d("CHECKER", "RegistrationActivity: Email: $email")
-                    Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
-                    Toast.makeText(this@RegistrationActivity, "Failed to create user: ${it.message}", Toast.LENGTH_LONG).show()
-                }
-                .addOnCompleteListener {
-                    if (!it.isSuccessful) {
-                        Log.d("CHECKER", "RegistrationActivity: Failed to create user.")
+        when {
+            email.isEmpty() -> {
+                Log.d("CHECKER", "RegistrationActivity: Please enter email.")
+                etEmail.error = "Please enter email."
+                etEmail.requestFocus()
+            }
+            pwd.isEmpty() -> {
+                Log.d("CHECKER", "RegistrationActivity: Please enter password.")
+                etPassword.error = "Please enter password."
+                etPassword.requestFocus()
+            }
+            name.isEmpty() -> {
+                Log.d("CHECKER", "RegistrationActivity: Please enter name.")
+                etName.error = "Please enter name."
+                etName.requestFocus()
+            }
+            pwd.length < 6 -> {
+                Log.d("CHECKER", "RegistrationActivity: Password must be at least 6 characters.")
+                etPassword.error = "Password must be at least 6 characters."
+                etPassword.requestFocus()
+            }
+            email.isEmpty() && pwd.isEmpty() -> {
+                Log.d("CHECKER", "RegistrationActivity: Fields are empty!")
+                Toast.makeText(this@RegistrationActivity, "Fields are empty!", Toast.LENGTH_SHORT).show()
+            }
+            !(email.isEmpty() && pwd.isEmpty()) -> {
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pwd)
+                    .addOnFailureListener {
+                        Log.d("CHECKER", "RegistrationActivity: Failed to create user. ${it.message}")
                         Log.d("CHECKER", "RegistrationActivity: Name: $name")
                         Log.d("CHECKER", "RegistrationActivity: Email: $email")
                         Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
-                        Toast.makeText(this@RegistrationActivity, "Failed to create user.", Toast.LENGTH_SHORT).show()
-                        // return@addOnCompleteListener
+                        Toast.makeText(this@RegistrationActivity, "Failed to create user: ${it.message}", Toast.LENGTH_LONG).show()
                     }
-                    // else if successful
-                    else {
-                        // Toast.makeText(this@RegistrationActivity, "You are logged in.", Toast.LENGTH_LONG).show()
-                        Log.d("CHECKER", "RegistrationActivity: Successfully created user with uid: ${it.result?.user?.uid}")
-                        Log.d("CHECKER", "RegistrationActivity: Name: $name")
-                        Log.d("CHECKER", "RegistrationActivity: Email: $email")
-                        Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
+                    .addOnCompleteListener {
+                        if (!it.isSuccessful) {
+                            Log.d("CHECKER", "RegistrationActivity: Failed to create user.")
+                            Log.d("CHECKER", "RegistrationActivity: Name: $name")
+                            Log.d("CHECKER", "RegistrationActivity: Email: $email")
+                            Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
+                            Toast.makeText(this@RegistrationActivity, "Failed to create user.", Toast.LENGTH_SHORT).show()
+                            // return@addOnCompleteListener
+                        }
+                        // else if successful
+                        else {
+                            // Toast.makeText(this@RegistrationActivity, "You are logged in.", Toast.LENGTH_LONG).show()
+                            Log.d("CHECKER", "RegistrationActivity: Successfully created user with uid: ${it.result?.user?.uid}")
+                            Log.d("CHECKER", "RegistrationActivity: Name: $name")
+                            Log.d("CHECKER", "RegistrationActivity: Email: $email")
+                            Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
 
-                        uploadImageToFirebaseStorage()
+                            uploadImageToFirebaseStorage()
 
-                        startActivity(Intent(this@RegistrationActivity, TaskActivity::class.java))
+                            startActivity(Intent(this@RegistrationActivity, TaskActivity::class.java))
+                        }
                     }
-                }
+            }
         }
     }
 }

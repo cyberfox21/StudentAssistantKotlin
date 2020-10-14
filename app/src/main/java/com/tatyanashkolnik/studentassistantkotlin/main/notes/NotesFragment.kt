@@ -22,11 +22,11 @@ import com.tatyanashkolnik.studentassistantkotlin.addcards.AddNoteActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
 import com.tatyanashkolnik.studentassistantkotlin.main.passwords.REQUEST_CODE
 
-const val REQUEST_CODE = 1
+const val REQUEST = 1
 
 class NotesFragment : Fragment() {
 
-    lateinit var rootView: View
+    private lateinit var rootView: View
     private lateinit var fab: FloatingActionButton
     private lateinit var recyclerView: RecyclerView
     private lateinit var resultList: ArrayList<NoteCard>
@@ -41,7 +41,7 @@ class NotesFragment : Fragment() {
         return rootView
     }
 
-    fun initFields() {
+    private fun initFields() {
         resultList = ArrayList()
         fab = rootView.findViewById(R.id.note_fab)
         recyclerView = rootView.findViewById(R.id.note_card_recyclerview)
@@ -52,14 +52,14 @@ class NotesFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    fun initListeners() {
+    private fun initListeners() {
         fab.setOnClickListener {
             addNewNote()
         }
     }
 
     private fun addNewNote() {
-        startActivityForResult(Intent(activity, AddNoteActivity::class.java), REQUEST_CODE)
+        startActivityForResult(Intent(activity, AddNoteActivity::class.java), REQUEST)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -92,7 +92,7 @@ class NotesFragment : Fragment() {
                     adapter.notifyDataSetChanged()
                     Log.d(
                         "CHECKER",
-                        "ChatActivity : ChildEventListener : onChildAdded() \n" +
+                        "NotesFragment : ChildEventListener : onChildAdded() \n" +
                             "Title: ${snapshot.getValue(NoteCard::class.java)!!.title} | " +
                             "Subtitle: ${snapshot.getValue(NoteCard::class.java)!!.subtitle} | " +
                             "Time: ${snapshot.getValue(NoteCard::class.java)!!.time}"
@@ -105,7 +105,7 @@ class NotesFragment : Fragment() {
                     if (index != null) {
                         resultList.removeAt(index)
                     }
-                    // adapter.notifyDataSetChanged()
+                    adapter.notifyDataSetChanged()
                     Log.d("CHECKER", "ChatActivity : ChildEventListener : onChildRemoved()")
                 }
             })
