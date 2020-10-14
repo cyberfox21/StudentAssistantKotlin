@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.addcards.AddNoteActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
@@ -48,19 +49,23 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
                     else -> itemView.card_task_icon.visibility = View.INVISIBLE
                 }
             } else {
+
                 itemView.card_task_image_title.text = model.title
                 Log.d("CHECKER", "NoteAdapter: title " + model.title)
                 itemView.card_task_image_subtitle.text = model.subtitle
                 Log.d("CHECKER", "NoteAdapter: login " + model.subtitle)
                 itemView.card_task_image_time.text = model.time
                 Log.d("CHECKER", "NoteAdapter: time " + model.time)
-                itemView.card_task_image.setImageURI(Uri.parse(model.photo))
-                Log.d("CHECKER", "NoteAdapter: password " + model.photo)
+                //itemView.card_task_image.setImageURI(Uri.parse(model.photo))
+                //Log.d("CHECKER", "NoteAdapter: password " + model.photo)
                 when(model.priority){
                     "green" -> itemView.card_task_image_icon.setImageResource(R.drawable.ic_priority_green)
                     "yellow" -> itemView.card_task_image_icon.setImageResource(R.drawable.ic_priority_yellow)
                     "red" -> itemView.card_task_image_icon.setImageResource(R.drawable.ic_priority_red)
                     else -> itemView.card_task_image_icon.visibility = View.INVISIBLE
+                }
+                if(model.photo != "") {
+                    Picasso.get().load(model.photo).into(itemView.card_task_image)
                 }
             }
 
@@ -78,7 +83,7 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
             CellType.IMAGE.ordinal ->  NoteCardViewHolder(
                 LayoutInflater.from(parent.context).inflate(R.layout.card_task_image, parent, false)
             )
-            else ->  NoteCardViewHolder(
+            else -> NoteCardViewHolder(
                 LayoutInflater.from(parent.context).inflate(R.layout.card_task, parent, false)
             )
         }

@@ -30,6 +30,10 @@ class AddNoteActivity : AppCompatActivity() {
     private var selectedPhotoString : String = ""
     private var photoEnabled = "0"
 
+    private lateinit var title: String
+    private lateinit var subtitle: String
+    private lateinit var time: String
+
     //private lateinit var title: EditText
     //private lateinit var subtitle: EditText
     //private lateinit var priority: RadioButton
@@ -80,7 +84,7 @@ class AddNoteActivity : AppCompatActivity() {
         startActivityForResult(toGalary, 0)
     }
 
-    private fun uploadImageToFirebaseStorage() {
+    private fun uploadImageToFirebaseStorage(){
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/notes/$filename")
         ref.putFile(selectedPhoto!!)
@@ -92,7 +96,8 @@ class AddNoteActivity : AppCompatActivity() {
 
                 ref.downloadUrl.addOnSuccessListener {
                     selectedPhotoString = it.toString()
-                    Log.d("CHECKER", "AddNoteActivity: File location: $it")
+                    Log.d("CHECKER", "AddNoteActivity: File location: $selectedPhotoString")
+                    pushFile(selectedPhotoString)
                 }
             }
             .addOnFailureListener {
@@ -119,9 +124,9 @@ class AddNoteActivity : AppCompatActivity() {
     }
 
     private fun sendNote() {
-        var title = et_add_title.text.toString()
-        var subtitle = et_add_subtitle.text.toString()
-        var time = tv_add_time_end_minutes.text.toString()
+        title = et_add_title.text.toString()
+        subtitle = et_add_subtitle.text.toString()
+        time = tv_add_time_end_minutes.text.toString()
         var photoEnabled: String = when{
             selectedPhoto == null -> "0"
             else -> "1"
@@ -130,12 +135,7 @@ class AddNoteActivity : AppCompatActivity() {
             photoEnabled == "1" -> selectedPhotoString
             else -> ""
         }
-        var priority = when{
-            green_priority.isChecked -> "green"
-            yellow_priority.isChecked -> "yellow"
-            red_priority.isChecked -> "red"
-            else -> ""
-        }
+
         when {
             title.isEmpty() -> {
                 Log.d("CHECKER", "AddNoteActivity: title is empty")
@@ -155,26 +155,41 @@ class AddNoteActivity : AppCompatActivity() {
 
                 if(photoEnabled == "1"){
                     uploadImageToFirebaseStorage()
+                } else {
+                    pushFile("")
                 }
 
-                model = NoteCard(
-                    title ?: "",
-                    subtitle ?: "",
-                    time ?: "",
-                    photoEnabled ?: "",
-                    selectedPhotoString ?: "",
-                    priority ?: ""
-                )
-
-                Log.d("CHECKER", "Title: $title | Subtitle: $subtitle | Time: $time | PhotoAttached $photoEnabled | PhotoURL $photo | Priority $priority")
-
-                FirebaseDatabase.getInstance().reference.child("note").child(FirebaseAuth.getInstance().uid.toString()).push()
-                    .setValue(
-                        model
-                    )
-
-                finish()
             }
         }
     }
+
+    private fun pushFile(photo: String){
+        Log.d("CHECKER", "photo $photo")
+
+        var priority = when{
+            green_priority.isChecked -> "green"
+            yellow_priority.isChecked -> "yellow"
+            red_priority.isChecked -> "red"
+            else -> ""
+        }
+
+        model = NoteCard(
+            title ?: "",
+            subtitle ?: "",
+            time ?: "",
+            photoEnabled ?: "",
+            photo ?: "",
+            priority ?: ""
+        )
+
+        Log.d("CHECKER", "Title: $title | Subtitle: $subtitle | Time: $time | PhotoAttached $photoEnabled | PhotoURL $photo | Priority $priority")
+
+        FirebaseDatabase.getInstance().reference.child("notes").child(FirebaseAuth.getInstance().uid.toString()).push()
+            .setValue(
+                model
+            )
+
+        finish()
+    }
+
 }

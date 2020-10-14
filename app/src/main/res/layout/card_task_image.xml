@@ -82,7 +82,7 @@
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🌤️"
+
             app:layout_constraintBottom_toBottomOf="@+id/card_task_image_icon"
             app:layout_constraintEnd_toEndOf="@+id/card_task_image_icon"
             app:layout_constraintStart_toStartOf="@+id/card_task_image_icon"
