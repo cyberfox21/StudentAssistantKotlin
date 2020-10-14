@@ -191,5 +191,4 @@ class AddNoteActivity : AppCompatActivity() {
 
         finish()
     }
-
 }
