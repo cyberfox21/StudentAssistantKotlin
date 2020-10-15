@@ -161,13 +161,13 @@ class AddNoteActivity : AppCompatActivity() {
         subtitle = et_add_subtitle.text.toString()
 
         when {
-            (startHours != null && endHours != null) -> {
+            (startHours != null && endHours != null && startHours != "" && endHours != "") -> {
                 time = "$startHours:$startMinutes - $endHours:$endMinutes"
             }
-            (startHours != null) -> {
+            (startHours != null && startHours != "") -> {
                 time = "$startHours:$startMinutes"
             }
-            (endHours != null) -> {
+            (endHours != null && endHours != "") -> {
                 time = "$endHours:$endMinutes"
             }
             else -> {
