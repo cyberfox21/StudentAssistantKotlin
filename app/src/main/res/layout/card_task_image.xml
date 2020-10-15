@@ -76,11 +76,9 @@
             android:id="@+id/card_task_image_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_priority_green"
+            android:layout_marginRight="30dp"
             app:layout_constraintBottom_toBottomOf="@+id/card_task_image_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/card_task_image_title" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/textView18"

@@ -1,13 +1,16 @@
 package com.tatyanashkolnik.studentassistantkotlin.addcards
 
+import android.app.ActionBar
 import android.app.Activity
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Html
 import android.util.Log
-import android.widget.*
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -16,9 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
-import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
 import kotlinx.android.synthetic.main.activity_add_note.*
-import kotlinx.android.synthetic.main.activity_registration.*
 import java.util.*
 
 const val REQUEST_CODE = 0
@@ -32,27 +33,36 @@ class AddNoteActivity : AppCompatActivity() {
 
     private lateinit var title: String
     private lateinit var subtitle: String
+    private var startHours: String = ""
+    private var startMinutes: String = ""
+    private var endHours: String = ""
+    private var endMinutes: String = ""
+
     private lateinit var time: String
 
-    //private lateinit var title: EditText
-    //private lateinit var subtitle: EditText
-    //private lateinit var priority: RadioButton
     private lateinit var image: LottieAnimationView
     private lateinit var btnSendNote: FloatingActionButton
-    private lateinit var btnAddTime: Button
+
+    private lateinit var tvAddStartTimeHours: TextView
+    private lateinit var tvAddEndTimeHours: TextView
+    private lateinit var tvAddStartTimeMinutes: TextView
+    private lateinit var tvAddEndTimeMinutes: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
-
         initFields()
         initListeners()
-
     }
 
     private fun initFields() {
+        val actionBar: ActionBar? = actionBar
+        actionBar?.setTitle(Html.fromHtml("<font color='#FFFFFF'>Add new note</font>"));
         btnSendNote = findViewById(R.id.btn_send_note)
-        btnAddTime = findViewById(R.id.btn_add_time)
+        tvAddStartTimeHours = findViewById(R.id.tv_add_time_start_hours)
+        tvAddStartTimeMinutes = findViewById(R.id.tv_add_time_start_minutes)
+        tvAddEndTimeHours = findViewById(R.id.tv_add_time_end_hours)
+        tvAddEndTimeMinutes = findViewById(R.id.tv_add_time_end_minutes)
         image = findViewById(R.id.add_image)
     }
 
@@ -60,19 +70,42 @@ class AddNoteActivity : AppCompatActivity() {
         image.setOnClickListener {
             chooseImage()
         }
-        btnAddTime.setOnClickListener {
-            addTime()
+        tvAddStartTimeHours.setOnClickListener {
+            addTime("start")
+        }
+        tvAddStartTimeMinutes.setOnClickListener {
+            addTime("start")
+        }
+        tvAddEndTimeHours.setOnClickListener {
+            addTime("end")
+        }
+        tvAddEndTimeMinutes.setOnClickListener {
+            addTime("end")
         }
         btnSendNote.setOnClickListener {
             sendNote()
         }
     }
 
-    private fun addTime() {
+    private fun addTime(key : String) {
         val cal = Calendar.getInstance()
         val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
             cal.set(Calendar.HOUR_OF_DAY, hour)
             cal.set(Calendar.MINUTE, minute)
+            when(key) {
+                "start" -> {
+                    startHours = cal.get(Calendar.HOUR_OF_DAY).toString()
+                    startMinutes = cal.get(Calendar.MINUTE).toString()
+                    tvAddStartTimeHours.text = startHours
+                    tvAddStartTimeMinutes.text = if(startMinutes.toInt() < 10) "0$startMinutes" else startMinutes
+                }
+                "end" -> {
+                    endHours = cal.get(Calendar.HOUR_OF_DAY).toString()
+                    endMinutes = cal.get(Calendar.MINUTE).toString()
+                    tvAddEndTimeHours.text = endHours
+                    tvAddEndTimeMinutes.text = if(endMinutes.toInt() < 10) "0$endMinutes" else endMinutes
+                }
+            }
         }
         TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
     }
@@ -126,14 +159,25 @@ class AddNoteActivity : AppCompatActivity() {
     private fun sendNote() {
         title = et_add_title.text.toString()
         subtitle = et_add_subtitle.text.toString()
-        time = tv_add_time_end_minutes.text.toString()
-        var photoEnabled: String = when{
-            selectedPhoto == null -> "0"
-            else -> "1"
+
+        when {
+            (startHours != null && endHours != null) -> {
+                time = "$startHours:$startMinutes - $endHours:$endMinutes"
+            }
+            (startHours != null) -> {
+                time = "$startHours:$startMinutes"
+            }
+            (endHours != null) -> {
+                time = "$endHours:$endMinutes"
+            }
+            else -> {
+                time = ""
+            }
         }
-        var photo = when{
-            photoEnabled == "1" -> selectedPhotoString
-            else -> ""
+
+        var photoEnabled: String = when (selectedPhoto) {
+            null -> "0"
+            else -> "1"
         }
 
         when {

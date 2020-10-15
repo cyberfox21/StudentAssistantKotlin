@@ -76,11 +76,10 @@
         <ImageView
             android:id="@+id/card_task_icon"
             android:layout_width="24dp"
+            android:layout_marginRight="30dp"
             android:layout_height="24dp"
-            android:layout_marginLeft="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/card_task_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/card_task_title" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

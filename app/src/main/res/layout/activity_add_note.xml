@@ -171,7 +171,7 @@
                 android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/btn_add_time">
+                app:layout_constraintTop_toBottomOf="@+id/textView9">
 
 
                 <TextView
@@ -180,7 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenirnextcyr_light"
-                    android:text="24"
+                    android:text="23"
                     android:textSize="24dp"
                     app:layout_constraintEnd_toStartOf="@+id/tochka_1"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -202,7 +202,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenirnextcyr_light"
-                    android:text="24"
+                    android:text="59
+"
                     android:textSize="24dp"
                     app:layout_constraintLeft_toRightOf="@id/tochka_1"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -225,19 +226,19 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/const1"
-                android:layout_marginTop="32dp"
                 android:layout_width="wrap_content"
+                android:layout_marginTop="32dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@+id/textView20"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_add_time">
+                app:layout_constraintTop_toBottomOf="@+id/textView9">
 
                 <TextView
                     android:id="@+id/tv_add_time_start_hours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenirnextcyr_light"
-                    android:text="24"
+                    android:text="00"
                     android:textSize="24dp"
                     app:layout_constraintEnd_toStartOf="@+id/tochka"
                     app:layout_constraintStart_toStartOf="parent"
@@ -258,7 +259,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenirnextcyr_light"
-                    android:text="24"
+                    android:text="00"
                     android:textSize="24dp"
 
                     app:layout_constraintLeft_toRightOf="@id/tochka"
@@ -292,20 +293,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView23" />
-
-            <Button
-                android:id="@+id/btn_add_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="32dp"
-                android:text="Выбор"
-                android:textSize="14dp"
-                android:fontFamily="@font/avenirnextcyr_medium"
-                android:textColor="@color/color_main_light"
-                android:background="@drawable/rounded_corner_5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

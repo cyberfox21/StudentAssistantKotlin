@@ -1,15 +1,19 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="Appearance">
+    <PreferenceCategory app:title="Appearance"
+        >
 
         <SwitchPreferenceCompat
             app:key="sync"
+            app:icon="@drawable/ic_baseline_brightness_4_24"
             app:title="Dark Theme" />
 
         <ListPreference
-            app:defaultValue="English"
+            app:defaultValue="true"
             app:entries="@array/reply_entries"
             app:entryValues="@array/reply_entries"
+            app:icon="@drawable/ic_baseline_translate_24"
             app:key="reply"
             app:title="Language"
             app:useSimpleSummaryProvider="true" />
