@@ -1,6 +1,7 @@
 package com.tatyanashkolnik.studentassistantkotlin.addcards
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -45,7 +46,7 @@ class AddCardActivity : AppCompatActivity() {
             etPassword.text.toString() ?: ""
         )
 
-        // Log.d("CHECKER", "Service: $etService.text | Login: $etLogin.text | Password: $etPassword.text")
+        Log.d("CHECKER", "Service: $etService.text | Login: $etLogin.text | Password: $etPassword.text")
 
         FirebaseDatabase.getInstance().reference.child("passwords").child(FirebaseAuth.getInstance().uid.toString()).push()
             .setValue(
