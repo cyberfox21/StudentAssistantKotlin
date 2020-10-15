@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Appearance">
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="Dark Theme" />
+
+        <ListPreference
+            app:defaultValue="English"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/reply_entries"
+            app:key="reply"
+            app:title="Language"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

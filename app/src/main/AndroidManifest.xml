@@ -12,7 +12,12 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addcards.AddNoteActivity"></activity>
+        <activity
+            android:name=".main.Settings"
+            android:label="@string/title_activity_settings">
+
+        </activity>
+        <activity android:name=".addcards.AddNoteActivity" />
         <activity android:name=".showcards.AdvancedCardActivity" />
 
         <provider
