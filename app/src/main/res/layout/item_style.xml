@@ -2,7 +2,7 @@
 <TextView android:id="@+id/custom_text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textColor="#000000"
+    android:textColor="@color/color_word_white"
     android:gravity="left|center_vertical"
     android:layout_marginBottom="5dp"
     android:paddingBottom="7dp"

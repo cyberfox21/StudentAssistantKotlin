@@ -45,6 +45,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
 
             // прочекать какая настройка
+            var preferenceTheme = findPreference<Preference>("theme")
+            if(preferenceTheme is SwitchPreferenceCompat) preferenceTheme.isChecked = false
 
         }
 
@@ -57,10 +59,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
                             true -> {
                                 Log.d("CHECKER", "DarkTheme")
                                 setTheme(AppCompatDelegate.MODE_NIGHT_YES, THEME_DARK)
+                                preference.isChecked = true
                             }
                             false -> {
                                 Log.d("CHECKER", "LightTheme")
                                 setTheme(AppCompatDelegate.MODE_NIGHT_NO, THEME_LIGHT)
+                                preference.isChecked = false
                             }
                         }
                     }

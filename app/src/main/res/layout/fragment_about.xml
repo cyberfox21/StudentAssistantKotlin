@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_main_white"
     tools:context=".main.AboutFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -89,6 +90,7 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="30dp"
                     android:layout_marginTop="30dp"
+                    android:textColor="@color/color_word_white"
                     android:fontFamily="@font/avenirnextcyr_light"
                     android:text="Tatyana Shkolnik"
                     android:textSize="20dp"
@@ -128,6 +130,7 @@
                     android:fontFamily="@font/avenirnextcyr_light"
                     android:text="Ilya Bregman"
                     android:textSize="20dp"
+                    android:textColor="@color/color_word_white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView7"

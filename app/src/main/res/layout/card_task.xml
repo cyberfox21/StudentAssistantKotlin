@@ -1,6 +1,6 @@
 <androidx.cardview.widget.CardView android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardBackgroundColor="#FFFFFF"
+    app:cardBackgroundColor="@color/color_card_background"
     tools:cardUseCompatPadding="true"
     android:layout_margin="32dp"
     app:cardCornerRadius="15dp"
