@@ -1,0 +1,112 @@
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardBackgroundColor="@color/color_card_background"
+    tools:cardUseCompatPadding="true"
+    android:layout_margin="32dp"
+    app:cardCornerRadius="15dp"
+    android:theme="@style/Theme.MaterialComponents"
+    app:cardElevation="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/card_task_image_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+
+            android:fontFamily="@font/avenirnextcyr_medium"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingTop="30dp"
+            android:text="Сделать завтрак"
+            android:textColor="@color/color_main_light"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/card_task_image_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:30 - 13:00"
+            android:textColor="#575767"
+            android:paddingTop="12dp"
+            android:textSize="13dp"
+            android:fontFamily="@font/avenirnextcyr_medium"
+            android:paddingLeft="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_task_image_title" />
+
+        <ImageView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="28dp"
+            android:src="@drawable/ic_divider"
+            app:layout_constraintBottom_toTopOf="@id/card_task_image_subtitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/card_task_image_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenirnextcyr_light"
+            android:text="Приготовить вкуснейшие булочки, посыпать их сахаром, пригласить Танюшу на чай и  посмотреть с ней фильм вместе с булочками"
+            android:textColor="#575767"
+            android:layout_marginLeft="28dp"
+            android:textSize="14dp"
+            android:layout_marginRight="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/card_task_image_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/card_task_image_title"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@+id/card_task_image_icon"
+            app:layout_constraintEnd_toEndOf="@+id/card_task_image_icon"
+            app:layout_constraintStart_toStartOf="@+id/card_task_image_icon"
+            app:layout_constraintTop_toTopOf="@+id/card_task_image_icon" />
+
+        <ImageView
+            android:id="@+id/card_task_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:scaleType="center"
+            android:layout_margin="28dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView14"
+            app:layout_constraintEnd_toEndOf="@id/textView14"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/card_task_image_time"
+            android:adjustViewBounds="true" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

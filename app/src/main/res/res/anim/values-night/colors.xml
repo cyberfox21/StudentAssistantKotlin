@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <color name="colorPrimary">#008577</color>
+        <color name="colorPrimaryDark">#00574B</color>
+        <color name="colorAccent">#D81B60</color>
+        <color name="color_main_light">#6F95B4</color>
+        <color name="color_hint_light">#A9A9A9</color>
+        <color name="color_main_white">#121212</color>
+        <color name="color_word_white">#fff</color>
+        <color name="color_card_background">#1e1e1e</color>
+        <color name="color_icon_background">#24242D</color>
+        <color name="color_icon_outline">#29292F</color>
+
+
+
+
+</resources>
