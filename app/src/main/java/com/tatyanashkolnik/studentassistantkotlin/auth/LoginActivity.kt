@@ -1,12 +1,16 @@
 package com.tatyanashkolnik.studentassistantkotlin.auth
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
+import com.tatyanashkolnik.studentassistantkotlin.Constants
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.main.TaskActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -18,10 +22,20 @@ class LoginActivity : Activity() {
 
     private lateinit var email: String
     private lateinit var pwd: String
+    private lateinit var sharedPrefs  : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_login)
+
+        sharedPrefs = this.getSharedPreferences(Constants.KEY_THEME, Context.MODE_PRIVATE)
+
+
+        when(this.getSharedPreferences(Constants.KEY_THEME, Context.MODE_PRIVATE)!!.getInt(Constants.SWITCHER_STATE, 0)){
+            1 -> setTheme(AppCompatDelegate.MODE_NIGHT_YES, Constants.THEME_DARK)
+            0 -> setTheme(AppCompatDelegate.MODE_NIGHT_NO, Constants.THEME_LIGHT)
+        }
 
         btnEnter = findViewById(R.id.btnEnter)
         toRegister = findViewById(R.id.toRegister)
@@ -74,5 +88,11 @@ class LoginActivity : Activity() {
                     startActivity(Intent(this@LoginActivity, TaskActivity::class.java))
                 }
         }
+    }
+    private fun saveTheme(theme: Int) = sharedPrefs.edit().putInt(Constants.SWITCHER_STATE, theme).apply()
+
+    private fun setTheme(themeMode: Int, prefsMode: Int) {
+        AppCompatDelegate.setDefaultNightMode(themeMode)
+        saveTheme(prefsMode)
     }
 }
