@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/color_main_light">
 
+
+
+
+
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userPhoto"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:background="@drawable/rounded_corner_3"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:scaleType="centerCrop"
         android:src="@drawable/stock_image"
         app:civ_border_color="#003D5169"
+        android:background="@drawable/rounded_corner_image"
         app:civ_border_width="2dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toTopOf="@id/nav_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,16 +31,30 @@
         android:id="@+id/nav_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tatyana Shkolnik"
-        android:textSize="25dp"
         android:fontFamily="@font/avenirnextcyr_light"
+        android:text="Tatyana Shkolnik"
+        android:textColor="#fff"
+        android:textSize="18dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
-        android:textColor="@android:color/white"
+        android:fontFamily="@font/avenirnextcyr_light"
+        android:text="cheremisinilya@yandex.ru"
+        android:textSize="14dp"
+        android:textColor="@color/color_hint_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-<!--    <TextView&ndash;&gt;-->
+
+    <!--    <TextView&ndash;&gt;-->
     <!--                android:id="@+id/footer_item_1"-->
     <!--                android:layout_width="match_parent"-->
     <!--                android:layout_height="48dp"-->

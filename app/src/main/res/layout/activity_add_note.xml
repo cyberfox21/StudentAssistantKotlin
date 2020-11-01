@@ -314,12 +314,12 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@color/color_main_white"
+        app:titleTextColor="@color/color_main_light"
         app:title="Добавить карточку"
         app:titleTextAppearance="@style/menu_text_style"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-        app:subtitleTextColor="@color/color_main_white"
-        android:background="@color/color_main_light"
+        app:subtitleTextColor="@color/color_main_light"
+        android:background="@color/color_main_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
