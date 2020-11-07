@@ -3,15 +3,16 @@ package com.tatyanashkolnik.studentassistantkotlin.main.notes
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.util.DisplayMetrics
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.tatyanashkolnik.studentassistantkotlin.Home
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.addcards.AddNoteActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
+import com.tatyanashkolnik.studentassistantkotlin.main.TaskActivity
 import kotlinx.android.synthetic.main.card_password.view.*
 import kotlinx.android.synthetic.main.card_task.view.*
 import kotlinx.android.synthetic.main.card_task_image.view.*
@@ -65,7 +66,13 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
                     else -> itemView.card_task_image_icon.visibility = View.INVISIBLE
                 }
                 if(model.photo != "") {
-                    Picasso.get().load(model.photo).into(itemView.card_task_image)
+
+                    Picasso.get()
+                        .load(model.photo)
+                        .resize(itemView.resources.displayMetrics.widthPixels, itemView.resources.displayMetrics.heightPixels)
+                        .centerInside()
+                        //.centerCrop()
+                        .into(itemView.card_task_image)
                 }
             }
 
