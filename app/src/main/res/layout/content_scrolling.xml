@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_advanced_card">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_marginTop="42dp"
+    android:layout_marginLeft="24dp"
+    android:layout_marginRight="24dp"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/text_card_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:text="ProArt StudioBook 17 – один из самых тонких ноутбуков с видеокартой NVIDIA GeForce RTX, что делает его мощной портативной рабочей станцией для претворения в жизнь творческих идей. Благодаря узкой экранной рамке дисплей NanoEdge помещен в максимально компактный корпус. Сочетание абсолютной мобильности и высочайшей графической производительности – ноутбук ProArt StudioBook 17 будет незаменимым рабочим инструментом для настоящих профессионалов."
+        android:textColor="#938C8C"
+        android:textSize="16dp"
+        android:fontFamily="@font/avenirnextcyr_light"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
