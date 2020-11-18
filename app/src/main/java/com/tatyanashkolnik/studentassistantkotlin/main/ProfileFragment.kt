@@ -43,7 +43,7 @@ class ProfileFragment : Fragment() {
     private fun initFields() {
         etName = rootView.findViewById(R.id.etName)
         etEmail = rootView.findViewById(R.id.etEmail)
-        etPassword = rootView.findViewById(R.id.etPassword)
+        etPassword = rootView.findViewById(R.id.etRegistrationPassword)
         btnLogout = rootView.findViewById(R.id.logout)
         userPhoto = rootView.findViewById(R.id.userPhoto)
 

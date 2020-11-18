@@ -44,7 +44,7 @@
     <style name="toolbar_expended_text" parent="toolbar_text_style">
         <item name="android:textSize">20sp</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">#007C7777</item>
+        <item name="android:textColor">#ffffff</item>
         <item name="fontFamily">@font/avenirnextcyr_light</item>
         <item name="android:fontFamily">@font/avenirnextcyr_light</item>
     </style>

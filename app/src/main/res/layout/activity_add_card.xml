@@ -7,110 +7,118 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".addcards.AddCardActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/fabSendPassword"
+        android:theme="@style/Theme.MaterialComponents"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="4dp"
+        android:layout_margin="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:cardUseCompatPadding="false">
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:fontFamily="@font/avenirnextcyr_light"
-            android:text="Введите сервис"
-            android:textColor="@color/color_main_light"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/tvService"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            android:background="@drawable/rounded_corner_2"
-            android:backgroundTint="@color/color_hint_light"
-            android:hint="example.com"
-            android:inputType="text"
-            android:maxLines="1"
-            android:paddingLeft="20dp"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:textColor="@color/color_main_light"
-            android:textColorHint="@color/color_hint_light"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            android:fontFamily="@font/avenirnextcyr_light"
-            android:text="Введите логин"
-            android:textColor="@color/color_main_light"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvService" />
-
-        <EditText
-            android:id="@+id/tvLogin"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            android:background="@drawable/rounded_corner_2"
-            android:backgroundTint="@color/color_hint_light"
-            android:hint="example_121"
-            android:inputType="text"
-            android:maxLines="1"
-            android:paddingLeft="20dp"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:textColor="@color/color_main_light"
-            android:textColorHint="@color/color_hint_light"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            android:fontFamily="@font/avenirnextcyr_light"
-            android:text="Введите пароль"
-            android:textColor="@color/color_main_light"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
-
-        <EditText
-            android:id="@+id/tvPassword"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            android:background="@drawable/rounded_corner_2"
-            android:backgroundTint="@color/color_hint_light"
-            android:hint="12345"
-            android:inputType="text"
-
-            android:maxLines="1"
-            android:paddingLeft="20dp"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:textColor="@color/color_main_light"
-            android:textColorHint="@color/color_hint_light"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="18dp">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <HorizontalScrollView
+                android:id="@+id/scroll_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/etService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/avenirnextcyr_medium"
+                    android:gravity="left"
+                    android:paddingLeft="31dp"
+                    android:paddingTop="16dp"
+                    android:singleLine="true"
+                    android:hint="Service"
+                    android:textColor="@color/color_main_light"
+                    android:textColorHint="@color/color_hint_light"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </HorizontalScrollView>
+
+
+            <EditText
+                android:id="@+id/etLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="24dp"
+                android:gravity="left"
+                android:inputType="text"
+                android:hint="login                                "
+                android:textColor="@color/color_main_light"
+                android:textColorHint="@color/color_hint_light"
+                android:textSize="16dp"
+                app:layout_constraintStart_toEndOf="@+id/textView13"
+                app:layout_constraintTop_toBottomOf="@+id/scroll_1" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:fontFamily="@font/avenirnextcyr_light"
+                android:gravity="center"
+                android:text="\@"
+                android:textColor="@color/color_main_light"
+                android:textSize="24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/etLogin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/etLogin" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="left"
+                android:inputType="textPassword"
+                android:textColor="@color/color_main_light"
+                android:hint="*******                             "
+                android:textColorHint="@color/color_hint_light"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="@+id/etLogin"
+                app:layout_constraintTop_toBottomOf="@+id/etLogin" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_baseline_lock_24_2"
+                app:layout_constraintBottom_toBottomOf="@+id/etPassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/etPassword" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabSendPassword"
@@ -121,40 +129,10 @@
         android:fontFamily="@font/avenirnextcyr_medium"
         android:padding="18dp"
         android:src="@drawable/ic_send_24"
+        android:text="s e n d"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/color_main_light"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_vector"
-        android:layout_margin="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Добавьте пароль"
-        android:textSize="24dp"
-        android:fontFamily="@font/avenirnextcyr_light"
-        android:textColor="#fff"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

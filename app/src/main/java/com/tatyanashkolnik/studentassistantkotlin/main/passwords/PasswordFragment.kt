@@ -58,7 +58,9 @@ class PasswordFragment : Fragment() {
 
     private fun addNewPasswordCard() {
         Log.d("CHECKER", "New card added")
-        startActivityForResult(Intent(activity, AddCardActivity::class.java), REQUEST_CODE)
+        var intentToAddCardActivity = Intent(activity, AddCardActivity::class.java)
+        intentToAddCardActivity.putExtra("key", "add")
+        startActivityForResult(intentToAddCardActivity, REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -67,6 +69,7 @@ class PasswordFragment : Fragment() {
             Log.d("CHECKER", "Password card added")
             Toast.makeText(activity, "Password card added", Toast.LENGTH_SHORT).show()
         }
+        adapter.notifyDataSetChanged()
     }
 
     private fun updateList() {
@@ -74,15 +77,27 @@ class PasswordFragment : Fragment() {
         FirebaseDatabase.getInstance().reference.child("passwords").child(FirebaseAuth.getInstance().uid.toString())
             .addChildEventListener(object : ChildEventListener {
                 override fun onCancelled(error: DatabaseError) {
-                    Log.d("CHECKER", "ChatActivity : ChildEventListener : onCancelled()")
+                    adapter.notifyDataSetChanged()
+                    Log.d("CHECKER", "PasswordFragment : ChildEventListener : onCancelled()")
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                    Log.d("CHECKER", "ChatActivity : ChildEventListener : onChildMoved()")
+                    adapter.notifyDataSetChanged()
+                    Log.d("CHECKER", "PasswordFragment : ChildEventListener : onChildMoved()")
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                    Log.d("CHECKER", "ChatActivity : ChildEventListener : onChildChanged()")
+                    Log.d("CHECKER", "PasswordFragment : ChildEventListener : onChildChanged()")
+
+                    var updatedPasswordCard = snapshot.getValue(PasswordCard::class.java)!!
+
+                    for (i in 0 until resultList.size){
+                        if (resultList[i].path == updatedPasswordCard.path){
+                            resultList[i] = updatedPasswordCard
+                        }
+                    }
+                    adapter.notifyDataSetChanged()
+
                 }
 
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
@@ -119,4 +134,5 @@ class PasswordFragment : Fragment() {
         }
         return index
     }
+
 }

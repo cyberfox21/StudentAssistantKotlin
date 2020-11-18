@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
+import com.tatyanashkolnik.studentassistantkotlin.main.passwords.PasswordFragment
 
-class AddCardActivity : AppCompatActivity() {
+class AddCardActivity() : AppCompatActivity() {
 
     private lateinit var fab: FloatingActionButton
     private lateinit var etService: EditText
@@ -19,37 +21,74 @@ class AddCardActivity : AppCompatActivity() {
 
     private lateinit var model: PasswordCard
 
+    private var cardRef = FirebaseDatabase.getInstance().reference.child("passwords").child(FirebaseAuth.getInstance().uid.toString())
+
+    private lateinit var key: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_card)
+        key = intent.getStringExtra("key")
         initFields()
         initListeners()
     }
 
     private fun initFields() {
         fab = findViewById(R.id.fabSendPassword)
-        etService = findViewById(R.id.tvService)
-        etLogin = findViewById(R.id.tvLogin)
-        etPassword = findViewById(R.id.tvPassword)
+        etService = findViewById(R.id.etService)
+        etLogin = findViewById(R.id.etLogin)
+        etPassword = findViewById(R.id.etPassword)
+        if(key == "edit"){
+            etService.setText(intent.getStringExtra("service"))
+            etLogin.setText(intent.getStringExtra("login"))
+            etPassword.setText(intent.getStringExtra("password"))
+        }
     }
 
     private fun initListeners() {
         fab.setOnClickListener {
-            updatePasswordCard()
+            when(key){
+                "edit" -> changePasswordCard()
+                "add" -> createPasswordCard()
+            }
         }
     }
 
-    private fun updatePasswordCard() {
+    private fun changePasswordCard() {
+        var path = intent.getStringExtra("path")
+
         model = PasswordCard(
             etService.text.toString() ?: "",
             etLogin.text.toString() ?: "",
-            etPassword.text.toString() ?: ""
+            etPassword.text.toString() ?: "",
+            path
         )
 
-        Log.d("CHECKER", "Service: $etService.text | Login: $etLogin.text | Password: $etPassword.text")
+        Log.d("CHECKER", "PasswordCard Added" +
+                "Service: ${model.service} | Login: ${model.login} | Password: ${model.password} | Path: ${model.path}" )
 
-        FirebaseDatabase.getInstance().reference.child("passwords").child(FirebaseAuth.getInstance().uid.toString()).push()
-            .setValue(
+        cardRef.child(path).setValue(
+            model
+        )
+
+        finish()
+    }
+
+    private fun createPasswordCard() {
+        var path = cardRef.push().key.toString()
+
+        model = PasswordCard(
+            etService.text.toString() ?: "",
+            etLogin.text.toString() ?: "",
+            etPassword.text.toString() ?: "",
+            path
+        )
+
+        Log.d("CHECKER", "PasswordCard Added" +
+                "Service: ${model.service} | Login: ${model.login} | Password: ${model.password} | Path: ${model.path}" )
+
+
+            cardRef.child(path).setValue(
                 model
             )
 

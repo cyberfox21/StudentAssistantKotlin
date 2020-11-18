@@ -223,7 +223,8 @@ class AddNoteActivity : AppCompatActivity() {
             time ?: "",
             photoEnabled ?: "",
             photo ?: "",
-            priority ?: ""
+            priority ?: "",
+            ""
         )
 
         Log.d("CHECKER", "Title: $title | Subtitle: $subtitle | Time: $time | PhotoAttached $photoEnabled | PhotoURL $photo | Priority $priority")

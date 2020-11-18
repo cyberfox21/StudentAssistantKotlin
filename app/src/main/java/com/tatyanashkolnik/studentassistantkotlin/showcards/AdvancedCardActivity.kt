@@ -8,5 +8,6 @@ class AdvancedCardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_advanced_card)
+
     }
 }
