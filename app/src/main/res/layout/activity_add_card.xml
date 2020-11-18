@@ -31,12 +31,6 @@
             android:layout_marginBottom="18dp">
 
 
-            <HorizontalScrollView
-                android:id="@+id/scroll_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
                     android:id="@+id/etService"
@@ -56,7 +50,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </HorizontalScrollView>
+
 
 
             <EditText
@@ -72,7 +66,7 @@
                 android:textColorHint="@color/color_hint_light"
                 android:textSize="16dp"
                 app:layout_constraintStart_toEndOf="@+id/textView13"
-                app:layout_constraintTop_toBottomOf="@+id/scroll_1" />
+                app:layout_constraintTop_toBottomOf="@+id/etService" />
 
             <TextView
                 android:id="@+id/textView13"
