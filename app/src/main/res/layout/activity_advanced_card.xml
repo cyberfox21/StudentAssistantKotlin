@@ -25,15 +25,26 @@
             app:expandedTitleTextAppearance="@style/toolbar_expended_text"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
+            <com.github.chrisbanes.photoview.PhotoView
+                android:id="@+id/photo_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:maxHeight="300dp"
-                android:src="@drawable/stock_image"
                 android:layout_gravity="center"
                 android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                app:tint="#1A000000" />
+                app:tint="#1A000000"/>
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:maxHeight="300dp"
+                android:layout_gravity="center"
+                android:fitsSystemWindows="true"
+                android:visibility="invisible"
+                app:tint="#1A000000"/>
+
+
 
 
             <androidx.appcompat.widget.Toolbar
@@ -52,7 +63,7 @@
     <include layout="@layout/content_scrolling" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_refactor"
+        android:id="@+id/fab_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="90dp"
@@ -63,7 +74,7 @@
         app:layout_anchorGravity="bottom|right" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_done"
+        android:id="@+id/fab_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -74,7 +85,7 @@
         app:layout_anchorGravity="bottom|right" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_2"
+        android:id="@+id/fab_priority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

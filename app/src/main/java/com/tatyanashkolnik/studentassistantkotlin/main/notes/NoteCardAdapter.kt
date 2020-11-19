@@ -13,6 +13,7 @@ import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.addcards.AddNoteActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
 import com.tatyanashkolnik.studentassistantkotlin.main.TaskActivity
+import com.tatyanashkolnik.studentassistantkotlin.showcards.AdvancedCardActivity
 import kotlinx.android.synthetic.main.card_password.view.*
 import kotlinx.android.synthetic.main.card_task.view.*
 import kotlinx.android.synthetic.main.card_task_image.view.*
@@ -76,9 +77,11 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
                 }
             }
 
-//            itemView.setOnClickListener {
-//                itemView.context.startActivity(Intent(itemView.context, AddNoteActivity::class.java))
-//            }
+            itemView.setOnClickListener {
+                var intentToAdvancedCardActivity = Intent(itemView.context, AdvancedCardActivity::class.java)
+                intentToAdvancedCardActivity.putExtra("object", model)
+                itemView.context.startActivity(intentToAdvancedCardActivity)
+            }
         }
     }
 
