@@ -22,6 +22,9 @@
     <string name="text_label_about">About</string>
     <string name="text_title_Mode">"Dark Theme"</string>
     <string name="text_title_Language">"Language"</string>
+    <string name="text_title_Appearance">Appearance</string>
+    <string name="card_note_title">Your title</string>
+    <string name="card_note_description">Your description</string>
 
 </resources>
 

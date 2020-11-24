@@ -28,6 +28,7 @@
         android:text="ProArt StudioBook 17 – один из самых тонких ноутбуков с видеокартой NVIDIA GeForce RTX, что делает его мощной портативной рабочей станцией для претворения в жизнь творческих идей. Благодаря узкой экранной рамке дисплей NanoEdge помещен в максимально компактный корпус. Сочетание абсолютной мобильности и высочайшей графической производительности – ноутбук ProArt StudioBook 17 будет незаменимым рабочим инструментом для настоящих профессионалов."
         android:textColor="#938C8C"
         android:textSize="16dp"
+        android:gravity="left"
         android:fontFamily="@font/avenirnextcyr_light"
         app:layout_constraintTop_toTopOf="parent" />
 

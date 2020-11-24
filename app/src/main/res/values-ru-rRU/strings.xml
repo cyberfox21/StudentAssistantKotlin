@@ -4,10 +4,10 @@
     <string name="dev_team"><![CDATA[< Команда разработчиков />]]></string>
     <string name="title_activity_settings">Настройки</string>
     <string name="hint_et_Service">Сервис</string>
-    <string name="hint_etLogin">логин</string>
+    <string name="hint_etLogin">Логин</string>
     <string name="hint_etPassword">*******</string>
-    <string name="hint_etLoginEmail">почта</string>
-    <string name="hint_etLoginPassword">пароль</string>
+    <string name="hint_etLoginEmail">Почта</string>
+    <string name="hint_etLoginPassword">Пароль</string>
     <string name="text_toRegister">Вернуться к регистрации</string>
     <string name="enter_btnEnter"><![CDATA[   В О Й Т И   ]]></string>
     <string name="hint_toEnter">Уже есть аккаунт?</string>
@@ -23,4 +23,7 @@
     <string name="text_label_about">О нас</string>
     <string name="text_title_Mode">Тёмная тема</string>
     <string name="text_title_Language">Язык</string>
+    <string name="text_title_Appearance">Внешние</string>
+    <string name="card_note_title">Заголовок</string>
+    <string name="card_note_description">Описание</string>
 </resources>

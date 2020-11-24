@@ -6,32 +6,32 @@
 
         <item
             android:id="@+id/profile"
-            android:title="Профиль"
+            android:title="@string/text_label_profil"
             android:icon="@drawable/ic_person_black_24dp" />
 
         <item
             android:id="@+id/notes"
-            android:title="Заметки"
+            android:title="@string/text_label_notes"
             android:icon="@drawable/ic_baseline_create_24" />
 
         <item
             android:id="@+id/passwords"
-            android:title="Пароли"
+            android:title="@string/text_label_passwords"
             android:icon="@drawable/ic_lock_outline_black_24dp" />
 
         <item
             android:id="@+id/diary"
-            android:title="Дневник"
+            android:title="@string/text_label_diary"
             android:icon="@drawable/ic_baseline_dnevnik_24" />
 
         <item
             android:id="@+id/settings"
-            android:title="Настройки"
+            android:title="@string/title_activity_settings"
             android:icon="@drawable/ic_baseline_settings_24"
             />
         <item
             android:id="@+id/about"
-            android:title="О приложении"
+            android:title="@string/text_label_about"
             android:icon="@drawable/ic_baseline_info_24"
             />
 

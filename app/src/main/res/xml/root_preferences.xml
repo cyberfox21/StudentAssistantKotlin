@@ -8,7 +8,7 @@
         <SwitchPreferenceCompat
             app:key="theme"
             app:icon="@drawable/ic_baseline_brightness_4_24"
-            app:title="Dark Theme" />
+            app:title="@string/text_title_Mode" />
 
         <ListPreference
             app:defaultValue="true"
@@ -16,7 +16,7 @@
             app:entryValues="@array/reply_entries"
             app:icon="@drawable/ic_baseline_translate_24"
             app:key="language"
-            app:title="Language"
+            app:title="@string/text_title_Language"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>

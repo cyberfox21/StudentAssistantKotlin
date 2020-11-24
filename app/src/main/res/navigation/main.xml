@@ -8,31 +8,31 @@
     <fragment
         android:id="@+id/notes"
         android:name="com.tatyanashkolnik.studentassistantkotlin.main.notes.NotesFragment"
-        android:label="Notes"
+        android:label="@string/text_label_notes"
         tools:layout="@layout/fragment_notes" />
     <fragment
         android:id="@+id/passwords"
         android:name="com.tatyanashkolnik.studentassistantkotlin.main.passwords.PasswordFragment"
-        android:label="Passwords"
+        android:label="@string/text_label_passwords"
         tools:layout="@layout/fragment_password" />
     <fragment
         android:id="@+id/profile"
         android:name="com.tatyanashkolnik.studentassistantkotlin.main.ProfileFragment"
-        android:label="Profile"
+        android:label="@string/text_label_profil"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/diary"
         android:name="com.tatyanashkolnik.studentassistantkotlin.main.DiaryFragment"
-        android:label="Diary"
+        android:label="@string/text_label_diary"
         tools:layout="@layout/fragment_diary" />
     <fragment
         android:id="@+id/settings"
         android:name="com.tatyanashkolnik.studentassistantkotlin.main.SettingsFragment"
-        android:label="Settings"
+        android:label="@string/title_activity_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/about"
         android:name="com.tatyanashkolnik.studentassistantkotlin.main.AboutFragment"
-        android:label="About"
+        android:label="@string/text_label_about"
         tools:layout="@layout/fragment_about" />
 </navigation>
