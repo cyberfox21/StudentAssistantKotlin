@@ -211,9 +211,9 @@ class AddNoteActivity : AppCompatActivity() {
         Log.d("CHECKER", "photo $photo")
 
         var priority = when{
-            green_priority.isChecked -> "green"
-            yellow_priority.isChecked -> "yellow"
-            red_priority.isChecked -> "red"
+//            green_priority.isChecked -> "green"
+//            yellow_priority.isChecked -> "yellow"
+//            red_priority.isChecked -> "red"
             else -> ""
         }
 

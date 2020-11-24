@@ -1,6 +1,9 @@
 package com.tatyanashkolnik.studentassistantkotlin.showcards
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -15,6 +18,7 @@ import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
 import kotlinx.android.synthetic.main.card_task_image.view.*
 import java.io.InputStream
+import java.net.URI
 import java.net.URL
 
 
@@ -66,21 +70,9 @@ class AdvancedCardActivity : AppCompatActivity() {
         tvCardDescription.text = card.subtitle
         when (card.photoAttached){
                 "1" -> {
-//                    Picasso.get()
-//                        .load(card.photo)
-//                        .into(imageView)
-//                    photoView.setImageDrawable(imageView.getDrawable())
-
-
-
-                    var picasso = Picasso.get()
+                    Picasso.get()
                         .load(card.photo)
-                        .into(imageView)
-
-
-
-//                    val url = URL(card.photo)
-//                    photoView.setImageBitmap(BitmapFactory.decodeStream(url.content as InputStream))
+                        .into(photoView)
                 }
 
         }
@@ -94,4 +86,16 @@ class AdvancedCardActivity : AppCompatActivity() {
             else -> View.INVISIBLE
         }
     }
+
+//    inner class LoadImage() : AsyncTask<String, String, Bitmap>(){
+//        override fun onPostExecute(result: Bitmap?) {
+//            super.onPostExecute(result)
+//            imageView.setImageBitmap(result)
+//        }
+//
+//        override fun doInBackground(vararg params: String?): Bitmap {
+//            return BitmapFactory.decodeStream(URL(card.photo).content as InputStream)
+//        }
+//
+//    }
 }

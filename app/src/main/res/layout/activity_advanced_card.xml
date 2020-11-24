@@ -25,27 +25,19 @@
             app:expandedTitleTextAppearance="@style/toolbar_expended_text"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <com.github.chrisbanes.photoview.PhotoView
-                android:id="@+id/photo_view"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:maxHeight="300dp"
-                android:layout_gravity="center"
-                android:fitsSystemWindows="true"
-                app:tint="#1A000000"/>
-
             <ImageView
                 android:id="@+id/image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:maxHeight="300dp"
-                android:layout_gravity="center"
-                android:fitsSystemWindows="true"
-                android:visibility="invisible"
-                app:tint="#1A000000"/>
+                android:layout_gravity="center" />
 
-
-
+            <com.github.chrisbanes.photoview.PhotoView
+                android:id="@+id/photo_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:maxHeight="300dp"
+                android:layout_gravity="center"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
