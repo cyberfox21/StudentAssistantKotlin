@@ -91,13 +91,12 @@ class PasswordFragment : Fragment() {
 
                     var updatedPasswordCard = snapshot.getValue(PasswordCard::class.java)!!
 
-                    for (i in 0 until resultList.size){
-                        if (resultList[i].path == updatedPasswordCard.path){
+                    for (i in 0 until resultList.size) {
+                        if (resultList[i].path == updatedPasswordCard.path) {
                             resultList[i] = updatedPasswordCard
                         }
                     }
                     adapter.notifyDataSetChanged()
-
                 }
 
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
@@ -134,5 +133,4 @@ class PasswordFragment : Fragment() {
         }
         return index
     }
-
 }

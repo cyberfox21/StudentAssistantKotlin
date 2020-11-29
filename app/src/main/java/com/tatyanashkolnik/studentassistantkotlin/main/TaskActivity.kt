@@ -2,7 +2,10 @@ package com.tatyanashkolnik.studentassistantkotlin.main
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,10 +26,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import com.tatyanashkolnik.studentassistantkotlin.Constants
-import com.tatyanashkolnik.studentassistantkotlin.Home
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.User
 import de.hdodenhof.circleimageview.CircleImageView
+import java.util.*
 
 class TaskActivity : AppCompatActivity() {
 
@@ -39,7 +42,7 @@ class TaskActivity : AppCompatActivity() {
 
     private lateinit var navUserPhoto: CircleImageView
     private lateinit var navUserName: TextView
-    private lateinit var sharedPrefs  : SharedPreferences
+    private lateinit var sharedPrefs: SharedPreferences
 
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 //        menuInflater.inflate(R.menu.menu_settings, menu)
@@ -50,12 +53,13 @@ class TaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task)
 
-        sharedPrefs = this.getSharedPreferences(Constants.KEY_THEME, Context.MODE_PRIVATE)
+        sharedPrefs = this.getSharedPreferences(Constants.KEY, Context.MODE_PRIVATE)
 
 //        when(this.getSharedPreferences(Constants.KEY_THEME, Context.MODE_PRIVATE)!!.getInt(Constants.SWITCHER_STATE, 0)){
 //            1 -> setTheme(AppCompatDelegate.MODE_NIGHT_YES, Constants.THEME_DARK)
 //            0 -> setTheme(AppCompatDelegate.MODE_NIGHT_NO, Constants.THEME_LIGHT)
 //        }
+        initList()
         initViews()
         initListeners()
     }
@@ -112,12 +116,41 @@ class TaskActivity : AppCompatActivity() {
         drawerLayout.openDrawer(GravityCompat.START)
     }
 
-
-    private fun saveTheme(theme: Int) = sharedPrefs.edit().putInt(Constants.SWITCHER_STATE, theme).apply()
+    private fun saveTheme(theme: Int) =
+        sharedPrefs.edit().putInt(Constants.SWITCHER_STATE, theme).apply()
 
     private fun setTheme(themeMode: Int, prefsMode: Int) {
         AppCompatDelegate.setDefaultNightMode(themeMode)
         saveTheme(prefsMode)
     }
 
+    private fun initList() {
+        var lang = sharedPrefs.getInt(Constants.LIST_STATE, 0)
+        var locale = if (lang == 0) Locale(Constants.EN) else Locale(Constants.RU)
+        var current = resources.configuration.locale
+        if (locale != current) {
+            when (lang) {
+                0 -> {
+                    saveLanguage(0)
+                    setLocale(locale)
+                }
+                1 -> {
+                    saveLanguage(1)
+                    setLocale(locale)
+                }
+            }
+        }
+    }
+    private fun setLocale(locale: Locale) {
+        Locale.setDefault(locale)
+        val res: Resources = resources
+        val dm: DisplayMetrics = res.displayMetrics
+        val conf: Configuration = res.configuration
+        conf.locale = locale
+        // activity?.applyOverrideConfiguration(conf)
+        res.updateConfiguration(conf, dm)
+        recreate()
+    }
+    private fun saveLanguage(language: Int) =
+        sharedPrefs.edit().putInt(Constants.LIST_STATE, language).apply()
 }

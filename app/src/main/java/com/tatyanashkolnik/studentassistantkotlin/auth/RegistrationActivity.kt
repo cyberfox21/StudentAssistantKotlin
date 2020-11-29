@@ -12,7 +12,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -34,7 +33,7 @@ class RegistrationActivity : Activity() {
     private lateinit var email: String
     private lateinit var pwd: String
 
-    private lateinit var sharedPrefs  : SharedPreferences
+    private lateinit var sharedPrefs: SharedPreferences
 
     private var selectedPhotoUri: Uri? = null
 
@@ -42,11 +41,9 @@ class RegistrationActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
-        sharedPrefs = this.getSharedPreferences(Constants.KEY_THEME, Context.MODE_PRIVATE)
+        sharedPrefs = this.getSharedPreferences(Constants.KEY, Context.MODE_PRIVATE)
 
-
-
-        when(this.getSharedPreferences(Constants.KEY_THEME, Context.MODE_PRIVATE)!!.getInt(Constants.SWITCHER_STATE, 0)){
+        when (this.getSharedPreferences(Constants.KEY, Context.MODE_PRIVATE)!!.getInt(Constants.SWITCHER_STATE, 0)) {
             1 -> setTheme(AppCompatDelegate.MODE_NIGHT_YES, Constants.THEME_DARK)
             0 -> setTheme(AppCompatDelegate.MODE_NIGHT_NO, Constants.THEME_LIGHT)
         }
@@ -192,7 +189,8 @@ class RegistrationActivity : Activity() {
             }
         }
     }
-    private fun saveTheme(theme: Int) = sharedPrefs.edit().putInt(Constants.SWITCHER_STATE, theme).apply()
+    private fun saveTheme(theme: Int) =
+        sharedPrefs.edit().putInt(Constants.SWITCHER_STATE, theme).apply()
 
     private fun setTheme(themeMode: Int, prefsMode: Int) {
         AppCompatDelegate.setDefaultNightMode(themeMode)

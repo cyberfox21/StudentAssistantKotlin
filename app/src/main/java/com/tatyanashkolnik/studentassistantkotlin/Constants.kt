@@ -1,15 +1,13 @@
 package com.tatyanashkolnik.studentassistantkotlin
 
-import android.content.Context
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatDelegate
-import kotlin.coroutines.coroutineContext
-
 object Constants {
 
     const val SWITCHER_STATE = "theme"
-    const val KEY_THEME = "theme_prefs"
-    const val KEY_LANG = "lang_prefs"
+    const val LIST_STATE = "language"
+    const val KEY = "prefs"
+
+    const val EN = "en_UM"
+    const val RU = "ru"
 
     const val THEME_UNDEFINED = -1
     const val THEME_LIGHT = 0

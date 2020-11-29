@@ -27,8 +27,8 @@ const val REQUEST_CODE = 0
 class AddNoteActivity : AppCompatActivity() {
 
     private lateinit var model: NoteCard
-    private var selectedPhoto : Uri? = null
-    private var selectedPhotoString : String = ""
+    private var selectedPhoto: Uri? = null
+    private var selectedPhotoString: String = ""
     private var photoEnabled = "0"
 
     private lateinit var title: String
@@ -57,7 +57,7 @@ class AddNoteActivity : AppCompatActivity() {
 
     private fun initFields() {
         val actionBar: ActionBar? = actionBar
-        actionBar?.setTitle(Html.fromHtml("<font color='#FFFFFF'>Add new note</font>"));
+        actionBar?.setTitle(Html.fromHtml("<font color='#FFFFFF'>Add new note</font>"))
         btnSendNote = findViewById(R.id.btn_send_note)
         tvAddStartTimeHours = findViewById(R.id.tv_add_time_start_hours)
         tvAddStartTimeMinutes = findViewById(R.id.tv_add_time_start_minutes)
@@ -87,23 +87,23 @@ class AddNoteActivity : AppCompatActivity() {
         }
     }
 
-    private fun addTime(key : String) {
+    private fun addTime(key: String) {
         val cal = Calendar.getInstance()
         val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
             cal.set(Calendar.HOUR_OF_DAY, hour)
             cal.set(Calendar.MINUTE, minute)
-            when(key) {
+            when (key) {
                 "start" -> {
                     startHours = cal.get(Calendar.HOUR_OF_DAY).toString()
                     startMinutes = cal.get(Calendar.MINUTE).toString()
                     tvAddStartTimeHours.text = startHours
-                    tvAddStartTimeMinutes.text = if(startMinutes.toInt() < 10) "0$startMinutes" else startMinutes
+                    tvAddStartTimeMinutes.text = if (startMinutes.toInt() < 10) "0$startMinutes" else startMinutes
                 }
                 "end" -> {
                     endHours = cal.get(Calendar.HOUR_OF_DAY).toString()
                     endMinutes = cal.get(Calendar.MINUTE).toString()
                     tvAddEndTimeHours.text = endHours
-                    tvAddEndTimeMinutes.text = if(endMinutes.toInt() < 10) "0$endMinutes" else endMinutes
+                    tvAddEndTimeMinutes.text = if (endMinutes.toInt() < 10) "0$endMinutes" else endMinutes
                 }
             }
         }
@@ -117,7 +117,7 @@ class AddNoteActivity : AppCompatActivity() {
         startActivityForResult(toGalary, 0)
     }
 
-    private fun uploadImageToFirebaseStorage(){
+    private fun uploadImageToFirebaseStorage() {
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/notes/$filename")
         ref.putFile(selectedPhoto!!)
@@ -197,20 +197,19 @@ class AddNoteActivity : AppCompatActivity() {
 //            }
             else -> {
 
-                if(photoEnabled == "1"){
+                if (photoEnabled == "1") {
                     uploadImageToFirebaseStorage()
                 } else {
                     pushFile("")
                 }
-
             }
         }
     }
 
-    private fun pushFile(photo: String){
+    private fun pushFile(photo: String) {
         Log.d("CHECKER", "photo $photo")
 
-        var priority = when{
+        var priority = when {
 //            green_priority.isChecked -> "green"
 //            yellow_priority.isChecked -> "yellow"
 //            red_priority.isChecked -> "red"

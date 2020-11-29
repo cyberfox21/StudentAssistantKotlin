@@ -11,7 +11,7 @@
             app:title="@string/text_title_Mode" />
 
         <ListPreference
-            app:defaultValue="true"
+            app:defaultValue="0"
             app:entries="@array/reply_entries"
             app:entryValues="@array/reply_entries"
             app:icon="@drawable/ic_baseline_translate_24"

@@ -20,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.addcards.AddNoteActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
-import com.tatyanashkolnik.studentassistantkotlin.main.passwords.REQUEST_CODE
 
 const val REQUEST = 1
 

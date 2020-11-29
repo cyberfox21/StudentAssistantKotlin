@@ -1,12 +1,12 @@
 package com.tatyanashkolnik.studentassistantkotlin.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.fragment.app.Fragment
 import com.tatyanashkolnik.studentassistantkotlin.R
 
 class DiaryFragment : Fragment() {
@@ -15,7 +15,10 @@ class DiaryFragment : Fragment() {
     private lateinit var webView: WebView
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         rootView = inflater.inflate(R.layout.fragment_diary, container, false)
 
         webView = rootView.findViewById(R.id.webview)
@@ -23,7 +26,7 @@ class DiaryFragment : Fragment() {
         val webSettings = webView.settings
         webSettings.javaScriptEnabled = true
         webSettings.domStorageEnabled = true
-        //webSettings.loadWithOverviewMode = true
+        // webSettings.loadWithOverviewMode = true
         webSettings.useWideViewPort = true
         webSettings.builtInZoomControls = true
         webSettings.displayZoomControls = false
@@ -39,5 +42,4 @@ class DiaryFragment : Fragment() {
 
         return rootView
     }
-
 }

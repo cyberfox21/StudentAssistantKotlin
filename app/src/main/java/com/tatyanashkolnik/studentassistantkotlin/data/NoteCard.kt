@@ -2,7 +2,7 @@ package com.tatyanashkolnik.studentassistantkotlin.data
 
 import java.io.Serializable
 
-class NoteCard : Serializable{
+class NoteCard : Serializable {
 
     var title: String = null.toString()
     var subtitle: String = null.toString()

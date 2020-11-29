@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
-import com.tatyanashkolnik.studentassistantkotlin.main.passwords.PasswordFragment
 
 class AddCardActivity() : AppCompatActivity() {
 
@@ -38,7 +36,7 @@ class AddCardActivity() : AppCompatActivity() {
         etService = findViewById(R.id.etService)
         etLogin = findViewById(R.id.etLogin)
         etPassword = findViewById(R.id.etPassword)
-        if(key == "edit"){
+        if (key == "edit") {
             etService.setText(intent.getStringExtra("service"))
             etLogin.setText(intent.getStringExtra("login"))
             etPassword.setText(intent.getStringExtra("password"))
@@ -47,7 +45,7 @@ class AddCardActivity() : AppCompatActivity() {
 
     private fun initListeners() {
         fab.setOnClickListener {
-            when(key){
+            when (key) {
                 "edit" -> changePasswordCard()
                 "add" -> createPasswordCard()
             }
@@ -64,8 +62,11 @@ class AddCardActivity() : AppCompatActivity() {
             path
         )
 
-        Log.d("CHECKER", "PasswordCard Added" +
-                "Service: ${model.service} | Login: ${model.login} | Password: ${model.password} | Path: ${model.path}" )
+        Log.d(
+            "CHECKER",
+            "PasswordCard Added" +
+                "Service: ${model.service} | Login: ${model.login} | Password: ${model.password} | Path: ${model.path}"
+        )
 
         cardRef.child(path).setValue(
             model
@@ -84,13 +85,15 @@ class AddCardActivity() : AppCompatActivity() {
             path
         )
 
-        Log.d("CHECKER", "PasswordCard Added" +
-                "Service: ${model.service} | Login: ${model.login} | Password: ${model.password} | Path: ${model.path}" )
+        Log.d(
+            "CHECKER",
+            "PasswordCard Added" +
+                "Service: ${model.service} | Login: ${model.login} | Password: ${model.password} | Path: ${model.path}"
+        )
 
-
-            cardRef.child(path).setValue(
-                model
-            )
+        cardRef.child(path).setValue(
+            model
+        )
 
         finish()
     }
