@@ -209,9 +209,13 @@ class AddNoteActivity : AppCompatActivity() {
     }
 
     private fun pushFile(photo: String) {
-        Log.d("CHECKER", "photo $photo")
 
-        var priority = when {
+        val path = cardRef.push().key.toString()
+
+        Log.d("CHECKER", "photo $photo")
+        Log.d("CHECKER", "AddNoteActivity card path: $path")
+
+        val priority = when {
 //            green_priority.isChecked -> "green"
 //            yellow_priority.isChecked -> "yellow"
 //            red_priority.isChecked -> "red"
@@ -225,13 +229,12 @@ class AddNoteActivity : AppCompatActivity() {
             photoEnabled ?: "",
             photo ?: "",
             priority ?: "",
-            ""
+            path ?: ""
         )
 
-        Log.d("CHECKER", "Title: $title | Subtitle: $subtitle | Time: $time | PhotoAttached $photoEnabled | PhotoURL $photo | Priority $priority")
+        Log.d("CHECKER", "Title: ${model.title} | Subtitle: ${model.subtitle} | Time: ${model.time} | PhotoAttached $photoEnabled | PhotoURL ${model.photo} | Priority ${model.priority} | Path ${model.path}")
 
-        FirebaseDatabase.getInstance().reference.child("notes").child(FirebaseAuth.getInstance().uid.toString()).push()
-            .setValue(
+        cardRef.child(path).setValue(
                 model
             )
 

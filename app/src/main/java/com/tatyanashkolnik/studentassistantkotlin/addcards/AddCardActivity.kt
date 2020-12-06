@@ -83,7 +83,7 @@ class AddCardActivity() : AppCompatActivity() {
             etService.text.toString() ?: "",
             etLogin.text.toString() ?: "",
             etPassword.text.toString() ?: "",
-            path
+            path ?: ""
         )
 
         Log.d(
