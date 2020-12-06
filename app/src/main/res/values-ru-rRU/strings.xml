@@ -26,4 +26,5 @@
     <string name="text_title_Appearance">Внешние</string>
     <string name="card_note_title">Заголовок</string>
     <string name="card_note_description">Описание</string>
+    <string name="specify_deleting">Вы точно хотите удалить эту заметку?</string>
 </resources>

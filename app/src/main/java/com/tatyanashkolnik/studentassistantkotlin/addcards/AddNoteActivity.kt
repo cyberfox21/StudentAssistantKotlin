@@ -48,6 +48,8 @@ class AddNoteActivity : AppCompatActivity() {
     private lateinit var tvAddStartTimeMinutes: TextView
     private lateinit var tvAddEndTimeMinutes: TextView
 
+    private var cardRef = FirebaseDatabase.getInstance().reference.child("notes").child(FirebaseAuth.getInstance().uid.toString())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)

@@ -1,15 +1,22 @@
 package com.tatyanashkolnik.studentassistantkotlin.main.notes
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
 import com.tatyanashkolnik.studentassistantkotlin.showcards.AdvancedCardActivity
 import kotlinx.android.synthetic.main.card_task.view.*
 import kotlinx.android.synthetic.main.card_task_image.view.*
+import com.google.firebase.auth.FirebaseAuth.getInstance as getInstance
 
 class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -74,6 +81,27 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
                 var intentToAdvancedCardActivity = Intent(itemView.context, AdvancedCardActivity::class.java)
                 intentToAdvancedCardActivity.putExtra("object", model)
                 itemView.context.startActivity(intentToAdvancedCardActivity)
+            }
+
+            itemView.setOnLongClickListener{
+                val builder = AlertDialog.Builder(itemView.context)
+                builder.setTitle(itemView.context.getString(R.string.specify_deleting))
+                //builder.setMessage("We have a message")
+                //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+
+                builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                    (FirebaseDatabase.getInstance().reference.child("notes").child(
+                        getInstance().currentUser?.uid.toString()).child(model.path)).removeValue()
+                    notifyDataSetChanged()
+                }
+
+                builder.setNegativeButton(android.R.string.no) { dialog, which ->
+                    dialog.cancel()
+                }
+
+                builder.show()
+
+                return@setOnLongClickListener true
             }
         }
     }

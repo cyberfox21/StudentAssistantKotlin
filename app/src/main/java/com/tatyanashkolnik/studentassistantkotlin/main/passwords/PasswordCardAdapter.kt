@@ -1,11 +1,17 @@
 package com.tatyanashkolnik.studentassistantkotlin.main.passwords
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.addcards.AddCardActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
@@ -49,6 +55,26 @@ class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Ad
                 intentToAddCardActivity.putExtra("path", model.path)
                 itemView.context.startActivity(intentToAddCardActivity)
             }
+
+            itemView.setOnLongClickListener{
+                generateDialog(itemView.context, model)
+                return@setOnLongClickListener true
+            }
         }
+    }
+    private fun generateDialog(ctx: Context, model: PasswordCard) {
+        val builder = AlertDialog.Builder(ctx)
+        builder.setTitle(ctx.getString(R.string.specify_deleting))
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            (FirebaseDatabase.getInstance().reference.child("passwords").child(
+                FirebaseAuth.getInstance().currentUser?.uid.toString()).child(model.path)).removeValue()
+            notifyDataSetChanged()
+        }
+
+        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+            dialog.cancel()
+        }
+
+        builder.show()
     }
 }

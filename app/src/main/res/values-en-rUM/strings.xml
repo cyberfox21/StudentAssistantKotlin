@@ -26,5 +26,6 @@
     <string name="text_title_Appearance">Appearance</string>
     <string name="card_note_title">Your title</string>
     <string name="card_note_description">Your description</string>
+    <string name="specify_deleting">Are you sure to delete this note?</string>
 
 </resources>

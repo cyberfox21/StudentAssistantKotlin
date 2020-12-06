@@ -77,6 +77,7 @@ class AddCardActivity() : AppCompatActivity() {
 
     private fun createPasswordCard() {
         var path = cardRef.push().key.toString()
+        Log.d("T", "AddCardActivity card path: $path")
 
         model = PasswordCard(
             etService.text.toString() ?: "",
