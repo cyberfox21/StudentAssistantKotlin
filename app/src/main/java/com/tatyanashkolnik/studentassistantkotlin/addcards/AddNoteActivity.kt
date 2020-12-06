@@ -40,6 +40,8 @@ class AddNoteActivity : AppCompatActivity() {
 
     private lateinit var time: String
 
+    private lateinit var key: String
+
     private lateinit var image: LottieAnimationView
     private lateinit var btnSendNote: FloatingActionButton
 
@@ -53,6 +55,7 @@ class AddNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
+        //key = intent.getStringExtra("key")
         initFields()
         initListeners()
     }
@@ -85,7 +88,11 @@ class AddNoteActivity : AppCompatActivity() {
             addTime("end")
         }
         btnSendNote.setOnClickListener {
-            sendNote()
+//            when(key){
+//                "add"->{addNewNote()}
+//                "edit"->{editNote()}
+//            }
+            addNewNote()
         }
     }
 
@@ -158,7 +165,7 @@ class AddNoteActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendNote() {
+    private fun addNewNote() {
         title = et_add_title.text.toString()
         subtitle = et_add_subtitle.text.toString()
 
@@ -239,5 +246,8 @@ class AddNoteActivity : AppCompatActivity() {
             )
 
         finish()
+    }
+    private fun editNote(){
+
     }
 }

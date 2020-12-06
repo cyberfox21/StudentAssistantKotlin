@@ -4,43 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    style="@style/Advenced_Theme"
     tools:context=".showcards.AdvancedCardActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="400dp"
         android:fitsSystemWindows="true">
 
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+<com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:title="12:00 - 13:00"
+    app:expandedTitleMarginBottom="40dp"
             app:collapsedTitleTextAppearance="@style/toolbar_collapsed_text"
             app:expandedTitleTextAppearance="@style/toolbar_expended_text"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:maxHeight="300dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_gravity="center" />
 
             <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/photo_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:maxHeight="300dp"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
                 android:layout_gravity="center"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                android:fitsSystemWindows="true"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin" >
