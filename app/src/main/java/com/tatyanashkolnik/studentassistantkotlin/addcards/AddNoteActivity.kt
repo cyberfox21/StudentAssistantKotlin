@@ -1,14 +1,13 @@
 package com.tatyanashkolnik.studentassistantkotlin.addcards
 
-import android.app.ActionBar
-import android.app.Activity
-import android.app.TimePickerDialog
+import android.app.*
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Html
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
 import kotlinx.android.synthetic.main.activity_add_note.*
@@ -50,12 +50,16 @@ class AddNoteActivity : AppCompatActivity() {
     private lateinit var tvAddStartTimeMinutes: TextView
     private lateinit var tvAddEndTimeMinutes: TextView
 
+    private lateinit var addNoteCardPriority: ImageView
+
+    private var priority: Int = R.drawable.ic_priority_default
+
     private var cardRef = FirebaseDatabase.getInstance().reference.child("notes").child(FirebaseAuth.getInstance().uid.toString())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
-        //key = intent.getStringExtra("key")
+        key = intent.getStringExtra("key")
         initFields()
         initListeners()
     }
@@ -68,10 +72,34 @@ class AddNoteActivity : AppCompatActivity() {
         tvAddStartTimeMinutes = findViewById(R.id.tv_add_time_start_minutes)
         tvAddEndTimeHours = findViewById(R.id.tv_add_time_end_hours)
         tvAddEndTimeMinutes = findViewById(R.id.tv_add_time_end_minutes)
+        addNoteCardPriority = findViewById(R.id.addNoteCardPriority)
         image = findViewById(R.id.add_image)
+        if (key == "edit") {
+            et_add_title.setText(intent.getStringExtra("title"))
+            et_add_subtitle.setText(intent.getStringExtra("subtitle"))
+            //time = intent.getStringExtra("time")
+
+            when(intent.getStringExtra("photoEnabled")) {
+                "1" -> Picasso.get().load(intent.getStringExtra("photo")).into(image)
+                else -> {}
+            }
+            val priority = when(intent.getStringExtra("priority")) {
+                "green" -> R.drawable.ic_priority_green_gray
+                "yellow" -> R.drawable.ic_priority_yellow_gray
+                "red" -> R.drawable.ic_priority_red_gray
+                else -> R.drawable.ic_priority_default
+            }
+            addNoteCardPriority.setImageResource(priority)
+
+            val path = intent.getStringExtra("path")
+
+        }
     }
 
     private fun initListeners() {
+        addNoteCardPriority.setOnClickListener{
+            choosePriority()
+        }
         image.setOnClickListener {
             chooseImage()
         }
@@ -88,13 +116,30 @@ class AddNoteActivity : AppCompatActivity() {
             addTime("end")
         }
         btnSendNote.setOnClickListener {
-//            when(key){
-//                "add"->{addNewNote()}
-//                "edit"->{editNote()}
-//            }
-            addNewNote()
+            when(key){
+                "add"->{addNewNote()}
+                "edit"->{editNote()}
+            }
+            //addNewNote()
         }
     }
+
+    private fun choosePriority() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.choose_priority))
+            .setItems(R.array.priorities
+            ) { dialog, which ->
+                priority = when(which){
+                    0 -> R.drawable.ic_priority_red_gray
+                    1 -> R.drawable.ic_priority_yellow_gray
+                    2 -> R.drawable.ic_priority_green_gray
+                    else -> R.drawable.ic_priority_default
+                }
+                addNoteCardPriority.setImageResource(priority)
+            }
+        builder.create().show()
+    }
+
 
     private fun addTime(key: String) {
         val cal = Calendar.getInstance()
@@ -222,11 +267,12 @@ class AddNoteActivity : AppCompatActivity() {
         Log.d("CHECKER", "photo $photo")
         Log.d("CHECKER", "AddNoteActivity card path: $path")
 
-        val priority = when {
-//            green_priority.isChecked -> "green"
-//            yellow_priority.isChecked -> "yellow"
-//            red_priority.isChecked -> "red"
+        val priorityString = when (this.priority) {
+            R.drawable.ic_priority_red_gray -> "red"
+            R.drawable.ic_priority_yellow_gray -> "yellow"
+            R.drawable.ic_priority_green_gray -> "green"
             else -> ""
+
         }
 
         model = NoteCard(
@@ -235,11 +281,13 @@ class AddNoteActivity : AppCompatActivity() {
             time ?: "",
             photoEnabled ?: "",
             photo ?: "",
-            priority ?: "",
+            priorityString ?: "",
             path ?: ""
         )
 
-        Log.d("CHECKER", "Title: ${model.title} | Subtitle: ${model.subtitle} | Time: ${model.time} | PhotoAttached $photoEnabled | PhotoURL ${model.photo} | Priority ${model.priority} | Path ${model.path}")
+        Log.d("CHECKER", "Title: ${model.title} | Subtitle: ${model.subtitle} " +
+                "| Time: ${model.time} | PhotoAttached $photoEnabled | PhotoURL ${model.photo} " +
+                "| Priority ${model.priority} | Path ${model.path}")
 
         cardRef.child(path).setValue(
                 model
@@ -250,4 +298,6 @@ class AddNoteActivity : AppCompatActivity() {
     private fun editNote(){
 
     }
+
+
 }

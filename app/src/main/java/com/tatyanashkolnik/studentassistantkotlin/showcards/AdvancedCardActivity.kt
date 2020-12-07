@@ -57,6 +57,9 @@ class AdvancedCardActivity : AppCompatActivity() {
         collapsingToolbarLayoutTitle = findViewById(R.id.toolbar_layout)
         fabEdit.setOnClickListener {
             val toAddNoteActivity = Intent(this, AddNoteActivity::class.java)
+            toAddNoteActivity.putExtra("title", card.title)
+            toAddNoteActivity.putExtra("subtitle", card.subtitle)
+            toAddNoteActivity.putExtra("priority", card.priority)
             toAddNoteActivity.putExtra("key", "edit")
             startActivity(toAddNoteActivity)
         }

@@ -77,4 +77,5 @@ class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Ad
 
         builder.show()
     }
+
 }

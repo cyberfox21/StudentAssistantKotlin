@@ -190,7 +190,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
-                android:id="@+id/card_task_image_icon_default"
+                android:id="@+id/addNoteCardPriority"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginRight="30dp"

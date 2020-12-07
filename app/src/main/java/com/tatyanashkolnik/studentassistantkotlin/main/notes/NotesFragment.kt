@@ -58,7 +58,9 @@ class NotesFragment : Fragment() {
     }
 
     private fun addNewNote() {
-        startActivityForResult(Intent(activity, AddNoteActivity::class.java), REQUEST)
+        val toAddCardActivity = Intent(activity, AddNoteActivity::class.java)
+        toAddCardActivity.putExtra("key", "add")
+        startActivityForResult(toAddCardActivity, REQUEST)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
