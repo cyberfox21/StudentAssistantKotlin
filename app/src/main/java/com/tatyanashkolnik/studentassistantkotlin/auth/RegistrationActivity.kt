@@ -116,7 +116,7 @@ class RegistrationActivity : Activity() {
     private fun saveUserToDatabase(profileImageUrl: String) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val user = User(uid, etName.text.toString(), etPassword.text.toString(), profileImageUrl)
+        val user = User(uid, etName.text.toString(), etRegistrationPassword.text.toString(), profileImageUrl)
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("CHECKER", "RegistrationActivity: User saved in Firebase.")
@@ -129,7 +129,7 @@ class RegistrationActivity : Activity() {
     private fun registerUser() {
         name = etName.text.toString()
         email = etEmail.text.toString()
-        pwd = etPassword.text.toString()
+        pwd = etRegistrationPassword.text.toString()
         when {
             email.isEmpty() -> {
                 Log.d("CHECKER", "RegistrationActivity: Please enter email.")
@@ -182,7 +182,6 @@ class RegistrationActivity : Activity() {
                             Log.d("CHECKER", "RegistrationActivity: Password: $pwd")
 
                             uploadImageToFirebaseStorage()
-
                             startActivity(Intent(this@RegistrationActivity, TaskActivity::class.java))
                         }
                     }

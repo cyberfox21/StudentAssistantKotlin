@@ -245,10 +245,7 @@ class AddNoteActivity : AppCompatActivity() {
                 et_add_subtitle.error = "Subtitle is empty"
                 et_add_subtitle.requestFocus()
             }
-//            time.isEmpty() -> {
-//                Log.d("CHECKER", "AddNoteActivity: title is empty")
-//                Toast.makeText(this, "Please pick the time", Toast.LENGTH_SHORT).show()
-//            }
+
             else -> {
 
                 if (photoEnabled == "1") {

@@ -36,18 +36,13 @@ class TaskActivity : AppCompatActivity() {
     private lateinit var btnLogout: Button
     private lateinit var ivMenu: ImageView
     private lateinit var tvMenu: TextView
-    private lateinit var navView: NavigationView
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var navController: NavController
+    lateinit var navView: NavigationView
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var navController: NavController
 
     private lateinit var navUserPhoto: CircleImageView
     private lateinit var navUserName: TextView
     private lateinit var sharedPrefs: SharedPreferences
-
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.menu_settings, menu)
-//        return super.onCreateOptionsMenu(menu)
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +50,6 @@ class TaskActivity : AppCompatActivity() {
 
         sharedPrefs = this.getSharedPreferences(Constants.KEY, Context.MODE_PRIVATE)
 
-//        when(this.getSharedPreferences(Constants.KEY_THEME, Context.MODE_PRIVATE)!!.getInt(Constants.SWITCHER_STATE, 0)){
-//            1 -> setTheme(AppCompatDelegate.MODE_NIGHT_YES, Constants.THEME_DARK)
-//            0 -> setTheme(AppCompatDelegate.MODE_NIGHT_NO, Constants.THEME_LIGHT)
-//        }
         initList()
         initViews()
         initListeners()
@@ -74,15 +65,14 @@ class TaskActivity : AppCompatActivity() {
         val headerLayout = navView.getHeaderView(0)
         navUserPhoto = headerLayout.findViewById(R.id.userPhoto)
         navUserName = headerLayout.findViewById(R.id.nav_name)
-        setUserData()
     }
 
     private fun setUserData() {
         val menuListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user = dataSnapshot.getValue<User>(User::class.java)
-                navUserName.text = user!!.username
-                Picasso.get().load(user.profileImageUrl).into(navUserPhoto)
+                navUserName.text = user?.username
+                Picasso.get().load(user?.profileImageUrl).into(navUserPhoto)
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 println("loadPost:onCancelled ${databaseError.toException()}")
@@ -96,17 +86,10 @@ class TaskActivity : AppCompatActivity() {
             onMenuImageClick()
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->  setMenuTitle(destination) }
-//        navView.setNavigationItemSelectedListener {
-//            onNavViewItemSelected(it)
-//        }
+        setUserData()
     }
 
-//    private fun saveTheme(theme: Int) = this.getSharedPreferences(Constants.KEY_THEME, Context.MODE_PRIVATE).edit().putInt(Constants.SWITCHER_STATE, theme).apply()
-//
-//    private fun setTheme(themeMode: Int, prefsMode: Int) {
-//        AppCompatDelegate.setDefaultNightMode(themeMode)
-//        saveTheme(prefsMode)
-//    }
+
 
     private fun setMenuTitle(destination: NavDestination) {
         tvMenu.text = destination.label
@@ -147,7 +130,6 @@ class TaskActivity : AppCompatActivity() {
         val dm: DisplayMetrics = res.displayMetrics
         val conf: Configuration = res.configuration
         conf.locale = locale
-        // activity?.applyOverrideConfiguration(conf)
         res.updateConfiguration(conf, dm)
         recreate()
     }

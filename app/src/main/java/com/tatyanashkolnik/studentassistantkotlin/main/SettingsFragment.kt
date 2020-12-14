@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat.recreate
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -37,30 +36,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
         sharedPrefs = activity?.getSharedPreferences(KEY, Context.MODE_PRIVATE)!!
-
-//        preferenceChangeListener =
-//            SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
-//                val preference = findPreference<Preference>(key)
-//                when(preference) {
-//                    is SwitchPreferenceCompat -> {
-//                        when(preference.isChecked){
-//                            true -> {
-//                                Log.d("CHECKER", "DarkTheme")
-//                                savePreferences(SWITCHER_STATE, 1)
-//                                setTheme(AppCompatDelegate.MODE_NIGHT_YES, THEME_DARK)
-//                            }
-//                            false -> {
-//                                Log.d("CHECKER", "LightTheme")
-//                                savePreferences(SWITCHER_STATE, 0)
-//                                setTheme(AppCompatDelegate.MODE_NIGHT_NO, THEME_LIGHT)
-//                            }
-//                        }
-//                    }
-//                    is ListPreference -> {
-//
-//                    }
-//                }
-//            }
 
         sharedPrefs.registerOnSharedPreferenceChangeListener(preferenceChangeListener)
 
@@ -108,26 +83,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         initSwitcher()
         initList()
 
-        // если юзер первый раз открыл
-        // val hasVisited: Boolean = sharedPrefs.getBoolean("hasVisited", false)
 
-//        if (!hasVisited) { //первый раз
-//            val e: SharedPreferences.Editor = sharedPrefs.edit()
-//            e.putBoolean("hasVisited", true)
-//            e.apply() // подтвердить изменения
-//
-//
-//            //loadPreferences()
-//
-//            // сделать Dark Theme выключенной
-//
-//            switcher.isChecked = false
-//
-//            // а язык - английский
-//
-//
-//
-//        }
     }
 
     private fun initList() {
@@ -148,13 +104,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
-//    private fun initList() {
-//        var lang = sharedPrefs.getInt(SWITCHER_STATE, 0) == 1
-//        when(isChecked){
-//            true -> setTheme(AppCompatDelegate.MODE_NIGHT_YES, THEME_DARK)
-//            false -> setTheme(AppCompatDelegate.MODE_NIGHT_NO, THEME_LIGHT)
-//        }
-//    }
 
     private fun initSwitcher() {
         var isChecked = sharedPrefs.getInt(SWITCHER_STATE, 0) == 1
@@ -181,7 +130,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val dm: DisplayMetrics = res.displayMetrics
         val conf: Configuration = res.configuration
         conf.locale = locale
-        // activity?.applyOverrideConfiguration(conf)
         res.updateConfiguration(conf, dm)
         activity?.recreate()
     }
@@ -204,12 +152,4 @@ class SettingsFragment : PreferenceFragmentCompat() {
             .unregisterOnSharedPreferenceChangeListener(preferenceChangeListener)
     }
 
-//    override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
-//        overrideConfiguration?.let {
-//            val uiMode = it.uiMode
-//            it.setTo(resources.configuration)
-//            it.uiMode = uiMode
-//        }
-//        super.applyOverrideConfiguration(overrideConfiguration)
-//    }
 }
