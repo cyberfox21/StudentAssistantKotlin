@@ -63,7 +63,7 @@ class TaskActivity : AppCompatActivity() {
         navController = Navigation.findNavController(this, R.id.navHostFragment)
         NavigationUI.setupWithNavController(navView, navController)
         val headerLayout = navView.getHeaderView(0)
-        navUserPhoto = headerLayout.findViewById(R.id.userPhoto)
+        navUserPhoto = headerLayout.findViewById(R.id.userProfilePhoto)
         navUserName = headerLayout.findViewById(R.id.nav_name)
         navUserEmail = headerLayout.findViewById(R.id.nav_email)
     }

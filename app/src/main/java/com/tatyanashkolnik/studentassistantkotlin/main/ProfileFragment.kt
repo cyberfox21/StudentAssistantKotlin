@@ -57,7 +57,7 @@ class ProfileFragment : Fragment() {
         etPassword = rootView.findViewById(R.id.etRegistrationPassword)
         btnLogout = rootView.findViewById(R.id.logout)
         btnChange = rootView.findViewById(R.id.btnChange)
-        userPhoto = rootView.findViewById(R.id.userPhoto)
+        userPhoto = rootView.findViewById(R.id.userProfilePhoto)
 
         etEmail.hint = FirebaseAuth.getInstance().currentUser!!.email
         setUsername()

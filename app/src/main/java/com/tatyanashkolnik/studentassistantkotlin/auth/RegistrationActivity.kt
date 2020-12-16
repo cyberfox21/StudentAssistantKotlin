@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -41,8 +40,6 @@ class RegistrationActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
         setContentView(R.layout.activity_registration)
 
         sharedPrefs = this.getSharedPreferences(Constants.KEY, Context.MODE_PRIVATE)
@@ -75,12 +72,15 @@ class RegistrationActivity : Activity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
+        if (requestCode == 0 && resultCode == RESULT_OK && data != null) {
             Log.d("CHECKER", "RegistrationActivity: Photo was selected")
 
             selectedPhotoUri = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
             selectUserPhoto.setImageBitmap(bitmap)
+        }
+        else {
+            Log.d("CHECKER", "Error selected photo")
         }
     }
 
