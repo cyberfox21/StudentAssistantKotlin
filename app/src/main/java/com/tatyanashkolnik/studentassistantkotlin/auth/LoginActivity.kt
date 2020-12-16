@@ -27,6 +27,8 @@ class LoginActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         setContentView(R.layout.activity_login)
 
         sharedPrefs = this.getSharedPreferences(Constants.KEY, Context.MODE_PRIVATE)

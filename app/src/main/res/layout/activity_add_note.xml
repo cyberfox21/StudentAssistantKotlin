@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/color_hint_light"
+    android:background="@color/color_main_white"
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
@@ -42,6 +42,7 @@
                 android:gravity="left"
                 android:paddingRight="15dp"
                 android:hint="@string/card_note_title"
+                android:backgroundTint="@color/color_card_background"
                 android:paddingTop="30dp"
                 android:textColor="@color/color_main_light"
                 android:textColorHint="@color/color_hint_light"
@@ -141,6 +142,7 @@
                     android:layout_height="wrap_content"
                     android:text=":"
                     android:textSize="13dp"
+                    android:textColor="#575767"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_add_time_end_hours"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -183,8 +185,11 @@
                 android:gravity="left|top"
                 android:hint="@string/card_note_description"
                 android:textColor="#575767"
+                android:backgroundTint="@color/color_card_background"
                 android:textColorHint="@color/color_hint_light"
                 android:textSize="14dp"
+
+                android:textColorHighlight="@color/color_card_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

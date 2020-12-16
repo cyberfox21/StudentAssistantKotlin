@@ -24,7 +24,7 @@
         android:id="@+id/diary"
         android:name="com.tatyanashkolnik.studentassistantkotlin.main.DiaryFragment"
         android:label="@string/text_label_diary"
-        tools:layout="@layout/fragment_diary" />
+        tools:layout="@layout/fragment_5diary" />
     <fragment
         android:id="@+id/settings"
         android:name="com.tatyanashkolnik.studentassistantkotlin.main.SettingsFragment"

@@ -11,5 +11,7 @@
     <color name="color_card_background">#FFFFFF</color>
     <color name="color_icon_background">#F2F3FF</color>
     <color name="color_icon_outline">#EBEBEB</color>
+    <color name="color_navview_header">#3D5169</color>
+    <color name="color_toolbar">#ffffff</color>
 
 </resources>

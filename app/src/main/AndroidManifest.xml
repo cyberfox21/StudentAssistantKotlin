@@ -28,11 +28,13 @@
         <activity
             android:name=".addcards.AddCardActivity"
             android:theme="@style/CustomNoActionBar" />
-        <activity android:name=".auth.LoginActivity" />
+        <activity android:name=".auth.LoginActivity"
+            android:noHistory="true"/>
         <activity
             android:name=".main.TaskActivity"
             android:theme="@style/CustomNoActionBar" />
-        <activity android:name=".auth.RegistrationActivity">
+        <activity android:name=".auth.RegistrationActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

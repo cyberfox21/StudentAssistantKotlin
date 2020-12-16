@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -39,6 +40,9 @@ class RegistrationActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         setContentView(R.layout.activity_registration)
 
         sharedPrefs = this.getSharedPreferences(Constants.KEY, Context.MODE_PRIVATE)
@@ -131,6 +135,11 @@ class RegistrationActivity : Activity() {
         email = etEmail.text.toString()
         pwd = etRegistrationPassword.text.toString()
         when {
+            name.isEmpty() -> {
+                Log.d("CHECKER", "RegistrationActivity: Please enter name.")
+                etName.error = "Please enter name."
+                etName.requestFocus()
+            }
             email.isEmpty() -> {
                 Log.d("CHECKER", "RegistrationActivity: Please enter email.")
                 etEmail.error = "Please enter email."
@@ -140,11 +149,6 @@ class RegistrationActivity : Activity() {
                 Log.d("CHECKER", "RegistrationActivity: Please enter password.")
                 etPassword.error = "Please enter password."
                 etPassword.requestFocus()
-            }
-            name.isEmpty() -> {
-                Log.d("CHECKER", "RegistrationActivity: Please enter name.")
-                etName.error = "Please enter name."
-                etName.requestFocus()
             }
             pwd.length < 6 -> {
                 Log.d("CHECKER", "RegistrationActivity: Password must be at least 6 characters.")

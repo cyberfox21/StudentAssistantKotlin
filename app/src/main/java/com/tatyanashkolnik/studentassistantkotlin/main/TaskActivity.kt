@@ -17,7 +17,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-// import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -42,6 +41,7 @@ class TaskActivity : AppCompatActivity() {
 
     private lateinit var navUserPhoto: CircleImageView
     private lateinit var navUserName: TextView
+    private lateinit var navUserEmail: TextView
     private lateinit var sharedPrefs: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +65,7 @@ class TaskActivity : AppCompatActivity() {
         val headerLayout = navView.getHeaderView(0)
         navUserPhoto = headerLayout.findViewById(R.id.userPhoto)
         navUserName = headerLayout.findViewById(R.id.nav_name)
+        navUserEmail = headerLayout.findViewById(R.id.nav_email)
     }
 
     private fun setUserData() {
@@ -78,14 +79,16 @@ class TaskActivity : AppCompatActivity() {
                 println("loadPost:onCancelled ${databaseError.toException()}")
             }
         }
-        FirebaseDatabase.getInstance().reference.child("users").child(FirebaseAuth.getInstance().currentUser!!.uid).addListenerForSingleValueEvent(menuListener)
+        navUserEmail.text = FirebaseAuth.getInstance().currentUser?.email.toString()
+        FirebaseDatabase.getInstance().reference.child("users").child(FirebaseAuth.getInstance()
+            .currentUser!!.uid).addListenerForSingleValueEvent(menuListener)
     }
 
     private fun initListeners() {
         ivMenu.setOnClickListener {
             onMenuImageClick()
         }
-        navController.addOnDestinationChangedListener { _, destination, _ ->  setMenuTitle(destination) }
+        navController.addOnDestinationChangedListener { _, destination, _ -> setMenuTitle(destination) }
         setUserData()
     }
 
