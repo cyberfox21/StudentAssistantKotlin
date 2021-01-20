@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="priorities">
         <item>Red</item>
@@ -26,6 +25,7 @@
     <string name="text_label_diary">Diary</string>
     <string name="text_label_profil">Profil</string>
     <string name="text_label_about">About</string>
+    <string name="text_label_documents">Documents</string>
     <string name="text_title_Mode">"Dark Theme"</string>
     <string name="text_title_Language">"Language"</string>
     <string name="text_title_Appearance">Appearance</string>
@@ -33,5 +33,7 @@
     <string name="card_note_description">Your description</string>
     <string name="specify_deleting">Are you sure to delete this note?</string>
     <string name="choose_priority">Сhoose priority</string>
+    <string name="send_change"><![CDATA[s e n d _ c h a n g e s]]></string>
+    <string name="l_o_g_o_u_t">L o g o u t</string>
 
 </resources>

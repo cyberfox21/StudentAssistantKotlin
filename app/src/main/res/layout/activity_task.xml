@@ -18,8 +18,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:id="@+id/toolbar"
-        app:cardCornerRadius="4dp"
-        android:elevation="4dp"
+        app:cardElevation="6dp"
         android:layout_height="?actionBarSize"
         app:layout_constraintTop_toTopOf="parent">
 

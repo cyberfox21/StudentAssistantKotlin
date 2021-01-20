@@ -127,7 +127,7 @@
         android:backgroundTint="@color/color_main_light"
         android:fontFamily="@font/avenirnextcyr_medium"
         android:padding="18dp"
-        android:src="@drawable/ic_send_24"
+        android:src="@drawable/avd_anim"
         android:text="s e n d"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"

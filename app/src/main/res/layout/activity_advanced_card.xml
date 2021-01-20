@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    style="@style/Advenced_Theme"
+    style="@style/AppTheme_5"
     tools:context=".showcards.AdvancedCardActivity">
 
 
@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/color_toolbar"
+    android:background="@color/color_toolbar"
             app:title="12:00 - 13:00"
     app:expandedTitleMarginBottom="40dp"
             app:collapsedTitleTextAppearance="@style/toolbar_collapsed_text"
@@ -33,13 +34,24 @@
                 android:layout_height="0dp"
                 android:layout_gravity="center" />
 
-            <com.github.chrisbanes.photoview.PhotoView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/add_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_url="https://assets2.lottiefiles.com/packages/lf20_5nLqa4.json" />
+
+    <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/photo_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"/>
+
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -51,32 +63,39 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+</com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_scrolling" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="90dp"
-        android:src="@drawable/ic_baseline_create_24"
+        android:textColor="@color/color_main_light"
+        app:iconTint="@color/color_main_light"
+        android:layout_margin="90dp"
+        android:backgroundTint="@color/color_icon_background"
+        app:icon="@drawable/ic_baseline_create_24"
         app:layout_anchor="@id/app_bar"
         android:clickable="true"
         android:theme="@style/floating_button"
+
         app:layout_anchorGravity="bottom|right" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_done"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="wrap_content"
+        android:id="@+id/fab_done"
         android:layout_height="wrap_content"
+        android:textColor="@color/color_main_light"
+        app:iconTint="@color/color_main_light"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_done"
-        app:layout_anchor="@id/app_bar"
-        android:clickable="true"
+        android:backgroundTint="@color/color_icon_background"
+        app:icon="@drawable/ic_baseline_delete_outline_24"
         android:theme="@style/floating_button"
+        app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|right" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -87,7 +106,8 @@
         android:src="@drawable/ic_priority_red"
         app:layout_anchor="@id/app_bar"
         app:fabSize="mini"
-        android:theme="@style/floating_button"
+        android:theme="@style/AppTheme_5"
+        app:tint="@null"
         app:layout_anchorGravity="bottom|left" />
 
 

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.chrisbanes.photoview.PhotoView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -25,8 +26,8 @@ class AdvancedCardActivity : AppCompatActivity() {
     private lateinit var tvCardDescription: TextView
     private lateinit var collapsingToolbarLayoutTitle: CollapsingToolbarLayout
     private lateinit var fabPriority: FloatingActionButton
-    private lateinit var fabEdit: FloatingActionButton
-    private lateinit var fabDone: FloatingActionButton
+    private lateinit var fabEdit: ExtendedFloatingActionButton
+    private lateinit var fabDone: ExtendedFloatingActionButton
 
     private lateinit var card: NoteCard
 

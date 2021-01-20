@@ -23,9 +23,11 @@
             android:layout_margin="15dp"
             android:src="@drawable/ic_add_24"
             app:fabSize="normal"
-            app:backgroundTint="@color/color_main_light"
+            android:tooltipText="Добавить задачу"
+            app:backgroundTint="@color/color_navview_header"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:targetApi="o" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

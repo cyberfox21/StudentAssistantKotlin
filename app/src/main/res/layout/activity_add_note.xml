@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:layout_marginTop="24dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginRight="20dp"
         android:theme="@style/AppTheme_3"
-        android:layout_marginLeft="32dp"
+        android:layout_marginLeft="20dp"
         android:layout_gravity="center"
         app:cardBackgroundColor="@color/color_card_background"
         app:cardCornerRadius="15dp"
@@ -35,18 +35,19 @@
 
             <EditText
                 android:id="@+id/et_add_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
+                android:backgroundTint="@color/color_card_background"
                 android:fontFamily="@font/avenirnextcyr_medium"
                 android:gravity="left"
-                android:paddingRight="15dp"
                 android:hint="@string/card_note_title"
-                android:backgroundTint="@color/color_card_background"
                 android:paddingTop="30dp"
+                android:paddingRight="15dp"
                 android:textColor="@color/color_main_light"
                 android:textColorHint="@color/color_hint_light"
                 android:textSize="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/addNoteCardPriority"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -220,7 +221,6 @@
                 android:layout_height="150dp"
                 android:layout_margin="24dp"
                 android:adjustViewBounds="true"
-                android:background="#F3F3F3"
                 app:layout_constraintBottom_toTopOf="@+id/textView14"
                 app:layout_constraintEnd_toEndOf="@id/textView14"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -229,7 +229,7 @@
                 app:layout_constraintVertical_bias="1.0"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                app:lottie_url="https://assets2.lottiefiles.com/datafiles/dCoEZJcl8sFV0r4/data.json" />
+                app:lottie_url="https://assets6.lottiefiles.com/packages/lf20_6uo4hxe2.json" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

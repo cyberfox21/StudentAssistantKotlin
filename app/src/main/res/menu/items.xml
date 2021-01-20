@@ -25,6 +25,12 @@
             android:icon="@drawable/ic_baseline_dnevnik_24" />
 
         <item
+            android:id="@+id/documents"
+            android:title="@string/text_label_documents"
+            android:icon="@drawable/ic_baseline_info_24"
+            />
+
+        <item
             android:id="@+id/settings"
             android:title="@string/title_activity_settings"
             android:icon="@drawable/ic_baseline_settings_24"

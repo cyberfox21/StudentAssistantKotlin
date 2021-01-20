@@ -25,6 +25,7 @@
     <string name="text_label_passwords">Пароли</string>
     <string name="text_label_diary">Дневник</string>
     <string name="text_label_profil">Профиль</string>
+    <string name="text_label_documents">Документы</string>
     <string name="text_label_about">О нас</string>
     <string name="text_title_Mode">Тёмная тема</string>
     <string name="text_title_Language">Язык</string>
@@ -33,4 +34,7 @@
     <string name="card_note_description">Описание</string>
     <string name="specify_deleting">Вы точно хотите удалить эту заметку?</string>
     <string name="choose_priority">Выберите приоритет</string>
+    <string name="send_change">И З М Е Н И Т Ь</string>
+    <string name="l_o_g_o_u_t">В Ы Й Т И</string>
+
 </resources>
