@@ -27,7 +27,7 @@ import com.tatyanashkolnik.studentassistantkotlin.auth.RegistrationActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.User
 import de.hdodenhof.circleimageview.CircleImageView
 import java.net.URL
-import java.util.*
+import java.util.UUID
 
 class ProfileFragment : Fragment() {
 
@@ -81,7 +81,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initListeners() {
-        userPhoto.setOnClickListener{
+        userPhoto.setOnClickListener {
             changePhoto()
         }
         btnLogout.setOnClickListener {
@@ -99,7 +99,7 @@ class ProfileFragment : Fragment() {
         startActivityForResult(toGalary, 0)
     }
 
-    private fun logout(){
+    private fun logout() {
         FirebaseAuth.getInstance().signOut()
         Toast.makeText(activity, "You are logged out.", Toast.LENGTH_SHORT).show()
         Log.d("CHECKER", "TaskActivity: User logged out successfully.")
@@ -111,7 +111,7 @@ class ProfileFragment : Fragment() {
         val menuListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user = dataSnapshot.getValue(User::class.java)
-               selectedPhotoUri = Uri.parse(user?.profileImageUrl)
+                selectedPhotoUri = Uri.parse(user?.profileImageUrl)
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 println("loadPost:onCancelled ${databaseError.toException()}")
@@ -137,21 +137,22 @@ class ProfileFragment : Fragment() {
                 Log.d("CHECKER", "RegistrationActivity: Failed to upload image.")
             }
 
-        if(FirebaseAuth.getInstance().currentUser != null){
-            FirebaseDatabase.getInstance().reference.child("users").child(FirebaseAuth.getInstance()
-                .currentUser!!.uid).addListenerForSingleValueEvent(menuListener)
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            FirebaseDatabase.getInstance().reference.child("users").child(
+                FirebaseAuth.getInstance()
+                    .currentUser!!.uid
+            ).addListenerForSingleValueEvent(menuListener)
         }
 
         saveUserToDatabase()
-
     }
 
     private fun saveUserToDatabase() {
         val model = User(
             (FirebaseAuth.getInstance().currentUser?.uid ?: ""),
-            etName.text.toString() ?: "",
-            etPassword.text.toString() ?: "",
-            selectedPhotoUri.toString() ?: ""
+            etName.text.toString(),
+            etPassword.text.toString(),
+            selectedPhotoUri.toString()
         )
 
         FirebaseAuth.getInstance().currentUser?.let {
@@ -159,7 +160,7 @@ class ProfileFragment : Fragment() {
                 model
             )
         }?.addOnSuccessListener {
-            Toast.makeText(activity, "Profil has changed successfully!", Toast.LENGTH_SHORT)
+            Toast.makeText(activity, "Profil was changed successfully!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -171,7 +172,7 @@ class ProfileFragment : Fragment() {
 
             selectedPhotoUri = data.data
 
-            //deletePreviosUserPhotoFromStorage()
+            // deletePreviosUserPhotoFromStorage()
 
             val bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, selectedPhotoUri)
             userPhoto.setImageBitmap(bitmap)
@@ -189,7 +190,7 @@ class ProfileFragment : Fragment() {
                 photoRef = FirebaseStorage.getInstance().getReferenceFromUrl(
                     URL(prevPhoto.toString()).toString()
                 )
-                if(photoRef != null) {
+                if (photoRef != null) {
                     photoRef.delete().addOnSuccessListener { // File deleted successfully
                         Log.d("CHECKER", "onSuccess: deleted file")
                     }.addOnFailureListener { // Uh-oh, an error occurred!
@@ -202,9 +203,11 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        if(FirebaseAuth.getInstance().currentUser != null){
-            FirebaseDatabase.getInstance().reference.child("users").child(FirebaseAuth.getInstance()
-                .currentUser!!.uid).addListenerForSingleValueEvent(menuListener)
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            FirebaseDatabase.getInstance().reference.child("users").child(
+                FirebaseAuth.getInstance()
+                    .currentUser!!.uid
+            ).addListenerForSingleValueEvent(menuListener)
         }
     }
 }

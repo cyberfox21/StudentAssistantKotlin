@@ -4,7 +4,9 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -75,12 +77,12 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
             }
 
             itemView.setOnClickListener {
-                var intentToAdvancedCardActivity = Intent(itemView.context, AdvancedCardActivity::class.java)
+                val intentToAdvancedCardActivity = Intent(itemView.context, AdvancedCardActivity::class.java)
                 intentToAdvancedCardActivity.putExtra("object", model)
                 itemView.context.startActivity(intentToAdvancedCardActivity)
             }
 
-            itemView.setOnLongClickListener{
+            itemView.setOnLongClickListener {
                 generateDialog(itemView.context, model)
                 return@setOnLongClickListener true
             }
@@ -104,7 +106,7 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
         noteList.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        var note: NoteCard = noteList[position]
+        val note: NoteCard = noteList[position]
         for (i in noteList) {
             Log.d("CHECKER", "onBindViewHolder $i")
         }
@@ -116,8 +118,13 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
         val builder = AlertDialog.Builder(ctx)
         builder.setTitle(ctx.getString(R.string.specify_deleting))
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-            ((FirebaseDatabase.getInstance().reference.child("notes").child(
-                FirebaseAuth.getInstance().currentUser?.uid.toString()).child(model.path))).removeValue()
+            (
+                (
+                    FirebaseDatabase.getInstance().reference.child("notes").child(
+                        FirebaseAuth.getInstance().currentUser?.uid.toString()
+                    ).child(model.path)
+                    )
+                ).removeValue()
             notifyDataSetChanged()
         }
 

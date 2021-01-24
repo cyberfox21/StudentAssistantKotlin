@@ -25,17 +25,19 @@
         <item name="android:navigationBarColor" tools:targetApi="lollipop">#ffffff</item>
     </style>
 
-    <style name="menu_text_style" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Menu">
-        <item name="android:textSize">16sp</item>
+    <style name="menu_text_style" parent="Theme.MaterialComponents.CompactMenu">
+        <item name="android:textSize">15sp</item>
         <item name="android:textAllCaps">false</item>
-        <item name="fontFamily">@font/avenirnextcyr_light</item>
-        <item name="android:fontFamily">@font/avenirnextcyr_medium</item>
+        <item name="itemFillColor">#fff</item>
+
+
     </style>
 
 
     <style name="toolbar_text_style" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Menu">
         <item name="android:textSize">20sp</item>
         <item name="android:textAllCaps">false</item>
+        <item name="itemFillColor">#fff</item>
         <item name="fontFamily">@font/avenirnextcyr_medium</item>
         <item name="android:fontFamily">@font/avenirnextcyr_medium</item>
 
@@ -82,6 +84,47 @@
         <item name="colorPrimaryDark">#3D5169</item>
         <item name="colorControlNormal">#fff</item>
         <item name="colorAccent">#3D5169</item>
+    </style>
+
+    <style name="theme_edittext" parent="Theme.MaterialComponents.Light">
+        <!-- Customize your theme here. -->
+        <item name="android:colorControlActivated">@color/color_main_light</item>
+        <item name="colorPrimary">@color/color_main_light</item>
+        <item name="colorPrimaryDark">#3D5169</item>
+        <item name="colorControlNormal">@color/color_main_light</item>
+        <item name="colorAccent">#3D5169</item>
+        <item name="fontFamily">@font/avenirnextcyr_medium</item>
+
+
+
+        <!-- item padding right in menu-->
+        <item name="android:listPreferredItemPaddingRight">16dp</item>
+        <item name="listPreferredItemPaddingRight">32dp</item>
+
+
+
+    </style>
+
+
+    <style name="theme_navview" parent="Theme.MaterialComponents.Light">
+        <!-- Customize your theme here. -->
+        <item name="android:colorControlActivated">@color/color_main_light</item>
+        <item name="colorPrimary">@color/color_main_light</item>
+        <item name="colorPrimaryDark">#3D5169</item>
+        <item name="colorControlNormal">@color/color_main_light</item>
+        <item name="colorAccent">#3D5169</item>
+        <item name="fontFamily">@font/avenirnextcyr_medium</item>
+
+        <item name="colorOnSurface">#656565</item>
+
+
+
+        <!-- item padding right in menu-->
+        <item name="android:listPreferredItemPaddingRight">16dp</item>
+        <item name="listPreferredItemPaddingRight">32dp</item>
+
+
+
     </style>
 
 </resources>

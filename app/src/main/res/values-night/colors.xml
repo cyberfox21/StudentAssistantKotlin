@@ -16,5 +16,6 @@
         <color name="color_card_text">#848495</color>
         <color name="color_divider">#373740</color>
         <color name="color_card_title">#ffffff</color>
+        <color name="color_navview_background">#111</color>
 
 </resources>

@@ -35,6 +35,8 @@
     <string name="choose_priority">Сhoose priority</string>
     <string name="send_change"><![CDATA[s e n d _ c h a n g e s]]></string>
     <string name="l_o_g_o_u_t">L o g o u t</string>
+    <string name="tools">Tools</string>
+    <string name="tsib_team">TSIB team</string>
 
 </resources>
 

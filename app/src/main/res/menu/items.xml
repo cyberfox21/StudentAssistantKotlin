@@ -1,8 +1,9 @@
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group
         android:id="@+id/nav_view_menu_group_1"
         android:checkableBehavior="single">
+
+
 
         <item
             android:id="@+id/profile"
@@ -27,20 +28,56 @@
         <item
             android:id="@+id/documents"
             android:title="@string/text_label_documents"
-            android:icon="@drawable/ic_baseline_info_24"
+            android:icon="@drawable/ic_baseline_insert_drive_file_24"
             />
 
-        <item
-            android:id="@+id/settings"
-            android:title="@string/title_activity_settings"
-            android:icon="@drawable/ic_baseline_settings_24"
-            />
-        <item
-            android:id="@+id/about"
-            android:title="@string/text_label_about"
-            android:icon="@drawable/ic_baseline_info_24"
-            />
+
 
     </group>
+
+
+
+    <group
+        android:id="@+id/nav_view_menu_group_2"
+        android:checkableBehavior="single">
+
+
+
+
+        <item
+            android:id="@+id/subtitlte"
+            android:title="@string/tools">
+
+
+            <menu>
+
+
+                <item
+                    android:id="@+id/settings"
+                    android:title="@string/title_activity_settings"
+                    android:icon="@drawable/ic_baseline_settings_24"
+                    />
+                <item
+                    android:id="@+id/about"
+                    android:title="@string/text_label_about"
+                    android:icon="@drawable/ic_baseline_info_24"
+                    />
+
+
+            </menu>
+
+
+
+
+        </item>
+
+
+
+
+
+    </group>
+
+
+
 
 </menu>

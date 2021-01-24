@@ -14,5 +14,4 @@ interface FileDao {
 
     @Query("SELECT * FROM file_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<File>>
-
 }

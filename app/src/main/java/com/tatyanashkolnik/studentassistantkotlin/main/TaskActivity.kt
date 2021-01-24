@@ -28,7 +28,7 @@ import com.tatyanashkolnik.studentassistantkotlin.Constants
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.User
 import de.hdodenhof.circleimageview.CircleImageView
-import java.util.*
+import java.util.Locale
 
 class TaskActivity : AppCompatActivity() {
 
@@ -80,8 +80,10 @@ class TaskActivity : AppCompatActivity() {
             }
         }
         navUserEmail.text = FirebaseAuth.getInstance().currentUser?.email.toString()
-        FirebaseDatabase.getInstance().reference.child("users").child(FirebaseAuth.getInstance()
-            .currentUser!!.uid).addListenerForSingleValueEvent(menuListener)
+        FirebaseDatabase.getInstance().reference.child("users").child(
+            FirebaseAuth.getInstance()
+                .currentUser!!.uid
+        ).addListenerForSingleValueEvent(menuListener)
     }
 
     private fun initListeners() {
@@ -91,8 +93,6 @@ class TaskActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ -> setMenuTitle(destination) }
         setUserData()
     }
-
-
 
     private fun setMenuTitle(destination: NavDestination) {
         tvMenu.text = destination.label
@@ -111,9 +111,9 @@ class TaskActivity : AppCompatActivity() {
     }
 
     private fun initList() {
-        var lang = sharedPrefs.getInt(Constants.LIST_STATE, 0)
-        var locale = if (lang == 0) Locale(Constants.EN) else Locale(Constants.RU)
-        var current = resources.configuration.locale
+        val lang = sharedPrefs.getInt(Constants.LIST_STATE, 0)
+        val locale = if (lang == 0) Locale(Constants.EN) else Locale(Constants.RU)
+        val current = resources.configuration.locale
         if (locale != current) {
             when (lang) {
                 0 -> {

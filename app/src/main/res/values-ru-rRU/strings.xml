@@ -36,5 +36,7 @@
     <string name="choose_priority">Выберите приоритет</string>
     <string name="send_change">И З М Е Н И Т Ь</string>
     <string name="l_o_g_o_u_t">В Ы Й Т И</string>
+    <string name="tools">Инструменты</string>
+    <string name="tsib_team">TSIB team</string>
 
 </resources>

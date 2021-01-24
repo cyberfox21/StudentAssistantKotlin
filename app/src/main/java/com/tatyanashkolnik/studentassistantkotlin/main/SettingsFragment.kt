@@ -22,7 +22,7 @@ import com.tatyanashkolnik.studentassistantkotlin.Constants.SWITCHER_STATE
 import com.tatyanashkolnik.studentassistantkotlin.Constants.THEME_DARK
 import com.tatyanashkolnik.studentassistantkotlin.Constants.THEME_LIGHT
 import com.tatyanashkolnik.studentassistantkotlin.R
-import java.util.*
+import java.util.Locale
 
 private var preferenceChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
 
@@ -67,13 +67,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     "English" -> {
                         Log.d("CHECKER", "English language")
                         saveLanguage(0)
-                        var localeEN = Locale(EN)
+                        val localeEN = Locale(EN)
                         setLocale(localeEN)
                     }
                     "Русский" -> {
                         Log.d("CHECKER", "Русский language")
                         saveLanguage(1)
-                        var localeRU = Locale(RU)
+                        val localeRU = Locale(RU)
                         setLocale(localeRU)
                     }
                 }
@@ -82,14 +82,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         initSwitcher()
         initList()
-
-
     }
 
     private fun initList() {
-        var lang = sharedPrefs.getInt(LIST_STATE, 0)
-        var locale = if (lang == 0) Locale(EN) else Locale(RU)
-        var current = resources.configuration.locale
+        val lang = sharedPrefs.getInt(LIST_STATE, 0)
+        val locale = if (lang == 0) Locale(EN) else Locale(RU)
+        val current = resources.configuration.locale
         if (locale != current) {
             when (lang) {
                 0 -> {
@@ -104,9 +102,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
-
     private fun initSwitcher() {
-        var isChecked = sharedPrefs.getInt(SWITCHER_STATE, 0) == 1
+        val isChecked = sharedPrefs.getInt(SWITCHER_STATE, 0) == 1
         when (isChecked) {
             true -> setTheme(AppCompatDelegate.MODE_NIGHT_YES, THEME_DARK)
             false -> setTheme(AppCompatDelegate.MODE_NIGHT_NO, THEME_LIGHT)
@@ -151,5 +148,4 @@ class SettingsFragment : PreferenceFragmentCompat() {
         preferenceScreen.sharedPreferences
             .unregisterOnSharedPreferenceChangeListener(preferenceChangeListener)
     }
-
 }

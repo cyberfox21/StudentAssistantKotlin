@@ -2,10 +2,8 @@ package com.tatyanashkolnik.studentassistantkotlin.main.passwords
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
-import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +29,7 @@ class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Ad
         passwordList.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        var password: PasswordCard = passwordList[position]
+        val password: PasswordCard = passwordList[position]
 
         (holder as PasswordHolder).bind(password)
     }
@@ -47,7 +45,7 @@ class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Ad
             itemView.card_password.text = model.password
             Log.d("CHECKER", "PasswordAdapter: password " + model.password)
             itemView.setOnClickListener {
-                var intentToAddCardActivity = Intent(itemView.context, AddCardActivity::class.java)
+                val intentToAddCardActivity = Intent(itemView.context, AddCardActivity::class.java)
                 intentToAddCardActivity.putExtra("key", "edit")
                 intentToAddCardActivity.putExtra("service", model.service)
                 intentToAddCardActivity.putExtra("login", model.login)
@@ -56,7 +54,7 @@ class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Ad
                 itemView.context.startActivity(intentToAddCardActivity)
             }
 
-            itemView.setOnLongClickListener{
+            itemView.setOnLongClickListener {
                 generateDialog(itemView.context, model)
                 return@setOnLongClickListener true
             }
@@ -65,9 +63,12 @@ class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Ad
     private fun generateDialog(ctx: Context, model: PasswordCard) {
         val builder = AlertDialog.Builder(ctx)
         builder.setTitle(ctx.getString(R.string.specify_deleting))
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-            (FirebaseDatabase.getInstance().reference.child("passwords").child(
-                FirebaseAuth.getInstance().currentUser?.uid.toString()).child(model.path)).removeValue()
+        builder.setPositiveButton(android.R.string.yes) { _, _ ->
+            (
+                FirebaseDatabase.getInstance().reference.child("passwords").child(
+                    FirebaseAuth.getInstance().currentUser?.uid.toString()
+                ).child(model.path)
+                ).removeValue()
             notifyDataSetChanged()
         }
 
@@ -77,5 +78,4 @@ class PasswordCardAdapter(resultList: ArrayList<PasswordCard>) : RecyclerView.Ad
 
         builder.show()
     }
-
 }

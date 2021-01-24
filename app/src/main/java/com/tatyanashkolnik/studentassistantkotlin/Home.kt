@@ -18,7 +18,7 @@ import com.tatyanashkolnik.studentassistantkotlin.Constants.THEME_DARK
 import com.tatyanashkolnik.studentassistantkotlin.Constants.THEME_LIGHT
 import com.tatyanashkolnik.studentassistantkotlin.auth.RegistrationActivity
 import com.tatyanashkolnik.studentassistantkotlin.main.TaskActivity
-import java.util.*
+import java.util.Locale
 
 @Suppress("DEPRECATION")
 class Home : Application() {
@@ -38,11 +38,11 @@ class Home : Application() {
             when (state) {
                 1 -> {
                     saveTheme(THEME_DARK)
-                    setTheme(AppCompatDelegate.MODE_NIGHT_YES, Constants.THEME_DARK)
+                    setTheme(AppCompatDelegate.MODE_NIGHT_YES, THEME_DARK)
                 }
                 0 -> {
                     saveTheme(THEME_LIGHT)
-                    setTheme(AppCompatDelegate.MODE_NIGHT_NO, Constants.THEME_LIGHT)
+                    setTheme(AppCompatDelegate.MODE_NIGHT_NO, THEME_LIGHT)
                 }
             }
             initList()
@@ -81,9 +81,9 @@ class Home : Application() {
     }
 
     private fun initList() {
-        var lang = sp.getInt(LIST_STATE, 0)
-        var locale = if (lang == 0) Locale(EN) else Locale(RU)
-        var current = resources.configuration.locale
+        val lang = sp.getInt(LIST_STATE, 0)
+        val locale = if (lang == 0) Locale(EN) else Locale(RU)
+        val current = resources.configuration.locale
         if (locale != current) {
             when (lang) {
                 0 -> {

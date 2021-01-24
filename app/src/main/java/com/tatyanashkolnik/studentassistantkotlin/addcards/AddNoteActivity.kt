@@ -1,15 +1,21 @@
+@file:Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION")
+
 package com.tatyanashkolnik.studentassistantkotlin.addcards
 
-import android.app.*
+import android.app.Activity
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.MediaStore.Images.Media.getBitmap
 import android.text.Html
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -20,7 +26,8 @@ import com.squareup.picasso.Picasso
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
 import kotlinx.android.synthetic.main.activity_add_note.*
-import java.util.*
+import java.util.Calendar
+import java.util.UUID
 
 const val REQUEST_CODE = 0
 
@@ -65,7 +72,7 @@ class AddNoteActivity : AppCompatActivity() {
     }
 
     private fun initFields() {
-        val actionBar: ActionBar? = actionBar
+        val actionBar: android.app.ActionBar? = actionBar
         actionBar?.setTitle(Html.fromHtml("<font color='#FFFFFF'>Add new note</font>"))
         btnSendNote = findViewById(R.id.btn_send_note)
         tvAddStartTimeHours = findViewById(R.id.tv_add_time_start_hours)
@@ -77,13 +84,13 @@ class AddNoteActivity : AppCompatActivity() {
         if (key == "edit") {
             et_add_title.setText(intent.getStringExtra("title"))
             et_add_subtitle.setText(intent.getStringExtra("subtitle"))
-            //time = intent.getStringExtra("time")
+            // time = intent.getStringExtra("time")
 
-            when(intent.getStringExtra("photoEnabled")) {
+            when (intent.getStringExtra("photoEnabled")) {
                 "1" -> Picasso.get().load(intent.getStringExtra("photo")).into(image)
                 else -> {}
             }
-            val priority = when(intent.getStringExtra("priority")) {
+            val priority = when (intent.getStringExtra("priority")) {
                 "green" -> R.drawable.ic_priority_green_gray
                 "yellow" -> R.drawable.ic_priority_yellow_gray
                 "red" -> R.drawable.ic_priority_red_gray
@@ -92,12 +99,11 @@ class AddNoteActivity : AppCompatActivity() {
             addNoteCardPriority.setImageResource(priority)
 
             val path = intent.getStringExtra("path")
-
         }
     }
 
     private fun initListeners() {
-        addNoteCardPriority.setOnClickListener{
+        addNoteCardPriority.setOnClickListener {
             choosePriority()
         }
         image.setOnClickListener {
@@ -116,20 +122,21 @@ class AddNoteActivity : AppCompatActivity() {
             addTime("end")
         }
         btnSendNote.setOnClickListener {
-            when(key){
-                "add"->{addNewNote()}
-                "edit"->{editNote()}
+            when (key) {
+                "add" -> { addNewNote() }
+                "edit" -> { editNote() }
             }
-            //addNewNote()
+            // addNewNote()
         }
     }
 
     private fun choosePriority() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.choose_priority))
-            .setItems(R.array.priorities
+            .setItems(
+                R.array.priorities
             ) { dialog, which ->
-                priority = when(which){
+                priority = when (which) {
                     0 -> R.drawable.ic_priority_red_gray
                     1 -> R.drawable.ic_priority_yellow_gray
                     2 -> R.drawable.ic_priority_green_gray
@@ -139,7 +146,6 @@ class AddNoteActivity : AppCompatActivity() {
             }
         builder.create().show()
     }
-
 
     private fun addTime(key: String) {
         val cal = Calendar.getInstance()
@@ -205,7 +211,7 @@ class AddNoteActivity : AppCompatActivity() {
 
             selectedPhoto = data.data
             photoEnabled = "1"
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhoto)
+            val bitmap = getBitmap(contentResolver, selectedPhoto)
             image.setImageBitmap(bitmap)
         }
     }
@@ -229,7 +235,7 @@ class AddNoteActivity : AppCompatActivity() {
             }
         }
 
-        var photoEnabled: String = when (selectedPhoto) {
+        val photoEnabled: String = when (selectedPhoto) {
             null -> "0"
             else -> "1"
         }
@@ -269,32 +275,31 @@ class AddNoteActivity : AppCompatActivity() {
             R.drawable.ic_priority_yellow_gray -> "yellow"
             R.drawable.ic_priority_green_gray -> "green"
             else -> ""
-
         }
 
         model = NoteCard(
-            title ?: "",
-            subtitle ?: "",
-            time ?: "",
-            photoEnabled ?: "",
-            photo ?: "",
-            priorityString ?: "",
-            path ?: ""
+            title,
+            subtitle,
+            time,
+            photoEnabled,
+            photo,
+            priorityString,
+            path
         )
 
-        Log.d("CHECKER", "Title: ${model.title} | Subtitle: ${model.subtitle} " +
+        Log.d(
+            "CHECKER",
+            "Title: ${model.title} | Subtitle: ${model.subtitle} " +
                 "| Time: ${model.time} | PhotoAttached $photoEnabled | PhotoURL ${model.photo} " +
-                "| Priority ${model.priority} | Path ${model.path}")
+                "| Priority ${model.priority} | Path ${model.path}"
+        )
 
         cardRef.child(path).setValue(
-                model
-            )
+            model
+        )
 
         finish()
     }
-    private fun editNote(){
-
+    private fun editNote() {
     }
-
-
 }

@@ -78,8 +78,7 @@ class RegistrationActivity : Activity() {
             selectedPhotoUri = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
             selectUserPhoto.setImageBitmap(bitmap)
-        }
-        else {
+        } else {
             Log.d("CHECKER", "Error selected photo")
         }
     }

@@ -31,7 +31,6 @@ class AdvancedCardActivity : AppCompatActivity() {
 
     private lateinit var card: NoteCard
 
-
     private lateinit var appBarLayout: AppBarLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,9 +104,14 @@ class AdvancedCardActivity : AppCompatActivity() {
     private fun generateDialog(ctx: Context, model: NoteCard) {
         val builder = AlertDialog.Builder(ctx)
         builder.setTitle(ctx.getString(R.string.specify_deleting))
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-            ((FirebaseDatabase.getInstance().reference.child("notes").child(
-                FirebaseAuth.getInstance().currentUser?.uid.toString()).child(model.path))).removeValue()
+        builder.setPositiveButton(android.R.string.yes) { _, _ ->
+            (
+                (
+                    FirebaseDatabase.getInstance().reference.child("notes").child(
+                        FirebaseAuth.getInstance().currentUser?.uid.toString()
+                    ).child(model.path)
+                    )
+                ).removeValue()
             finish()
         }
 
@@ -116,5 +120,5 @@ class AdvancedCardActivity : AppCompatActivity() {
         }
 
         builder.show()
-}
+    }
 }

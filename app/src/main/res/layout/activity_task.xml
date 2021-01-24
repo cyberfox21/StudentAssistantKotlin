@@ -5,8 +5,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
+    android:theme="@style/theme_navview"
     android:background="@color/color_main_white"
     android:layout_width="match_parent">
+
+
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -46,8 +50,7 @@
             android:layout_marginStart="25dp"
             android:textSize="18sp"
             android:fontFamily="@font/avenirnextcyr_light"
-            android:textStyle="bold"
-            android:layout_marginLeft="25dp" />
+            android:textStyle="normal" />
 
     </LinearLayout>
 
@@ -71,11 +74,13 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_view"
-        android:background="@color/color_main_white"
-        app:itemIconTint="@color/color_main_light"
         app:itemTextAppearance="@style/menu_text_style"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:itemIconPadding="24dp"
+        android:background="@color/color_navview_background"
+
+
         app:menu="@menu/items">
 
         <!--app:headerLayout="@layout/nav_view"-->
@@ -98,7 +103,7 @@
 
             android:fontFamily="@font/avenirnextcyr_light"
             android:textColor="@color/color_hint_light"
-            android:text="TSIB team" />
+            android:text="@string/tsib_team" />
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
 

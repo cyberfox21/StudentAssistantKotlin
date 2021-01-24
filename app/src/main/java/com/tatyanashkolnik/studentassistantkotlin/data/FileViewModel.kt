@@ -15,5 +15,5 @@ class FileViewModel(application: Application) : AndroidViewModel(application) {
         readAllData = repository.readAllData
     }
 
-    fun addFile(){}
+    fun addFile() {}
 }

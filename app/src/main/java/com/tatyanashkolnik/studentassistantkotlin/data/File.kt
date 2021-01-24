@@ -4,9 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "file_table")
-data class File (
+data class File(
     @PrimaryKey(autoGenerate = true)
-    val id : Int,
-    val name : String,
-    val link : String
-    )
+    val id: Int,
+    val name: String,
+    val link: String
+)
