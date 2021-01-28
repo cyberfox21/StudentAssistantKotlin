@@ -89,22 +89,22 @@
                 android:layout_margin="8dp"
                 android:orientation="horizontal">
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="удалить"
                     app:rippleColor="@color/color_main_light"
                     android:textColor="@color/color_main_light"
-                    style="?attr/borderlessButtonStyle"
-                    />
+                    style="?attr/borderlessButtonStyle" />
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_change"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="изменить"
                     app:rippleColor="@color/color_main_light"
                     style="?attr/borderlessButtonStyle"
-                    android:textColor="@color/color_main_light"
-                    />
+                    android:textColor="@color/color_main_light" />
             </LinearLayout>
 
             <!-- Buttons -->

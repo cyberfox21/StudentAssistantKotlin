@@ -9,6 +9,7 @@ import android.util.DisplayMetrics
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
@@ -138,4 +139,10 @@ class TaskActivity : AppCompatActivity() {
     }
     private fun saveLanguage(language: Int) =
         sharedPrefs.edit().putInt(Constants.LIST_STATE, language).apply()
+
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Toast.makeText(this, "You can't go back", Toast.LENGTH_LONG).show()
+    }
 }
