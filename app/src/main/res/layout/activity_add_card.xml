@@ -1,137 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_main_white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".addcards.AddCardActivity">
+    android:layout_margin="8dp"
+    android:theme="@style/theme_edittext"
+    android:layout_height="match_parent">
 
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/color_card_background"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="4dp"
-        android:layout_margin="32dp"
-        android:theme="@style/AppTheme_3"
+        android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:cardUseCompatPadding="false">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField_3"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="18dp">
+            android:hint="@string/hint_et_Service"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_baseline_cloud_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etService"
+                android:layout_width="match_parent"
+                android:textColor="@color/color_main_light"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField_2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/hint_etLogin"
+            app:layout_constraintTop_toBottomOf="@id/textField_3"
+            app:startIconDrawable="@drawable/ic_person_black_24dp">
 
-                <EditText
-                    android:id="@+id/etService"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapWords"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/avenirnextcyr_medium"
-                    android:gravity="left"
-                    android:paddingLeft="31dp"
-                    android:backgroundTint="@color/color_card_background"
-                    android:paddingTop="16dp"
-                    android:singleLine="true"
-                    android:hint="@string/hint_et_Service"
-                    android:textColor="@color/color_main_light"
-                    android:textColorHint="@color/color_hint_light"
-                    android:textSize="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etLogin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:gravity="left"
-                android:paddingRight="60dp"
-                android:inputType="text"
-                android:hint="@string/hint_etLogin"
-                android:backgroundTint="@color/color_card_background"
                 android:textColor="@color/color_main_light"
-                android:textColorHint="@color/color_hint_light"
-                android:textSize="16dp"
-                app:layout_constraintStart_toEndOf="@+id/textView13"
-                app:layout_constraintTop_toBottomOf="@+id/etService" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:fontFamily="@font/avenirnextcyr_light"
-                android:gravity="center"
-                android:text="\@"
-                android:textColor="@color/color_main_light"
-                android:textSize="24dp"
-                app:layout_constraintBottom_toBottomOf="@+id/etLogin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/etLogin" />
+                android:inputType="text" />
 
-            <EditText
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/hint_etLoginPassword"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:endIconMode="password_toggle"
+            app:layout_constraintTop_toBottomOf="@+id/textField_2"
+            app:startIconDrawable="@drawable/ic_lock_outline_black_24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+
                 android:id="@+id/etPassword"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="left"
-                android:paddingRight="46dp"
-                android:backgroundTint="@color/color_card_background"
-                android:inputType="textPassword"
                 android:textColor="@color/color_main_light"
-                android:hint="@string/hint_etPassword"
-                android:textColorHint="@color/color_hint_light"
-                android:textSize="16dp"
-                app:layout_constraintStart_toStartOf="@+id/etLogin"
-                app:layout_constraintTop_toBottomOf="@+id/etLogin" />
+                android:inputType="textPassword" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/ic_baseline_lock_24_2"
-                app:layout_constraintBottom_toBottomOf="@+id/etPassword"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/etPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    </androidx.cardview.widget.CardView>
-
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/fabSendPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:backgroundTint="@color/color_main_light"
-        android:fontFamily="@font/avenirnextcyr_medium"
-        android:padding="18dp"
-        android:src="@drawable/avd_anim"
-        android:text="s e n d"
+        android:padding="12dp"
+        android:text=" s e n d "
+        android:layout_marginLeft="20dp"
+        app:rippleColor="#fff"
+        android:layout_marginRight="20dp"
+        style="@style/Widget.MaterialComponents.Button"
         android:textColor="#fff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

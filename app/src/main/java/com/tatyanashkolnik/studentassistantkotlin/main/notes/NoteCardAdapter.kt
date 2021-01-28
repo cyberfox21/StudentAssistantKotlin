@@ -84,7 +84,6 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
 //                itemView.context.startActivity(intentToAdvancedCardActivity)
 //            }
 
-
             itemView.btn_change.setOnClickListener {
                 val intentToAdvancedCardActivity = Intent(itemView.context, AdvancedCardActivity::class.java)
 //                intentToAdvancedCardActivity.putExtra("object", model)

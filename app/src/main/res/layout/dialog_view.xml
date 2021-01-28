@@ -1,22 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_margin="15dp"
+
+    style="@style/Theme.MaterialComponents.Light"
+    android:theme="@style/theme_edittext"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/dialog_textView"
-        android:text="Enter the title:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/color_toolbar"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_send_note"
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
-    <EditText
-        android:id="@+id/dialog_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/dialog_imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Media -->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/add_image"
+                android:layout_width="match_parent"
+                android:layout_height="194dp"
+                android:adjustViewBounds="true"
+                app:lottie_autoPlay="true"
+                android:scaleType="centerCrop"
+                app:lottie_loop="true"
+                app:lottie_url="https://assets6.lottiefiles.com/packages/lf20_6uo4hxe2.json" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+
+                    <!-- Title, secondary and supporting text -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textField_3"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/card_note_title"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:startIconDrawable="@drawable/ic_baseline_title_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_add_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/addNoteCardPriority"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:src="@drawable/ic_priority_default" />
+
+                </LinearLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textField_2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/card_note_description"
+                    app:layout_constraintTop_toBottomOf="@id/textField_3"
+                    app:startIconDrawable="@drawable/ic_baseline_text_snippet_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_add_subtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:focusable="true"
+                        android:gravity="top|left"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:backgroundTint="@color/color_main_light"
+                        android:layout_height="match_parent">
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/card_task_image_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/et_add_title">
+
+                            <TextView
+                                android:id="@+id/tv_add_time_start_hours"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:fontFamily="@font/avenirnextcyr_light"
+                                android:text="00"
+                                android:textColor="#fff"
+                                android:textSize="16dp"
+                                app:layout_constraintEnd_toStartOf="@+id/tochka"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tochka"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:textColor="#fff"
+                                android:textSize="16dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/tv_add_time_start_hours"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_add_time_start_minutes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/avenirnextcyr_light"
+                                android:text="00"
+                                android:textColor="#fff"
+                                android:textSize="16dp"
+
+                                app:layout_constraintLeft_toRightOf="@id/tochka"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:text="-"
+                        android:textColor="#575767"
+                        android:textSize="18dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/card_task_image_time"
+                        app:layout_constraintStart_toEndOf="@+id/card_task_image_time"
+                        app:layout_constraintTop_toTopOf="@+id/card_task_image_time" />
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:backgroundTint="@color/color_main_light"
+                        android:layout_height="match_parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/const2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            >
+
+
+                            <TextView
+
+                                android:id="@+id/tv_add_time_end_hours"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/avenirnextcyr_light"
+                                android:text="23"
+                                android:textColor="#fff"
+                                android:textSize="16dp"
+                                app:layout_constraintEnd_toStartOf="@+id/tochka_1"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <TextView
+                                android:id="@+id/tochka_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:textColor="#fff"
+                                android:textSize="16dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/tv_add_time_end_hours"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+
+                            <TextView
+                                android:id="@+id/tv_add_time_end_minutes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/avenirnextcyr_light"
+                                android:text="59"
+                                android:textColor="#fff"
+                                android:textSize="16dp"
+                                app:layout_constraintLeft_toRightOf="@id/tochka_1"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_send_note"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:padding="12dp"
+        android:text=" s e n d "
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:rippleColor="#fff" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

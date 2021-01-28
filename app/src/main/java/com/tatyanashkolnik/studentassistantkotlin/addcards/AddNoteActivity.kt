@@ -1,24 +1,22 @@
-@file:Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION")
-
 package com.tatyanashkolnik.studentassistantkotlin.addcards
 
+import android.app.ActionBar
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.MediaStore.Images.Media.getBitmap
 import android.text.Html
 import android.util.Log
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -44,13 +42,15 @@ class AddNoteActivity : AppCompatActivity() {
     private var startMinutes: String = ""
     private var endHours: String = ""
     private var endMinutes: String = ""
+    private lateinit var et_add_title: EditText
+    private lateinit var et_add_subtitle: EditText
 
     private lateinit var time: String
 
     private lateinit var key: String
 
     private lateinit var image: LottieAnimationView
-    private lateinit var btnSendNote: FloatingActionButton
+    private lateinit var btnSendNote: MaterialButton
 
     private lateinit var tvAddStartTimeHours: TextView
     private lateinit var tvAddEndTimeHours: TextView
@@ -72,7 +72,7 @@ class AddNoteActivity : AppCompatActivity() {
     }
 
     private fun initFields() {
-        val actionBar: android.app.ActionBar? = actionBar
+        val actionBar: ActionBar? = actionBar
         actionBar?.setTitle(Html.fromHtml("<font color='#FFFFFF'>Add new note</font>"))
         btnSendNote = findViewById(R.id.btn_send_note)
         tvAddStartTimeHours = findViewById(R.id.tv_add_time_start_hours)
@@ -81,6 +81,9 @@ class AddNoteActivity : AppCompatActivity() {
         tvAddEndTimeMinutes = findViewById(R.id.tv_add_time_end_minutes)
         addNoteCardPriority = findViewById(R.id.addNoteCardPriority)
         image = findViewById(R.id.add_image)
+        et_add_title = findViewById(R.id.et_add_title)
+        et_add_subtitle = findViewById(R.id.et_add_subtitle)
+
         if (key == "edit") {
             et_add_title.setText(intent.getStringExtra("title"))
             et_add_subtitle.setText(intent.getStringExtra("subtitle"))
@@ -211,7 +214,7 @@ class AddNoteActivity : AppCompatActivity() {
 
             selectedPhoto = data.data
             photoEnabled = "1"
-            val bitmap = getBitmap(contentResolver, selectedPhoto)
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhoto)
             image.setImageBitmap(bitmap)
         }
     }
@@ -235,7 +238,7 @@ class AddNoteActivity : AppCompatActivity() {
             }
         }
 
-        val photoEnabled: String = when (selectedPhoto) {
+        var photoEnabled: String = when (selectedPhoto) {
             null -> "0"
             else -> "1"
         }
@@ -278,13 +281,13 @@ class AddNoteActivity : AppCompatActivity() {
         }
 
         model = NoteCard(
-            title,
-            subtitle,
-            time,
-            photoEnabled,
-            photo,
-            priorityString,
-            path
+            title ?: "",
+            subtitle ?: "",
+            time ?: "",
+            photoEnabled ?: "",
+            photo ?: "",
+            priorityString ?: "",
+            path ?: ""
         )
 
         Log.d(

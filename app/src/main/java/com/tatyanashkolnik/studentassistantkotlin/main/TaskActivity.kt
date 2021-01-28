@@ -140,7 +140,6 @@ class TaskActivity : AppCompatActivity() {
     private fun saveLanguage(language: Int) =
         sharedPrefs.edit().putInt(Constants.LIST_STATE, language).apply()
 
-
     override fun onBackPressed() {
         super.onBackPressed()
         Toast.makeText(this, "You can't go back", Toast.LENGTH_LONG).show()

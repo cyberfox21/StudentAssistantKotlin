@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tatyanashkolnik.studentassistantkotlin.R
 import kotlinx.android.synthetic.main.dialog_view.*
 import kotlinx.android.synthetic.main.fragment_documents.*
@@ -17,10 +16,13 @@ import kotlinx.android.synthetic.main.fragment_documents.*
 class DocumentsFragment : Fragment() {
 
     private lateinit var rootview: View
-    //private lateinit var btnAddDocument: FloatingActionButton
+    // private lateinit var btnAddDocument: FloatingActionButton
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         rootview = inflater.inflate(R.layout.fragment_documents, container, false)
         return rootview
     }
@@ -37,7 +39,7 @@ class DocumentsFragment : Fragment() {
 
     private fun initListeners() {
         btnAddDocument.setOnClickListener { addDocument() }
-        //dialog_imageView.setOnClickListener { pickDocumentImage() }
+        // dialog_imageView.setOnClickListener { pickDocumentImage() }
     }
 
     private fun pickDocumentImage() {
@@ -55,9 +57,9 @@ class DocumentsFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK && data != null){
-            val selectedPhoto : Uri? = data.data
-            //val photo = MediaStore.wr
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            val selectedPhoto: Uri? = data.data
+            // val photo = MediaStore.wr
         }
     }
 }

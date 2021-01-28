@@ -12,7 +12,7 @@ import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
 
 class AddCardActivity() : AppCompatActivity() {
 
-    private lateinit var fab: FloatingActionButton
+    private lateinit var fab: com.google.android.material.button.MaterialButton
     private lateinit var etService: EditText
     private lateinit var etLogin: EditText
     private lateinit var etPassword: EditText
