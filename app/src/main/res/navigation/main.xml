@@ -37,7 +37,7 @@
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/documents"
-        android:name="com.tatyanashkolnik.studentassistantkotlin.main.DocumentsFragment"
+        android:name="com.tatyanashkolnik.studentassistantkotlin.main.documents.DocumentsFragment"
         android:label="@string/text_label_documents"
         tools:layout="@layout/fragment_documents" />
 </navigation>

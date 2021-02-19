@@ -1,5 +1,6 @@
-package com.tatyanashkolnik.studentassistantkotlin.data
+package com.tatyanashkolnik.studentassistantkotlin.data.room
 
+import android.net.Uri
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

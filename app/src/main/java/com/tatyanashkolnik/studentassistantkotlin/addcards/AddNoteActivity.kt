@@ -74,7 +74,7 @@ class AddNoteActivity : AppCompatActivity() {
     private fun initFields() {
         val actionBar: ActionBar? = actionBar
         actionBar?.setTitle(Html.fromHtml("<font color='#FFFFFF'>Add new note</font>"))
-        btnSendNote = findViewById(R.id.btn_send_note)
+        btnSendNote = findViewById(R.id.btn_new_document)
         tvAddStartTimeHours = findViewById(R.id.tv_add_time_start_hours)
         tvAddStartTimeMinutes = findViewById(R.id.tv_add_time_start_minutes)
         tvAddEndTimeHours = findViewById(R.id.tv_add_time_end_hours)

@@ -17,7 +17,7 @@
         android:backgroundTint="@color/color_toolbar"
         app:cardCornerRadius="5dp"
         app:cardElevation="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_send_note"
+        app:layout_constraintBottom_toTopOf="@+id/btn_new_document"
         app:layout_constraintTop_toTopOf="parent"
         >
 
@@ -261,7 +261,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_send_note"
+        android:id="@+id/btn_new_document"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

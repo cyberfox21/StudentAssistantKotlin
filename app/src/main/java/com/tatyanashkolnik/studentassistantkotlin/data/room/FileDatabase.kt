@@ -1,4 +1,4 @@
-package com.tatyanashkolnik.studentassistantkotlin.data
+package com.tatyanashkolnik.studentassistantkotlin.data.room
 
 import android.content.Context
 import androidx.room.Database

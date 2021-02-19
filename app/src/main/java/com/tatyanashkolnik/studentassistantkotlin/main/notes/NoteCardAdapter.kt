@@ -14,6 +14,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import com.tatyanashkolnik.studentassistantkotlin.R
+import com.tatyanashkolnik.studentassistantkotlin.data.Document
 import com.tatyanashkolnik.studentassistantkotlin.data.NoteCard
 import com.tatyanashkolnik.studentassistantkotlin.showcards.AdvancedCardActivity
 import kotlinx.android.synthetic.main.card_task.view.*
