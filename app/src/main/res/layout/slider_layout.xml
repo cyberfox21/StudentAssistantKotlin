@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/GlideSliderDescriptionTextStyle"
     android:orientation="vertical">
 
     <ImageView
@@ -12,12 +13,12 @@
         android:scaleType="centerCrop" />
 
 
-<!--    <ImageView-->
-<!--        android:id="@+id/iv_gif_container"-->
-<!--        android:layout_width="80dp"-->
-<!--        android:layout_height="80dp"-->
-<!--        android:layout_gravity="bottom|start"-->
-<!--        android:layout_margin="50dp" />-->
+    <ImageView
+        android:id="@+id/iv_gif_container"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="50dp" />
 
 
     <FrameLayout
@@ -33,8 +34,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="25dp"
             android:padding="6dp"
-            android:textColor="#FFF"
-            android:textSize="18sp" />
+            android:textAllCaps="true"
+            style="@style/GlideSliderDescriptionTextStyle"
+            android:textStyle="bold"
+            android:textSize="24sp" />
 
     </FrameLayout>
 

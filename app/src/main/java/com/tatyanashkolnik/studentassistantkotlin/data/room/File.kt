@@ -1,5 +1,6 @@
 package com.tatyanashkolnik.studentassistantkotlin.data.room
 
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,5 +10,5 @@ data class File(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
-    val link: String
+    val bitmap: Bitmap
 )

@@ -5,30 +5,37 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.documents.DocumentsFragment">
-
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="6dp"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/imageSlider"
+        style="@style/GlideSliderDescriptionTextStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:sliderAnimationDuration="600"
-        app:sliderAutoCycleEnabled="true"
-        app:sliderIndicatorAnimationDuration="600"
+        android:layout_height="match_parent"
+        app:sliderAnimationDuration="0"
+        app:sliderAutoCycleEnabled="false"
+        app:sliderIndicatorAnimationDuration="0"
         app:sliderIndicatorGravity="center_horizontal|bottom"
         app:sliderIndicatorMargin="15dp"
         app:sliderIndicatorOrientation="horizontal"
         app:sliderIndicatorPadding="3dp"
-        app:sliderIndicatorRadius="2dp"
-        app:sliderIndicatorSelectedColor="#5A5A5A"
-        app:sliderIndicatorUnselectedColor="#FFF"
+        app:sliderIndicatorRadius="0dp"
+        app:sliderIndicatorSelectedColor="#000"
+        app:sliderIndicatorUnselectedColor="#5a5a5a"
         app:sliderScrollTimeInSec="1"
-        app:sliderStartAutoCycle="true" />
+        app:sliderStartAutoCycle="false"
+        app:sliderAutoCycleDirection="right"/>
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAddDocument"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
+        android:layout_margin="20dp"
         android:src="@drawable/ic_add_24"
         app:fabSize="normal"/>
 

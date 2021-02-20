@@ -1,16 +1,23 @@
+@file:Suppress("DEPRECATION")
+
 package com.tatyanashkolnik.studentassistantkotlin.main.documents
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.ContentResolver
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentResolverCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +33,7 @@ import com.tatyanashkolnik.studentassistantkotlin.data.room.File
 import com.tatyanashkolnik.studentassistantkotlin.data.room.FileViewModel
 import kotlinx.android.synthetic.main.dialog_documents.view.*
 import kotlinx.android.synthetic.main.fragment_documents.*
+import kotlinx.android.synthetic.main.slider_layout.view.*
 
 class DocumentsFragment : Fragment() {
 
@@ -38,6 +46,7 @@ class DocumentsFragment : Fragment() {
     private lateinit var title: TextInputEditText
 
     private var selectedPhoto: Uri? = null
+    private var bitmap: Bitmap? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,15 +78,16 @@ class DocumentsFragment : Fragment() {
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)
         sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
         sliderView.setSliderAdapter(adapter)
-        //val documents = ArrayList<Document>().toMutableList()
+        val documents = ArrayList<Document>().toMutableList()
         mFileViewModel.readAllData.observe(viewLifecycleOwner, Observer { it ->
             for (i in it) {
-                Log.d("CHECKER", "${i.name} ${i.link}")
-                //documents.add(Document(i.name, i.link))
-                adapter.addItem(Document(i.name, i.link))
+                Log.d("CHECKER", "${i.name} ${i.bitmap}")
+                documents.add(Document(i.name, i.bitmap))
+                //adapter.addItem(Document(i.name, i.link))
             }
+            adapter.renewItems(documents)
+            adapter.notifyDataSetChanged()
         })
-        //adapter.renewItems(documents)
     }
 
 
@@ -118,15 +128,16 @@ class DocumentsFragment : Fragment() {
 
     private fun insertDataToDatabase() {
         val title = title.text.toString()
-        val photo = selectedPhoto.toString()
+        //val photo = selectedPhoto.toString()
 
-        val file = File(0, title, photo)
+        val file = File(0, title, bitmap!!)
 
         mFileViewModel.addFile(file)
 
         Toast.makeText(context, "successfully added", Toast.LENGTH_SHORT).show()
 
         selectedPhoto = null
+        bitmap = null
 
     }
 
@@ -134,7 +145,8 @@ class DocumentsFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && data != null) {
             selectedPhoto = data.data
-            Picasso.get().load(selectedPhoto).into(image)
+            MediaStore.Images.Media.getBitmap(requireContext().contentResolver ,selectedPhoto).also { bitmap = it }
+            image.setImageBitmap(bitmap)
         }
     }
 }

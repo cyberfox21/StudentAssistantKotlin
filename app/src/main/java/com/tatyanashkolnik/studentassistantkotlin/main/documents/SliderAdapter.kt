@@ -48,9 +48,8 @@ class SliderAdapter(context: Context) :
     override fun onBindViewHolder(viewHolder: SliderAdapterVH, position: Int) {
         val document: Document = mSliderItems[position]
         viewHolder.textViewDescription.text = document.title
-        viewHolder.textViewDescription.textSize = 16f
-        viewHolder.textViewDescription.setTextColor(Color.BLACK)
-        Picasso.get().load(Uri.parse(document.link)).into(viewHolder.imageViewBackground)
+        viewHolder.imageViewBackground.setImageBitmap(document.bitmap)
+        //Picasso.get().load(Uri.parse(document.link)).into(viewHolder.imageViewBackground)
 
 
 
