@@ -38,6 +38,7 @@ import kotlinx.android.synthetic.main.slider_layout.view.*
 class DocumentsFragment : Fragment() {
 
     private lateinit var mFileViewModel: FileViewModel
+    private lateinit var sliderView: SliderView
 
     private var alertadd : AlertDialog? = null
 
@@ -55,6 +56,7 @@ class DocumentsFragment : Fragment() {
     ): View {
         rootview = inflater.inflate(R.layout.fragment_documents, container, false)
 
+        sliderView = rootview.findViewById<SliderView>(R.id.imageSlider)
         mFileViewModel = ViewModelProvider(requireActivity()).get(FileViewModel::class.java)
 
         return rootview
@@ -67,16 +69,16 @@ class DocumentsFragment : Fragment() {
     }
 
     private fun initViews() {
-        val sliderView = rootview.findViewById<SliderView>(R.id.imageSlider)
+
         val adapter = SliderAdapter(requireContext())
 //        sliderView.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
         sliderView.indicatorSelectedColor = Color.BLACK
         sliderView.indicatorUnselectedColor = Color.GRAY
 //        sliderView.scrollTimeInSec = 4
-//        sliderView.startAutoCycle()
+        sliderView.startAutoCycle()
         // init database
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)
-        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+        sliderView.setSliderTransformAnimation(SliderAnimations.CUBEINSCALINGTRANSFORMATION)
         sliderView.setSliderAdapter(adapter)
         val documents = ArrayList<Document>().toMutableList()
         mFileViewModel.readAllData.observe(viewLifecycleOwner, Observer { it ->
@@ -148,5 +150,15 @@ class DocumentsFragment : Fragment() {
             MediaStore.Images.Media.getBitmap(requireContext().contentResolver ,selectedPhoto).also { bitmap = it }
             image.setImageBitmap(bitmap)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sliderView.stopAutoCycle()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sliderView.startAutoCycle()
     }
 }
