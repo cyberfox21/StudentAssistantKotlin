@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -38,6 +39,7 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
 
     inner class NoteCardViewHolder internal constructor (itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(model: NoteCard) {
+
             Log.d("CHECKER", "bind()")
             if (model.photoAttached == "0") {
                 itemView.card_task_title.text = model.title
@@ -52,16 +54,23 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
                     "red" -> itemView.card_task_icon.setImageResource(R.drawable.ic_priority_red)
                     else -> itemView.card_task_icon.visibility = View.INVISIBLE
                 }
+                val b_change = itemView.findViewById<MaterialButton>(R.id.b_change)
+                val b_delete = itemView.findViewById<MaterialButton>(R.id.b_delete)
+                b_change.setOnClickListener {
+                    val intentToAdvancedCardActivity = Intent(itemView.context, AdvancedCardActivity::class.java)
+//                intentToAdvancedCardActivity.putExtra("object", model)
+//                itemView.context.startActivity(intentToAdvancedCardActivity)
+                }
+                b_delete.setOnClickListener {
+                    generateDialog(itemView.context, model)
+                }
             } else {
-
                 itemView.card_task_image_title.text = model.title
                 Log.d("CHECKER", "NoteAdapter: title " + model.title)
                 itemView.card_task_image_subtitle.text = model.subtitle
                 Log.d("CHECKER", "NoteAdapter: login " + model.subtitle)
                 itemView.card_task_image_time.text = model.time
                 Log.d("CHECKER", "NoteAdapter: time " + model.time)
-                // itemView.card_task_image.setImageURI(Uri.parse(model.photo))
-                // Log.d("CHECKER", "NoteAdapter: password " + model.photo)
                 when (model.priority) {
                     "green" -> itemView.card_task_image_icon.setImageResource(R.drawable.ic_priority_green)
                     "yellow" -> itemView.card_task_image_icon.setImageResource(R.drawable.ic_priority_yellow)
@@ -69,7 +78,6 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
                     else -> itemView.card_task_image_icon.visibility = View.INVISIBLE
                 }
                 if (model.photo != "") {
-
                     Picasso.get()
                         .load(model.photo)
                         .resize(itemView.resources.displayMetrics.widthPixels, itemView.resources.displayMetrics.heightPixels)
@@ -77,28 +85,17 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
                         // .centerCrop()
                         .into(itemView.card_task_image)
                 }
-            }
-
-//            itemView.setOnClickListener {
-//                val intentToAdvancedCardActivity = Intent(itemView.context, AdvancedCardActivity::class.java)
+                val btn_change = itemView.findViewById<MaterialButton>(R.id.btn_change)
+                val btn_delete = itemView.findViewById<MaterialButton>(R.id.btn_delete)
+                btn_change.setOnClickListener {
+                    val intentToAdvancedCardActivity = Intent(itemView.context, AdvancedCardActivity::class.java)
 //                intentToAdvancedCardActivity.putExtra("object", model)
 //                itemView.context.startActivity(intentToAdvancedCardActivity)
-//            }
-
-            itemView.btn_change.setOnClickListener {
-                val intentToAdvancedCardActivity = Intent(itemView.context, AdvancedCardActivity::class.java)
-//                intentToAdvancedCardActivity.putExtra("object", model)
-//                itemView.context.startActivity(intentToAdvancedCardActivity)
+                }
+                btn_delete.setOnClickListener {
+                    generateDialog(itemView.context, model)
+                }
             }
-            itemView.btn_delete.setOnClickListener setOnLongClickListener@{
-                generateDialog(itemView.context, model)
-                return@setOnLongClickListener
-            }
-
-//
-//            itemView.setOnLongClickListener {
-//
-//            }
         }
     }
 
@@ -139,21 +136,22 @@ class NoteCardAdapter(resultList: ArrayList<NoteCard>) : RecyclerView.Adapter<Re
                     )
                 ).removeValue()
 
-            val photoRef: StorageReference = FirebaseStorage.getInstance().getReferenceFromUrl(model.photo)
+            if(model.photo != "") {
+                val photoRef: StorageReference =
+                    FirebaseStorage.getInstance().getReferenceFromUrl(model.photo)
 
-            photoRef.delete().addOnSuccessListener { // File deleted successfully
-                Log.d("CHECKER", "onSuccess: deleted file")
-            }.addOnFailureListener { // Uh-oh, an error occurred!
-                Log.d("CHECKER", "onFailure: did not delete file")
+                photoRef.delete().addOnSuccessListener { // File deleted successfully
+                    Log.d("CHECKER", "onSuccess: deleted file")
+                }.addOnFailureListener { // Uh-oh, an error occurred!
+                    Log.d("CHECKER", "onFailure: did not delete file")
+                }
             }
 
             notifyDataSetChanged()
         }
-
         builder.setNegativeButton(android.R.string.no) { dialog, which ->
             dialog.cancel()
         }
-
         builder.show()
     }
 }

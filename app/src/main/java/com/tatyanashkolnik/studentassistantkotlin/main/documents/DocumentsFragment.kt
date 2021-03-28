@@ -148,9 +148,38 @@ class DocumentsFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && data != null) {
             selectedPhoto = data.data
             MediaStore.Images.Media.getBitmap(requireContext().contentResolver ,selectedPhoto).also { bitmap = it }
+            //val absolutePath = createFile(bitmap!!)
             image.setImageBitmap(bitmap)
         }
     }
+
+
+//        private fun createFile(pictureBitmap: Bitmap): String {
+//        val path: String = Environment.getExternalStorageDirectory().toString()
+//        var fOut: OutputStream? = null
+//        val counter = 0
+//        val file = java.io.File(
+//            path,
+//            "FitnessGirl$counter.jpg"
+//        )
+//        fOut = FileOutputStream(file)
+//        pictureBitmap.compress(
+//            Bitmap.CompressFormat.PNG,
+//            85,
+//            fOut
+//        )
+//        fOut.flush()
+//        fOut.close()
+//
+//        MediaStore.Images.Media.insertImage(
+//            requireActivity().contentResolver,
+//            file.absolutePath,
+//            file.name,
+//            file.name
+//        )
+//        return file.absolutePath
+//    }
+
 
     override fun onPause() {
         super.onPause()

@@ -68,15 +68,17 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/b_delete"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="8dp"
                     android:text="удалить"
                     android:textColor="@color/color_main_light"
                     app:rippleColor="@color/color_main_light" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/b_change"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
