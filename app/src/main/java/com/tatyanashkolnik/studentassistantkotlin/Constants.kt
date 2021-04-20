@@ -12,4 +12,8 @@ object Constants {
     const val THEME_UNDEFINED = -1
     const val THEME_LIGHT = 0
     const val THEME_DARK = 1
+
+    const val MOSRU = "https://dnevnik.mos.ru/"
+    const val SPB = "https://dnevnik2.petersburgedu.ru/login"
+    const val DNEVNIK = "https://login.dnevnik.ru/login"
 }

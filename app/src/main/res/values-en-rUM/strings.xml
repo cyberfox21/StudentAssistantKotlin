@@ -4,7 +4,7 @@
         <item>Yellow</item>
         <item>Green</item>
     </array>
-    <string name="app_name">Personal Assistant</string>
+    <string name="app_name">Student Assistant Assistant</string>
     <string name="dev_team"><![CDATA[< Developers Team />]]></string>
     <string name="title_activity_settings">Settings</string>
     <string name="hint_et_Service">Service</string>
