@@ -309,6 +309,7 @@ class AddNoteActivity : AppCompatActivity() {
 
         finish()
     }
+
     private fun editNote() {
     }
 

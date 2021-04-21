@@ -1,6 +1,7 @@
 package com.tatyanashkolnik.studentassistantkotlin.main.passwords
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.tatyanashkolnik.studentassistantkotlin.R
 import com.tatyanashkolnik.studentassistantkotlin.addcards.AddCardActivity
 import com.tatyanashkolnik.studentassistantkotlin.data.PasswordCard
+import kotlinx.android.synthetic.main.dialog_documents.view.*
 
 const val REQUEST_CODE = 1
 
@@ -61,6 +63,7 @@ class PasswordFragment : Fragment() {
         var intentToAddCardActivity = Intent(activity, AddCardActivity::class.java)
         intentToAddCardActivity.putExtra("key", "add")
         startActivityForResult(intentToAddCardActivity, REQUEST_CODE)
+        //callDialog("add")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -132,5 +135,29 @@ class PasswordFragment : Fragment() {
             }
         }
         return index
+    }
+
+    private fun callDialog(key: String) {
+//        val alertadd: AlertDialog.Builder = AlertDialog.Builder(this.context).setCancelable(true)
+//        val factory = LayoutInflater.from(this.context)
+//        val view: View = factory.inflate(R.layout.dialog_documents, null)
+//        image = view.findViewById(R.id.add_document_image)
+//        title = view.findViewById(R.id.et_add_document_title)
+//        alertadd.setView(view)
+//        val dialog = alertadd.create()
+//        dialog.show()
+//        view.btn_new_document.setOnClickListener {
+//            if (view.et_add_document_title.text != null && selectedPhoto != null) {
+//                //insertDataToDatabase()
+//            } else if (view.et_add_document_title.text == null) {
+//                view.et_add_document_title.error = "Document title is empty!"
+//            } else if (selectedPhoto == null) {
+//                Toast.makeText(view.context, "Photo not picked!", Toast.LENGTH_SHORT).show()
+//            }
+//            dialog.dismiss()
+//        }
+//        view.add_document_image.setOnClickListener {
+//            pickDocumentImage()
+//        }
     }
 }
