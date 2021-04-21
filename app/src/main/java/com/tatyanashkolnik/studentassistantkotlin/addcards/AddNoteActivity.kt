@@ -225,12 +225,18 @@ class AddNoteActivity : AppCompatActivity() {
 
         when {
             (startHours != null && endHours != null && startHours != "" && endHours != "") -> {
+                startMinutes = normalizeMinutes(startMinutes)
+                endMinutes = normalizeMinutes(endMinutes)
                 time = "$startHours:$startMinutes - $endHours:$endMinutes"
+                Log.d("CHECKER", "startMinutes" + startMinutes)
+                Log.d("CHECKER", "endMinutes" + endMinutes)
             }
             (startHours != null && startHours != "") -> {
+                startMinutes = normalizeMinutes(startMinutes)
                 time = "$startHours:$startMinutes"
             }
             (endHours != null && endHours != "") -> {
+                endMinutes = normalizeMinutes(endMinutes)
                 time = "$endHours:$endMinutes"
             }
             else -> {
@@ -304,5 +310,13 @@ class AddNoteActivity : AppCompatActivity() {
         finish()
     }
     private fun editNote() {
+    }
+
+    private fun normalizeMinutes(minutes: String): String {
+        if(minutes.length == 1){
+            var mins = "0$minutes"
+            return mins
+        }
+        else{return minutes}
     }
 }
