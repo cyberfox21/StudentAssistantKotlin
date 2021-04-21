@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +27,18 @@ import kotlinx.android.synthetic.main.dialog_documents.view.*
 const val REQUEST_CODE = 1
 
 class PasswordFragment : Fragment() {
+    private lateinit var dialog : AlertDialog
+
+    private lateinit var btnSend: com.google.android.material.button.MaterialButton
+    private lateinit var etService: EditText
+    private lateinit var etLogin: EditText
+    private lateinit var etPassword: EditText
+
+    private lateinit var model: PasswordCard
+
+    private var cardRef = FirebaseDatabase.getInstance().reference.child("passwords").child(FirebaseAuth.getInstance().uid.toString())
+
+    private lateinit var key: String
 
     private lateinit var fab: FloatingActionButton
     private lateinit var rootView: View
@@ -59,11 +72,11 @@ class PasswordFragment : Fragment() {
     }
 
     private fun addNewPasswordCard() {
-        Log.d("CHECKER", "New card added")
-        var intentToAddCardActivity = Intent(activity, AddCardActivity::class.java)
-        intentToAddCardActivity.putExtra("key", "add")
-        startActivityForResult(intentToAddCardActivity, REQUEST_CODE)
-        //callDialog("add")
+        //Log.d("CHECKER", "New card added")
+       // var intentToAddCardActivity = Intent(activity, AddCardActivity::class.java)
+        //intentToAddCardActivity.putExtra("key", "add")
+        //startActivityForResult(intentToAddCardActivity, REQUEST_CODE)
+        callDialog("add")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -138,26 +151,80 @@ class PasswordFragment : Fragment() {
     }
 
     private fun callDialog(key: String) {
-//        val alertadd: AlertDialog.Builder = AlertDialog.Builder(this.context).setCancelable(true)
-//        val factory = LayoutInflater.from(this.context)
-//        val view: View = factory.inflate(R.layout.dialog_documents, null)
-//        image = view.findViewById(R.id.add_document_image)
-//        title = view.findViewById(R.id.et_add_document_title)
-//        alertadd.setView(view)
-//        val dialog = alertadd.create()
-//        dialog.show()
-//        view.btn_new_document.setOnClickListener {
-//            if (view.et_add_document_title.text != null && selectedPhoto != null) {
-//                //insertDataToDatabase()
-//            } else if (view.et_add_document_title.text == null) {
-//                view.et_add_document_title.error = "Document title is empty!"
-//            } else if (selectedPhoto == null) {
-//                Toast.makeText(view.context, "Photo not picked!", Toast.LENGTH_SHORT).show()
-//            }
-//            dialog.dismiss()
+
+
+        val alertadd: AlertDialog.Builder = AlertDialog.Builder(this.context).setCancelable(true)
+        val factory = LayoutInflater.from(this.context)
+        val view: View = factory.inflate(R.layout.dialog_password, null)
+
+        btnSend = view.findViewById(R.id.fabSendPassword)
+        etService = view.findViewById(R.id.etService)
+        etLogin = view.findViewById(R.id.etLogin)
+        etPassword = view.findViewById(R.id.etPassword)
+
+//        if (key == "edit") {
+//            etService.setText(intent.getStringExtra("service"))
+//            etLogin.setText(intent.getStringExtra("login"))
+//            etPassword.setText(intent.getStringExtra("password"))
 //        }
-//        view.add_document_image.setOnClickListener {
-//            pickDocumentImage()
-//        }
+
+        alertadd.setView(view)
+        dialog = alertadd.create()
+        dialog.show()
+
+        btnSend.setOnClickListener {
+            when (key) {
+                "edit" -> changePasswordCard()
+                "add" -> createPasswordCard()
+            }
+        }
+    }
+
+    private fun changePasswordCard() {
+//        var path = intent.getStringExtra("path")
+//
+//        model = PasswordCard(
+//            etService.text.toString() ?: "",
+//            etLogin.text.toString() ?: "",
+//            etPassword.text.toString() ?: "",
+//            path
+//        )
+//
+//        Log.d(
+//            "CHECKER",
+//            "PasswordCard Added" +
+//                    "Service: ${model.service} | Login: ${model.login} | Password: ${model.password} | Path: ${model.path}"
+//        )
+//
+//        cardRef.child(path).setValue(
+//            model
+//        )
+//
+//        dialog.dismiss()
+    }
+
+
+    private fun createPasswordCard() {
+        var path = cardRef.push().key.toString()
+        Log.d("T", "AddCardActivity card path: $path")
+
+        model = PasswordCard(
+            etService.text.toString() ?: "",
+            etLogin.text.toString() ?: "",
+            etPassword.text.toString() ?: "",
+            path ?: ""
+        )
+
+        Log.d(
+            "CHECKER",
+            "PasswordCard Added" +
+                    "Service: ${model.service} | Login: ${model.login} | Password: ${model.password} | Path: ${model.path}"
+        )
+
+        cardRef.child(path).setValue(
+            model
+        )
+
+        dialog.dismiss()
     }
 }
