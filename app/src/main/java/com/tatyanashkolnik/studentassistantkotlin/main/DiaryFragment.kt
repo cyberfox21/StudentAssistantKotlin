@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.tatyanashkolnik.studentassistantkotlin.Constants
 import com.tatyanashkolnik.studentassistantkotlin.R
@@ -16,9 +18,9 @@ class DiaryFragment : Fragment() {
     private lateinit var rootView: View
     private lateinit var webView: WebView
 
-    private lateinit var btnMos: Button
-    private lateinit var btnSpb: Button
-    private lateinit var btnDnevnik: Button
+    private lateinit var btnMos: CardView
+    private lateinit var btnSpb: CardView
+    private lateinit var btnDnevnik: CardView
 
     override fun onCreateView(
         inflater: LayoutInflater,
