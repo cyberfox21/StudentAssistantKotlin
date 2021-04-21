@@ -38,5 +38,8 @@
     <string name="l_o_g_o_u_t">В Ы Й Т И</string>
     <string name="tools">Инструменты</string>
     <string name="tsib_team">TSIB team</string>
+    <string name="ilya_bregman">Ilya Bregman</string>
+    <string name="tatyana_shkolnik">Tatyana Shkolnik</string>
+    <string name="site_tsibteam">https://tsibteam.github.io/</string>
 
 </resources>
